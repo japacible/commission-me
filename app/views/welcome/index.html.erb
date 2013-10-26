@@ -1,7 +1,7 @@
 <%
 
 require "pg"
-conn = PGconn.open('dbname=comme_production')
+conn = PG::Connection.open(:dbname => 'd6nvftc6a9m3cj') 
 res = conn.exec("select * from users;")
 
 res.each{ |row|
