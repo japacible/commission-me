@@ -1,13 +1,19 @@
+<p>
+The following thing came from a database!
+</p>
+<p>
+<% user = FakeUser.find(1) %>
+name= <%=user.name %>
+email address= <%=user.email %>
+</p>
 <%
+#require "pg"
+#conn = PGconn.open('dbname=comme_production')
+#res = conn.exec("select * from users;")
 
-require "pg"
-conn = PGconn.open('dbname=comme_production')
-res = conn.exec("select * from users;")
-
-res.each{ |row|
-  puts row["username"] + " // " + row["f_name"] + " // " + row["l_name"]
+#res.each{ |row|
+#  puts row["username"] + " // " + row["f_name"] + " // " + row["l_name"]
 }
 %>
-
 
 <%= Time.now %>

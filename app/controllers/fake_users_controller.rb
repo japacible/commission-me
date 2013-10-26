@@ -1,0 +1,2 @@
+class FakeUsersController < ApplicationController
+end
