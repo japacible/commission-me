@@ -1,1 +1,13 @@
+<%
+
+require "pg"
+conn = PGconn.open('dbname=comme_production')
+res = conn.exec("select * from users;")
+
+res.each{ |row|
+  puts row["username"] + " // " + row["f_name"] + " // " + row["l_name"]
+}
+%>
+
+
 <%= Time.now %>
