@@ -33,6 +33,8 @@ group :doc do
 
 gem 'rails_12factor', group: :production
 
+gem 'unicorn'
+
 ruby "1.9.3"
 end
 
