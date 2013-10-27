@@ -6,23 +6,5 @@ The following thing came from a database!
 name= <%=user.name %>
 email address= <%=user.email %>
 </p>
-<%
-#require "pg"
-#conn = PGconn.open('dbname=comme_production')
-#res = conn.exec("select * from users;")
-
-
-#res.each{ |row|
-#  puts row["username"] + " // " + row["f_name"] + " // " + row["l_name"]
-
-#require "pg"
-#conn = PG::Connection.open(:dbname => 'd6nvftc6a9m3cj') 
-#res = conn.exec("select * from users;")
-
-#res.each{ |row|
-#  puts row["username"] + " // " + row["f_name"] + " // " + row["l_name"]
-
-#}
-%>
 
 <%= Time.now %>
