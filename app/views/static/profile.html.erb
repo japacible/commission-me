@@ -4,7 +4,7 @@
     <title>Pagliacci</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Le styles -->
-    <link href="../../assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../../assets/stylesheets/bootstrap.css" rel="stylesheet" media="screen">
     <link href="../../assets/stylesheets/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
 
     <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -55,21 +55,21 @@
         <div class="thumbnail span3">
           <img src="../../assets/images/BioCorgi.jpg">
           <div class="caption">
-            <h5>Title</h5>
+            <h2>Title</h2>
             <p>Description</p>
           </div>
         </div>  
         <div class="thumbnail span3">
           <img src="../../assets/images/BioCorgi.jpg">
           <div class="caption">
-            <h5>Title</h5>
+            <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
         <div class="thumbnail span3">
           <img src="../../assets/images/BioCorgi.jpg">
           <div class="caption">
-            <h5>Title</h5>
+            <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
@@ -86,21 +86,21 @@
         <div class="thumbnail span3">
           <img src="../../assets/images/BioCorgi.jpg">
           <div class="caption">
-            <h5>Title</h5>
+            <h2>Title</h2>
             <p>Description</p>
           </div>
         </div>  
         <div class="thumbnail span3">
           <img src="../../assets/images/BioCorgi.jpg">
           <div class="caption">
-            <h5>Title</h5>
+            <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
         <div class="thumbnail span3">
           <img src="../../assets/images/BioCorgi.jpg">
           <div class="caption">
-            <h5>Title</h5>
+            <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
@@ -121,13 +121,18 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="../../assets/javascripts/jquery.js"></script>
     <script src="../../assets/javascripts/bootstrap.min.js"></script>
-    <!-- Script to automatically engage the carousel upon page load -->
+    <!-- Script to show the text on the thumbnails -->
     <script>
-      $(document).ready(function(){
-        $('.carousel').carousel({
-          interval: 2500
-        });
-      });
+      $("[rel='tooltip']").tooltip();    
+   
+      $('.thumbnail').hover(
+          function(){
+              $(this).find('.caption').fadeIn(250);
+          },
+          function(){
+              $(this).find('.caption').fadeOut(250);
+          }
+      ); 
     </script>
   </body>
 </html>
