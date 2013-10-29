@@ -16,17 +16,17 @@
 #
 
 #Note by Kenny:
-#All environment databases point to the same test db on heroku (Orange)
+#All environment databases point to the same test db on heroku (Gold)
 #When deployed on heroku, we should be using the 'white' db
 development:
   adapter: postgresql
   encoding: unicode
-  host: ec2-54-235-70-146.compute-1.amazonaws.com
-  database: d3ga4o68mvlh38
-  user: wgozoytdbqgxvd
+  host: ec2-54-235-174-213.compute-1.amazonaws.com
+  database: dfbhkfeekdmih6
+  user: ggprtclzftkrxr
   pool: 5
   port: 5432
-  password: Y77Q0oKoWm24L4KzrH7FJCYKCb
+  password: Y7hJ9w0ARZppxmLVu9CbxuDfSk
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -52,19 +52,19 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  host: ec2-54-235-70-146.compute-1.amazonaws.com
-  database: d3ga4o68mvlh38
-  user: wgozoytdbqgxvd
+  host: ec2-54-235-174-213.compute-1.amazonaws.com
+  database: dfbhkfeekdmih6
+  user: ggprtclzftkrxr
   pool: 5
   port: 5432
-  password: Y77Q0oKoWm24L4KzrH7FJCYKCb
+  password: Y7hJ9w0ARZppxmLVu9CbxuDfSk
 
 production:
   adapter: postgresql
   encoding: unicode
-  host: ec2-54-235-70-146.compute-1.amazonaws.com
-  database: d3ga4o68mvlh38
-  user: wgozoytdbqgxvd
+  host: ec2-54-235-174-213.compute-1.amazonaws.com
+  database: dfbhkfeekdmih6
+  user: ggprtclzftkrxr
   pool: 5
   port: 5432
-  password: Y77Q0oKoWm24L4KzrH7FJCYKCb
+  password: Y7hJ9w0ARZppxmLVu9CbxuDfSk
