@@ -1,10 +1,11 @@
 <p>
-The following thing came from a database!
+The following users came from a database!
 </p>
 <p>
-<% user = FakeUser.find(1) %>
-name= <%=user.name %>
-email address= <%=user.email %>
-</p>
-
+<% FakeUser.all.each do |user| %>
+	<b>name</b>= <%=user.name %><br />
+	<b>email address</b>= <%=user.email %>
+	</p>
+	<hr />
+<% end %>
 <%= Time.now %>
