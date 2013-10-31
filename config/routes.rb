@@ -1,7 +1,10 @@
 Myapp::Application.routes.draw do
+  resources :commissions
+
   #get "users/new"
   #get "users/create"
   resources :users
+  resources :arts
   get "new/create"
   resources :fake_users
   get "login" => "sessions#new", :as => "login"

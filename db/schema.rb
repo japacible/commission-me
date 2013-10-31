@@ -11,10 +11,33 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131029213236) do
+ActiveRecord::Schema.define(version: 20131031153819) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "arts", force: true do |t|
+    t.string   "author_name"
+    t.integer  "featured"
+    t.text     "description"
+    t.text     "tags"
+    t.string   "location"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "title"
+  end
+
+  create_table "commissions", force: true do |t|
+    t.text     "request_form"
+    t.text     "revision_request"
+    t.time     "closed_date"
+    t.text     "state"
+    t.integer  "commissioner_id"
+    t.integer  "artist_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "fake_users", force: true do |t|
     t.string   "name"

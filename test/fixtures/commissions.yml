@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  request_form: 
+  revision_request: 
+  closed_date: 
+  state: MyText
+
+two:
+  request_form: 
+  revision_request: 
+  closed_date: 
+  state: MyText

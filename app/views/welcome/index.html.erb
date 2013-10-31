@@ -2,9 +2,13 @@
 The following users came from a database!
 </p>
 <p>
-<% FakeUser.all.each do |user| %>
+<% User.all.each do |user| %>
 	<b>name</b>= <%=user.name %><br />
 	<b>email address</b>= <%=user.email %>
+	</p>
+	<p><% user.arts.each do |art|%>
+	   <%=link_to art.description, art %>
+	   <% end %>
 	</p>
 	<hr />
 <% end %>

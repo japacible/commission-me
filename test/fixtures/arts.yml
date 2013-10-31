@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  author_name: MyString
+  featured: 
+  description: MyText
+  tags: MyText
+  location: MyString
+  belongs_to: MyString
+  : 
+
+two:
+  author_name: MyString
+  featured: 
+  description: MyText
+  tags: MyText
+  location: MyString
+  belongs_to: MyString
+  : 
