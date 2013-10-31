@@ -1,15 +1,59 @@
-<p>
-The following users came from a database!
-</p>
-<p>
-<% User.all.each do |user| %>
-	<b>name</b>= <%=user.name %><br />
-	<b>email address</b>= <%=user.email %>
-	</p>
-	<p><% user.arts.each do |art|%>
-	   <%=link_to art.description, art %>
-	   <% end %>
-	</p>
-	<hr />
-<% end %>
-<%= Time.now %>
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>CommissionMe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+	    <div class="navbar navbar-default">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <ul class="nav">
+	            <li class="active">
+	              <a class="brand" href="index.html">CommissionMe</a>
+	            </li>
+	          </ul>
+	          <ul class="nav pull-right">
+	            <a class="brand" href="authenticate.html">Sign up/Log in</a>
+	          </ul>
+	        </div>
+	      </div>
+  		</div>
+		<div class="container">
+		<% num_cols = 3 %>
+		<% index = 0%>
+	 	<%@featured_users.each_with_index do |user|%>
+			<%if !user.get_featured_art %>
+				<%next%>
+			<%end%>
+			<%if index % num_cols == 0 %>
+				<div class="row"> 
+			<%end%>
+			  <div>
+				<%=link_to(user, :class => "span3") do%>
+			  		<img src="<%=user.get_featured_art.location%>">
+				<%end%>
+			  </div>
+		
+	
+		<%if index%num_cols == num_cols-1 %>
+			</div>
+			<br /><br />
+		<%end%>
+		<%index+=1%>
+	<% end %>
+	</div>
+		<div class="navbar navbar-fixed-bottom">
+		  <div class="navbar-inner">
+		    <div class="container">
+			  <a class="brand">Footer text here!</a>
+		    </div>
+	      </div>
+	    </div>
+		<script src="assets/js/jquery.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+    </body>
+</html>

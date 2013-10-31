@@ -1,2 +1,161 @@
-<p>User name: <%=@user.name%></p>
-<p>User email: <%=@user.email%></p>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title><%=@user.name%></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Le styles -->
+    <link href="../../assets/stylesheets/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="../../assets/stylesheets/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    <!-- Temporary location of CSS necessary for thumbnail overlay -->
+    <!-- TODO : Move to bootstrap.css -->
+    <style>
+      .thumbnail {
+          position:relative;
+          overflow:hidden;
+      }
+       
+      .caption {
+          position:absolute;
+          top:0;
+          right:0;
+          background:rgba(255,255,255,0.75);
+          width:100%;
+          height:100%;
+          padding:2%;
+          display: none;
+          text-align:center;
+          color:#000 !important;
+          z-index:2;
+      }
+    </style>
+
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+    <!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="navbar navbar-default">
+      <div class="navbar-inner">
+        <div class="container">
+          <ul class="nav">
+            <li class="active">
+              <a class="brand" href="index.html">CommissionMe</a>
+            </li>
+          </ul>
+          <ul class="nav pull-right">
+            <a class="brand" href="authenticate.html">Sign up/Log in</a>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div class="container">
+      <div class="row-fluid">
+        <div class="span12">
+          <div class="span3">
+            <img src="../../assets/images/BioCorgi.jpg">
+          </div> <!-- span 3-->
+          <div class="span9">
+            <h2><%=@user.name%>'s Profile</h2>
+            <p><span class="badge badge-important"><%=@user.received_commissions.count%></span> Commissions</p>
+            <p>Artist since <%=@user.created_at%></p>
+            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-large btn-primary"%>
+            <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
+          </div> <!-- span 9-->
+        </div> <!-- end of span12 in hero -->
+      </div> <!-- end of row-fluid in hero -->
+    </div>
+    <!-- </div> -->
+
+<!-- Container for : Bio Picture  + Bio Text-->
+  <hr>
+  <div class="container">
+    <div class="row-fluid">
+      <div class="row">
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div>  
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+        </div> 
+      </div>
+
+      <div class="row">
+        &nbsp
+      </div>
+
+      <div class="row">
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div>  
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+        <div class="thumbnail span3">
+          <img src="../../assets/images/BioCorgi.jpg">
+        </div> 
+      </div> 
+    </div>
+
+    <hr>
+    <footer>
+      <p>CSE 403 Autumn 2013 Footer</p>
+    </footer>
+  </div>
+
+    <!-- Le javascript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../assets/javascripts/jquery.js"></script>
+    <script src="../../assets/javascripts/bootstrap.min.js"></script>
+    <!-- Script to show the text on the thumbnails -->
+    <script>
+      $("[rel='tooltip']").tooltip();    
+   
+      $('.thumbnail').hover(
+          function(){
+              $(this).find('.caption').fadeIn(250);
+          },
+          function(){
+              $(this).find('.caption').fadeOut(250);
+          }
+      ); 
+    </script>
+  </body>
+</html>
