@@ -18,9 +18,9 @@
 	          </ul>
 	          <ul class="nav pull-right">
 		    <%if current_user %>
-			<%= link_to "Log out of "+current_user.email, user_logout_path, method:"post", class:"brand"%>
+			<%= link_to "Log out of "+current_user.email, users_logout_path, method:"post", class:"brand"%>
 		    <% else %>
-	            	<a class="brand" href="authenticate.html">Sign up/Log in</a>
+	            	<a class="brand" href="/authenticate.html">Sign up/Log in</a>
 	            <% end %>
                   </ul>
 	        </div>
