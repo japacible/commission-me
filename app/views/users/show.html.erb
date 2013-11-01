@@ -35,22 +35,6 @@
     <![endif]-->
   </head>
   <body>
-    <div class="navbar navbar-default">
-      <div class="navbar-inner">
-        <div class="container">
-          <ul class="nav">
-            <li class="active">
-              <a class="brand" href="index.html">CommissionMe</a>
-            </li>
-          </ul>
-          <ul class="nav pull-right">
-            <a class="brand" href="authenticate.html">Sign up/Log in</a>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-
 
     <div class="container">
       <div class="row-fluid">
@@ -61,7 +45,7 @@
           <div class="span9">
             <h2><%=@user.name%>'s Profile</h2>
             <p><span class="badge badge-important"><%=@user.received_commissions.count%></span> Commissions</p>
-            <p>Artist since <%=@user.created_at%></p>
+            <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
             <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-large btn-primary"%>
             <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
           </div> <!-- span 9-->

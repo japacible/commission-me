@@ -1,13 +1,54 @@
-<h1>Log in</h1>
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>CommissionMe</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="assets/css/bootstrap.min.css" rel="stylesheet" media="screen">
+    <link href="assets/css/bootstrap-responsive.min.css" rel="stylesheet" media="screen">
+    </head>
+    <body>
+		
+		<!-- // TODO
+		<div class="container-fluid">
+		  <div class="row-fluid">
+		    <div class="span2">
+		    	About CommissionMe
+		    </div>
+		    <div class="span10">
+		    	Sign Up/Log In form toggle
+		    </div>
+		  </div>
+		</div>
+		-->
 
-<%= form_tag sessions_path do %>
-  <div class="field">
-    <%= label_tag :email %>
-    <%= text_field_tag :email, params[:email] %>
-  </div>
-  <div class="field">
-    <%= label_tag :password %>
-    <%= password_field_tag :password %>
-  </div>
-  <div class="actions"><%= submit_tag "Login" %></div>
-<% end %>
+	    <div class="container">
+
+	      <%=form_tag({controller:"sessions", action:"create"}, method: "post", class: "form_signin span4") do %>
+	      <!--form class="form-signin span4"-->
+	        <h2 class="form-signin-heading">Log In</h2>
+	        <input type="text" name="email" class="input-block-level" placeholder="Email address">
+	        <input type="password" name="password" class="input-block-level" placeholder="Password">
+	        <label class="checkbox">
+	          <input type="checkbox" value="remember-me"> Remember me
+	        </label>
+	        <!--button class="btn btn-small btn-primary" type="submit">Log In</button-->
+	        <%=submit_tag("Log in", class:"btn btn-small btn-primary")%>
+	    
+	      <%end%>
+
+	      <%=form_tag({controller:"users", action:"create"}, method: "post", class:"form_signin span4") do %>
+	        <h2 class="form-signin-heading">Sign Up</h2>
+	        <input type="text" name="name" class="input-block-level" placeholder="Name">
+	        <input type="text" name="email" class="input-block-level" placeholder="Email address">
+	        <input type="password" name="password" class="input-block-level" placeholder="Password">
+	        <input type="password" name="password_confirmation" class="input-block-level" placeholder="Password confirmation">
+	        <button class="btn btn-small btn-primary" type="submit">Sign Up</button>
+	      <%end%>
+
+	    </div> <!-- /container -->
+
+		<script src="assets/js/jquery.js"></script>
+		<script src="assets/js/bootstrap.min.js"></script>
+    </body>
+</html>

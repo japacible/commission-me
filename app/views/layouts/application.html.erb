@@ -7,6 +7,21 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
+
+	    <div class="navbar navbar-default">
+	      <div class="navbar-inner">
+	        <div class="container">
+	          <ul class="nav">
+	            <li class="active">
+	              <a class="brand" href="/">CommissionMe</a>
+	            </li>
+	          </ul>
+	          <ul class="nav pull-right">
+	            <a class="brand" href="authenticate.html">Sign up/Log in</a>
+	          </ul>
+	        </div>
+	      </div>
+  		</div>
 <p>
 <%if current_user %>
 	Logged in as: <%= current_user.email%></p>
@@ -16,12 +31,8 @@
 <% end %>
 
 <hr />
-
-<% if flash[:error] %>
-  <p class='error'><%=h flash[:error] %></p>
-<% end %>
-<% if flash[:notice] %>
-  <p class='notice'><%=h flash[:notice] %></p>
+<% flash.each do |key, value| %>
+	<div class="flash <%= key%>"><%= value%></div>
 <% end %>
 <%= yield %>
 
