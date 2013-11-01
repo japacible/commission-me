@@ -17,18 +17,15 @@
 	            </li>
 	          </ul>
 	          <ul class="nav pull-right">
-	            <a class="brand" href="authenticate.html">Sign up/Log in</a>
-	          </ul>
+		    <%if current_user %>
+			<%= link_to "Log out of "+current_user.email, user_logout_path, method:"post", class:"brand"%>
+		    <% else %>
+	            	<a class="brand" href="authenticate.html">Sign up/Log in</a>
+	            <% end %>
+                  </ul>
 	        </div>
 	      </div>
   		</div>
-<p>
-<%if current_user %>
-	Logged in as: <%= current_user.email%></p>
-	<%= link_to 'Logout', session_path(session[:user_id]), :confirm => "are you sure?", :method => :delete %>
-<%else %>
-	<%= link_to 'Login', new_session_path %>
-<% end %>
 
 <hr />
 <% flash.each do |key, value| %>

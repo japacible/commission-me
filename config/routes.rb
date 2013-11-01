@@ -4,14 +4,14 @@ Myapp::Application.routes.draw do
   #get "users/new"
   #get "users/create"
   resources :users
-  resources :arts
+  resources :arts 
   #get "new/create"
   #resources :fake_users
-  #get "login" => "sessions#new", :as => "login"
-  resources :sessions
-  # The priority is based upon order of creation: first created -> highest priority.
+  #get "login" => "sessions#new", :as => "login"  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-  get 'authenticate' => 'sessions#new'
+  post 'user/logout' => 'users#logout'
+  get 'authenticate' => 'users#authenticate'
+  post 'user/login' => 'users#login'
   # You can have the root of your site routed with "root"
   root 'welcome#index'
   match 'static/:action', via:[:get,:post], :controller => "static"
