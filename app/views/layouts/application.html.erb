@@ -16,13 +16,22 @@
 	              <a class="brand" href="/">CommissionMe</a>
 	            </li>
 	          </ul>
+
 	          <ul class="nav pull-right">
 		    <%if current_user %>
-			<%= link_to "Log out of "+current_user.email, users_logout_path, method:"post", class:"brand"%>
+			<%= link_to "Log out of "+current_user.name, users_logout_path, method:"post", class:"brand"%>
 		    <% else %>
 	            	<a class="brand" href="/authenticate.html">Sign up/Log in</a>
 	            <% end %>
                   </ul>
+		  <%if current_user %>
+			<ul class="nav pull-right">
+				<%= link_to "Settings", edit_user_path(:id => current_user.id), class:"brand"%>
+			</ul>
+		  	<ul class="nav pull-right">
+				<%= link_to current_user.name+"'s"+" profile", current_user, class:"brand"%>
+			</ul>
+		  <%end%>
 	        </div>
 	      </div>
   		</div>
