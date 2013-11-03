@@ -49,11 +49,16 @@ development:
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
 # Do not set this db to the same as development or production.
+#This should point to the JADE database in heroku, or a local database
+#This should NOT point to the prod database (WHITE on heroku) for reason stated above
 test:
-  adapter: sqlite3
-  database: db/test.sqlite3
+  adapter: postgresql
+  encoding: unicode
   pool: 5
-  timeout: 5000
+  database: test
+  username: postgres
+  #password: H5Mckg14Hwn7xTDcMPnVrZYO1E
+  host: localhost
 
 production:
   adapter: postgresql
