@@ -40,10 +40,10 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="span3">
-            <img src="assets/BioCorgi.jpg">
+            <img src="<%=@user.arts.first.location%>">
           </div> <!-- span 3-->
           <div class="span9">
-            <h2><%=@user.name%>'s Profile</h2>
+            <h2><%=@user.name%>'s Profile!</h2>
             <p><span class="badge badge-important"><%=@user.received_commissions.count%></span> Commissions</p>
             <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
             <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-large btn-primary"%>
@@ -60,28 +60,28 @@
     <div class="row-fluid">
       <div class="row">
         <div class="thumbnail span3">
-          <img src="assets/BioCorgi.jpg">
+          <img src="http://localhost:3001/images/BioCorgi.jpg">
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div>  
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3001/images/BioCorgi.jpg">
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3001/images/BioCorgi.jpg">
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3000/images/BioCorgi.jpg">
         </div> 
       </div>
 
@@ -91,28 +91,28 @@
 
       <div class="row">
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3000/images/BioCorgi.jpg">
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div>  
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3000/images/BioCorgi.jpg">
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3000/images/BioCorgi.jpg">
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
         <div class="thumbnail span3">
-          <img src="../../assets/images/BioCorgi.jpg">
+          <img src="http://localhost:3000/images/BioCorgi.jpg">
         </div> 
       </div> 
     </div>
