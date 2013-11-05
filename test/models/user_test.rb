@@ -13,4 +13,5 @@ class UserTest < ActiveSupport::TestCase
     assert User.find_by_name("eddy").arts.count > 0, "Eddy should have at least one art"
   end
 
+
 end

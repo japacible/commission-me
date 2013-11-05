@@ -3,7 +3,8 @@
 edward:
   name: eddy
   email: eddy@gmail.com
-  password_digest: unknown
+  password_digest: <%= BCrypt::Password.create('secret')%>
+
 
 two:
   name: Mary
