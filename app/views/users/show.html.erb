@@ -40,48 +40,58 @@
       <div class="row-fluid">
         <div class="span12">
           <div class="span3">
-            <img src="http://localhost:3000/images/BioCorgi.jpg">
-          </div> <!-- span 3-->
+            <%= image_tag "BioCorgi.jpg" %>
+          </div> <!-- end of span3 -->
           <div class="span9">
-            <h2><%=@user.name%>'s Profile!</h2>
-            <p><span class="badge badge-important"><%=@user.received_commissions.count%></span> Commissions</p>
+            <h2><%=@user.name%>'s Profile</h2>
+            <h5>My name is <%=@user.name%>, and my motto is 'just keep swimming!'</h5>
+            <p><span class="badge badge-important">
+              <%=@user.received_commissions.count%>
+                <!-- Make sure that the singular / plural grammar is correct -->
+                <% if @user.received_commissions.count == 1 %>
+                  </span> Commission</p>
+                <% else %>
+                  </span> Commissions</p>
+                <% end %>
             <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
-            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-large btn-primary"%>
+            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary"%>
             <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
           </div> <!-- span 9-->
         </div> <!-- end of span12 in hero -->
       </div> <!-- end of row-fluid in hero -->
     </div>
-    <!-- </div> -->
 
-<!-- Container for : Bio Picture  + Bio Text-->
+<!-- Container for : Artist's work -->
   <hr>
   <div class="container">
     <div class="row-fluid">
       <div class="row">
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div>  
+
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
+
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
+
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
         </div> 
       </div>
 
@@ -91,37 +101,38 @@
 
       <div class="row">
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div>  
+
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
+
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
           <div class="caption">
             <h2>Title</h2>
             <p>Description</p>
           </div>
         </div> 
+
         <div class="thumbnail span3">
-          <img src="http://localhost:3000/images/BioCorgi.jpg">
+          <%= image_tag "BioCorgi.jpg" %>
         </div> 
       </div> 
     </div>
-
-    <hr>
-    <footer>
-      <p>CSE 403 Autumn 2013 Footer</p>
-    </footer>
   </div>
+
+  <!-- Render the partial template for the common footer -->
+  <%= render "layouts/footer" %>
 
     <!-- Le javascript
     ================================================== -->
