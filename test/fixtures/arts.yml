@@ -1,13 +1,13 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
 
-one:
-  author_name: MyString
-  featured: 
-  description: MyText
-  tags: MyText
-  location: MyString
-  belongs_to: MyString
-  : 
+edwards_masterpiece:
+  author_name: Edward von Edlington
+  featured: 1
+  description: A beautiful masterpiece
+  tags: none
+  location: unknown
+  user: edward
+
 
 two:
   author_name: MyString
@@ -15,5 +15,4 @@ two:
   description: MyText
   tags: MyText
   location: MyString
-  belongs_to: MyString
-  : 
+
