@@ -11,7 +11,7 @@ group :development, :test do
 	gem 'rspec-rails'
 	gem 'capybara'
 end
-=======
+
 
 
 # Use postgresql as the database for Active Record
