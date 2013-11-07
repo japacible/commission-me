@@ -1,10 +1,11 @@
 source 'https://rubygems.org'
 gem 'protected_attributes'
+
+# Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.0'
-
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -40,12 +41,6 @@ gem 'unicorn'
 
 ruby "1.9.3"
 end
-
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
-
-# Use unicorn as the app server
-# gem 'unicorn'
 
 # Use Capistrano for deployment
 # gem 'capistrano', group: :development
