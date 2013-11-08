@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  include SessionsHelper
+
   def index
 	@users = User.all
   end
@@ -57,18 +59,21 @@ class UsersController < ApplicationController
   end
 
   def login
-	do_login(params[:email], params[:password])
+	do_login(params[:email], params[:password], params[:remember_me])
   end
 
   def logout
 	do_logout(current_user)
   end
-  private
 
-  def do_login(email, password)
+
+  private
+  #The actual functionality of logging in the user
+  #If this fails for any reason, the user will not be logged in and will instead be redirected back to the authenticate page
+  def do_login(email, password, remember_me)
 	user = User.find_by_email(email)
 	if user && user.authenticate(password)
-		session[:user_id] = user.id
+		sign_in(user, remember_me)
 		redirect_to root_url
 	else
 		flash.now.alert = "Invalid email or password"
