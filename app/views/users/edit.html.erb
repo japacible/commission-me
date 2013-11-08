@@ -1,19 +1,22 @@
-<% provide(:title, "Edit user") %>
-<h1> Update your profile </h1>
+<% provide(:title, "Edit Settings") %>
 
-<div class="row>
-	<div class="span6 offset3">
-		<%=form_for @user do |f| %>
-			<%=f.label :email %>
-			<%=f.text_field :email%>
+<div class="container">
+  <h2>Update Settings</h2>
+  
+  <div class="row">
+    <div class="span4 offset1">
+      <%=form_for @user do |f| %>
+      <%=f.label :email %>
+      <%=f.text_field :email%>
 
-			<%=f.label :password %>
-			<%=f.password_field :password %>
+      <%=f.label :password %>
+      <%=f.password_field :password %>
 
-			<%=f.label :password_confirmation %>
-			<%=f.password_field :password_confirmation %>
+      <%=f.label :password_confirmation %>
+      <%=f.password_field :password_confirmation %>
 
-			<%= f.submit "Save changes", class: "btn btn-large btn-primary" %>
-		<%end%>
-	</div>
+      <%= f.submit "Save Changes", class: "btn btn-small btn-primary" %>
+      <%end%>
+    </div>
+  </div>
 </div>
