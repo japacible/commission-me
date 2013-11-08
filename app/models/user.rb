@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
 	before_create :create_remember_token
 	validates_uniqueness_of :email
 	validates_presence_of :email
+	validates_format_of :email, :with => /.+@.+\..+/i
 	validates_presence_of :password, :on => :create	
 
 	def get_featured_art
