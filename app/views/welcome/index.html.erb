@@ -3,11 +3,7 @@
     <head>
     <title>CommissionMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap -->
-    <%= stylesheet_link_tag :"bootstrap.min", :"bootstrap-responsive.min" %>
-    <%= javascript_include_tag :"jquery", :"bootstrap.min" %>
-
-
+    <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
     </head>
     <body>
 		<div class="container">
@@ -37,9 +33,5 @@
   
   <!-- Render the partial template for the common footer -->
   <%= render "layouts/footer" %>
-<!-- Commenting this out because 'javascript_include_tag' above seems to actually serve these files....
-		<script src="assets/js/jquery.js"></script>
-		<script src="assets/js/bootstrap.min.js"></script>
--->
     </body>
 </html>
