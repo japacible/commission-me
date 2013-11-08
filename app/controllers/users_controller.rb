@@ -41,13 +41,13 @@ class UsersController < ApplicationController
   end
   def create
 	@user = User.new do |t|
-		t.name = params[:name]
-		t.email = params[:email]
-		t.password = params[:password]
-		t.password_confirmation = params[:password_confirmation]
+		t.name = params[:user][:name]
+		t.email = params[:user][:email]
+		t.password = params[:user][:password]
+		t.password_confirmation = params[:user][:password_confirmation]
 	end
 	if @user.save
-		do_login(params[:email], params[:password])
+		do_login(params[:user][:email], params[:user][:password])
 	else
 		#TODO Make this re-render the page without a complete redirect so that
 		#email and password stay filled out
@@ -78,10 +78,10 @@ class UsersController < ApplicationController
 
   def login
 	remember_me = false
-	if params[:remember_me]
+	if params[:user][:remember_me]
 		remember_me = true
 	end
-	do_login(params[:email], params[:password],remember_me )
+	do_login(params[:user][:email], params[:user][:password],remember_me )
   end
 
   def logout
