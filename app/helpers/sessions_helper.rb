@@ -7,13 +7,17 @@ module SessionsHelper
 		if remember_me
 			cookies.permanent[:remember_token] = remember_token
 		else
-			cookies.permanent[:remember_token] = nil
+			cookies[:remember_token] = nil
 			session[:remember_token] = remember_token
 		end
 		user.remember_token = User.encrypt(remember_token)
+		user.save
 		@current_user = user
 	end
-
+	def sign_out(user)
+		cookies.permanent[:remember_token] = nil
+		session[:remember_token] = nil
+	end
 	def current_user=(user)
 		@current_user = user
 	end
@@ -22,8 +26,12 @@ module SessionsHelper
 	#Depending on whether the user specified to be remembered, this
 	#may retreive the user's remember token from the sessions or the cookies
 	def current_user
-		remember_token = User.encrypt(cookies[:remember_token] || session[:remember_token])
-		@current_user ||= User.find_by_remember_token(remember_token)
-			
+		token = cookies[:remember_token]
+		if token.nil? or token.empty?
+			token = session[:remember_token]
+		end	
+		remember_token = User.encrypt(token)
+		
+		@current_user ||= User.find_by(:remember_token => remember_token)
 	end
 end

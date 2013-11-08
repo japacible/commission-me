@@ -59,7 +59,11 @@ class UsersController < ApplicationController
   end
 
   def login
-	do_login(params[:email], params[:password], params[:remember_me])
+	remember_me = false
+	if params[:remember_me]
+		remember_me = true
+	end
+	do_login(params[:email], params[:password],remember_me )
   end
 
   def logout
@@ -82,7 +86,7 @@ class UsersController < ApplicationController
   end
 
   def do_logout(user)
-	session[:user_id] = nil
+	sign_out(user)
 	redirect_to root_url, :notice => "Logged out user: "+user.name
   end
 
