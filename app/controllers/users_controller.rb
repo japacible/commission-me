@@ -20,7 +20,19 @@ class UsersController < ApplicationController
 	if @user.update_attributes(params[:user])
 		redirect_to root_url
 	else
-		render 'edit'
+          if @user.errors.any?
+            flash[:alert] = ""
+            i = 0
+            for message in @user.errors.full_messages do
+              if i == 0 
+                flash[:alert] << message
+                i = 1
+              else
+                flash[:alert] << ", "+message
+              end
+            end
+          end
+          redirect_to :action => 'edit'
 	end
   end
 
@@ -41,14 +53,20 @@ class UsersController < ApplicationController
 		#email and password stay filled out
 		#Employ model's confirmation checking and display its errors instead of generating here
 		if @user.errors.any?
-			flash[:alert] = ""
-			for message in @user.errors.full_messages do
-				flash[:alert] << ", "+message
-			end
+                  flash[:alert] = ""
+                  i = 0
+                  for message in @user.errors.full_messages do
+                    if i == 0 
+                      flash[:alert] << message
+                      i = 1
+                    else
+                      flash[:alert] << ", "+message
+                    end
+                  end
 		else
-			flash[:alert] = "Invalid fields"
+                  flash[:alert] = "Invalid fields"
 		end 	
-		redirect_to :action => "authenticate"
+          redirect_to :action => "authenticate"
 	end
   end
 
