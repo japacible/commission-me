@@ -98,7 +98,7 @@ class UsersController < ApplicationController
 		sign_in(user, remember_me)
 		redirect_to root_url
 	else
-		flash.now.alert = "Invalid email or password"
+		flash.alert = "Invalid email or password"
 		redirect_to :action => "authenticate"
 	end
   end

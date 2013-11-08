@@ -17,7 +17,7 @@
 	        <%=submit_tag("Log in", class:"btn btn-small btn-primary")%>
 	      <%end%>
 
-	      <%=form_tag({controller:"users", action:"create"}, method: "post", class:"form_signin span4") do %>
+	      <%=form_tag({controller:"users", action:"create"}, method: "post", id:"sign_up", class:"form_signin span4") do %>
 	        <h2 class="form-signin-heading">Sign Up</h2>
 	        <input type="text" name="name" class="input-block-level" placeholder="Name">
 	        <input type="text" name="email" class="input-block-level" placeholder="Email address">
