@@ -74,7 +74,7 @@ class UsersController < ApplicationController
   private
   #The actual functionality of logging in the user
   #If this fails for any reason, the user will not be logged in and will instead be redirected back to the authenticate page
-  def do_login(email, password, remember_me)
+  def do_login(email, password, remember_me=false)
 	user = User.find_by_email(email)
 	if user && user.authenticate(password)
 		sign_in(user, remember_me)
