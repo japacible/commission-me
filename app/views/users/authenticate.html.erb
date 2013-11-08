@@ -7,22 +7,22 @@
   </head>
   <body>
     <div class="container">	
-    <%= form_for :user, url:users_login_path, method: "post", class: "form_signin span4" do |f| %>
-      <h2 class="form-signin-heading">Log In</h2>
-      <%=f.text_field :email, placeholder:"Email Address", class:"input-block-level"%>
-      <%=f.password_field :password,  class:"input-block-level", placeholder:"Password" %>
-      <%=f.check_box :remember_me %> Remember Me
-      <%= f.submit "Log in", class: "btn btn-small btn-primary" %>
-    <%end%>
+      <%= form_for :user, url:users_login_path, method: "post", html: { class: "form_signin span4"} do |f| %>
+        <h2 class="form-signin-heading">Log In</h2>
+        <%=f.text_field :email, placeholder:"Email Address", class:"input-block-level"%>
+        <%=f.password_field :password,  class:"input-block-level", placeholder:"Password" %>
+        <%=f.check_box :remember_me, inline_label:"Remember Me", label: false %>
+        <%= f.submit "Log in", class: "btn btn-small btn-primary" %>
+      <%end%>
 
-    <%=form_for :user, url:{action:"create"}, method: "post", id:"sign_up", class:"form_signin span4" do |f| %>
-      <h2 class="form-signin-heading">Sign Up</h2>
-      <%=f.text_field :name, class:"input-block-level", placeholder:"Name"  %> 
-      <%=f.text_field :email, class:"input-block-level", placeholder:"Email Address"  %> 
-      <%=f.password_field :password,  class:"input-block-level", placeholder:"Password" %> 
-      <%=f.password_field :password_confirmation,  class:"input-block-level", placeholder:"Password confirmation" %> 
-      <%= f.submit "Sign Up", class: "btn btn-small btn-primary" %> 
-    <%end%>
+      <%=form_for :user, url:{action:"create"}, method: "post", id:"sign_up", html:{class:"form_signin span4"} do |f| %>
+        <h2 class="form-signin-heading">Sign Up</h2>
+        <%=f.text_field :name, class:"input-block-level", placeholder:"Name"  %> 
+        <%=f.text_field :email, class:"input-block-level", placeholder:"Email Address"  %> 
+        <%=f.password_field :password,  class:"input-block-level", placeholder:"Password" %> 
+        <%=f.password_field :password_confirmation,  class:"input-block-level", placeholder:"Password confirmation" %> 
+        <%= f.submit "Sign Up", class: "btn btn-small btn-primary" %> 
+      <%end%>
 
     </div>
 
