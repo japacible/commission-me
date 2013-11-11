@@ -4,7 +4,7 @@
   <h2>Update Settings</h2>
   
   <div class="row">
-    <div class="span4 offset1">
+    <div class="span4">
       <%=form_for @user do |f| %>
       <%=f.label :email %>
       <%=f.text_field :email%>
@@ -15,7 +15,7 @@
       <%=f.label :password_confirmation %>
       <%=f.password_field :password_confirmation %>
 
-      <%= f.submit "Save Changes", class: "btn btn-small btn-primary" %>
+      <%= f.submit "Save Changes", class: "btn btn-medium btn-primary" %>
       <%end%>
     </div>
   </div>
