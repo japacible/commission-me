@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
 	has_many :requested_commissions, :class_name => "Commission", :foreign_key => "commissioner_id" 
 	has_secure_password
 	before_create :create_remember_token
+  	validates_format_of :name, :with => /\A[\w \-\xC0-\xFF]+\z/
 	validates_uniqueness_of :email
 	validates_presence_of :email
 	validates_format_of :email, :with => /.+@.+\..+/i
