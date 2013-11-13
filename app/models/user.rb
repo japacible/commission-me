@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 	#Currently just returns the first art	
 	def masterpiece
 		if arts.empty?
-			"BioCorki.jpg"
+			"BioCorgi.jpg"
 		else
 			arts.first.location
 		end
