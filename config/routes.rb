@@ -1,4 +1,5 @@
 Myapp::Application.routes.draw do
+  get "about/index"
   resources :commissions
   
   post 'users/login' => 'users#login'
