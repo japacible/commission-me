@@ -1,28 +1,29 @@
-== README!
+== README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+To build and run our software, you will need a locally installed version of Heroku, Heroku CLI, Ruby 2.0.0, Rubygems, Bundler, and Rails 4.0.0. You will also need to install Postgres locally.
 
-Things you may want to cover:
+Clone the repository by running the following command:
+	$ git clone https://github.com/japacible/commission-me.git
 
-* Ruby version
+Within the directory with the project, run the following command to make sure all of the dependencies are installed.
 
-* System dependencies
+        $ bundle install
 
-* Configuration
+To set up the rails database, run the following command to migrate the database such that it will set up automatically:
 
-* Database creation
+        $ heroku run rake db:migrate
 
-* Database initialization
+Run the following command again to check for any dependency issues.
 
-* How to run the test suite
+        $ bundle install
 
-* Services (job queues, cache servers, search engines, etc.)
+To run the site locally on your own machine, run the following command:
+        
+        $ rails server
 
-* Deployment instructions
+By default, you will be able to access the site locally at:
 
-* ...
+	localhost:3000
 
+However, you can also manually change the port number if you wish.
 
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
