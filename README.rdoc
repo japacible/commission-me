@@ -3,9 +3,7 @@
 To build and run our software, you will need a locally installed version of Heroku, Heroku CLI, Ruby 2.0.0, Rubygems, Bundler, and Rails 4.0.0. You will also need to install Postgres locally.
 
 Clone the repository by running the following command:
-        ```
-	$ git clone https://github.com/japacible/commission-me.git
-        ```
+	`$ git clone https://github.com/japacible/commission-me.git`
 
 Within the directory with the project, run the following command to make sure all of the dependencies are installed.
         ```
