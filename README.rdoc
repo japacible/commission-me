@@ -3,24 +3,29 @@
 To build and run our software, you will need a locally installed version of Heroku, Heroku CLI, Ruby 2.0.0, Rubygems, Bundler, and Rails 4.0.0. You will also need to install Postgres locally.
 
 Clone the repository by running the following command:
-	
+        '''	
 	$ git clone https://github.com/japacible/commission-me.git
+        '''
 
 Within the directory with the project, run the following command to make sure all of the dependencies are installed.
-
+        '''
 	$ bundle install
+        '''
 
 To set up the rails database, run the following command to migrate the database such that it will set up automatically:
-
+        '''
 	$ heroku run rake db:migrate
+        '''
 
 Run the following command again to check for any dependency issues.
-
+        '''
 	$ bundle install
+        '''
 
 To run the site locally on your own machine, run the following command:
-
+        '''
 	$ rails server
+        '''
 
 By default, you will be able to access the site locally at:
 
