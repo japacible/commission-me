@@ -1,36 +1,33 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <title>CommissionMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
-    </head>
-    <body>
-      <div class="banner">
-      </div>
-		<div class="container">
-		<% num_cols = 3 %>
-		<% index = 0%>
-	 	<%@featured_users.each_with_index do |user|%>
-			<%if !user.get_featured_art %>
-				<%next%>
-			<%end%>
-			<%if index % num_cols == 0 %>
-				<div class="row"> 
-			<%end%>
-			  <div>
-				<%=link_to(user, :class => "span3") do%>
-			  		<img src="<%=user.get_featured_art.location%>">
-				<%end%>
-			  </div>
-		
-	
-		<%if index%num_cols == num_cols-1 %>
-			</div>
-			<br /><br />
-		<%end%>
-		<%index+=1%>
-	<% end %>
-	</div>
-    </body>
+  </head>
+  <body>
+    <div class="banner">
+    </div>
+    <div class="container">
+      <% num_cols = 4 %>
+      <% index = 0%>
+      <%@featured_users.each_with_index do |user|%>
+        <%if !user.get_featured_art %>
+          <%next%>
+        <%end%>
+        <%if index % num_cols == 0 %>
+          <div class="row"> 
+          <%end%>
+          <div>
+            <%=link_to(user, :class => "col-md-3") do%>
+              <img src="<%=user.get_featured_art.location%>">
+            <%end%>
+          </div>
+          <%if index%num_cols == num_cols-1 %>
+          </div>
+        <%end%>
+        <%index+=1%>
+      <% end %>
+    </div>
+  </body>
 </html>

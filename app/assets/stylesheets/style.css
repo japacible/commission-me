@@ -2,11 +2,16 @@
   background:rgba(45, 62, 79, 1);
   font-size: 24px;
   font-family: sans-serif;
-  padding-top:20px;
+  padding-top:10px;
 }
 
 .banner {
   /*background:rgba(55, 78, 102, 1);*/
+}
+
+img {
+  max-width:100%;
+  height:auto;
 }
 
 .thumbnail {

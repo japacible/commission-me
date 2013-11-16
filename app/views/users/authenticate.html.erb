@@ -1,30 +1,30 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <% @title = "Authenticate User" %>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
-    </head>
-    <body>
-	    <div class="container">
-	      <%=form_tag(users_login_path, method: "post", class: "form_signin span4") do %>
-	        <h2 class="form-signin-heading">Log In</h2>
-	        <input type="text" name="email" class="input-block-level" placeholder="Email">
-	        <input type="password" name="password" class="input-block-level" placeholder="Password">
-	        <label class="checkbox">
-                  <input type="checkbox" name="remember_me" value="true"> Remember Me</input>
-	        </label>
-	        <%=submit_tag("Log in", class:"btn btn-medium btn-primary")%>
-	      <%end%>
+  </head>
+  <body>
+    <div class="container">
+      <%=form_tag(users_login_path, method: "post", class: "form_signin col-md-3") do %>
+        <h2 class="form-signin-heading">Log In</h2>
+        <input type="text" name="email" class="input-block-level" placeholder="Email">
+        <input type="password" name="password" class="input-block-level" placeholder="Password">
+        <label class="checkbox">
+          <input type="checkbox" name="remember_me" value="true"> Remember Me</input>
+        </label>
+        <%=submit_tag("Log in", class:"btn btn-medium btn-primary")%>
+      <%end%>
 
-	      <%=form_tag({controller:"users", action:"create"}, method: "post", id:"sign_up", class:"form_signin span4") do %>
-	        <h2 class="form-signin-heading">Sign Up</h2>
-	        <input type="text" name="name" class="input-block-level" placeholder="Name">
-	        <input type="text" name="email" class="input-block-level" placeholder="Email">
-	        <input type="password" name="password" class="input-block-level" placeholder="Password">
-	        <input type="password" name="password_confirmation" class="input-block-level" placeholder="Password Confirmation">
-	        <button class="btn btn-medium btn-primary" type="submit">Sign Up</button>
-	      <%end%>
-            </div>
-    </body>
+      <%=form_tag({controller:"users", action:"create"}, method: "post", id:"sign_up", class: "form_signin col-md-3") do %>
+        <h2 class="form-signin-heading">Sign Up</h2>
+        <input type="text" name="name" class="input-block-level" placeholder="Name">
+        <input type="text" name="email" class="input-block-level" placeholder="Email">
+        <input type="password" name="password" class="input-block-level" placeholder="Password">
+        <input type="password" name="password_confirmation" class="input-block-level" placeholder="Password Confirmation">
+        <button class="btn btn-medium btn-primary" type="submit">Sign Up</button>
+      <%end%>
+    </div>
+  </body>
 </html>
