@@ -21,9 +21,7 @@ To run the site locally on your own machine, run the following command:
         
         $ rails server
 
-By default, you will be able to access the site locally at:
-
-	localhost:3000
+By default, you will be able to access the site locally at: localhost:3000
 
 However, you can also manually change the port number if you wish.
 
