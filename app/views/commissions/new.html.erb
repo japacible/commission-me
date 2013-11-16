@@ -1,56 +1,45 @@
-<!DOCTYPE html>
-<html>
-    <head>
-    <title>CommissionMe</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-
-    </head>
-    <body>
-	
-		<div class="container">
-			<div class="hero-unit">
-				<h1>Commission <%=@artist.name%></h1>
-			</div>
-		</div>
-		
-		<div class="container">
-			<form>
-				<div class="row">
-					<div class="span3">
-						<label for="sketch">
-							<h2>Sketch</h2>
-							<p>Base Price: $5</p>
-							<img src="http://i.imgur.com/7LUtp2e.png">
-						</label>
-						<br><input type="radio" name="base" id="sketch">
-					</div>
-					<div class="span3">
-						<label for="lines">
-							<h2>Line Art</h2>
-							<p>Base Price: $10</p>
-							<img src="http://th04.deviantart.net/fs70/PRE/f/2011/171/5/e/mlp__bompp_panel_04_line_art_by_flamingo1986-d3jg4i4.png">
-						</label>
-						<br><input type="radio" name="base" id="lines">
-					</div>
-					<div class="span3">
-						<label for="full">
-							<h2>Full Color</h2>
-							<p>Base Price: $20</p>
-							<img src="http://www.ponymindbleach.com/images/filly_dashie_by_tartii-d5crfcj.jpg">
-						</label>
-						<br><input type="radio" name="base" id="full">
-					</div>
-				</div>
-				
-				<button class="btn btn-small btn-primary" type="submit">Next</button>
-				<br><br><br>
-			</form>
-		</div>
-		
-		<div class="container">
-			
-		</div>
-    </body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>
+      CommissionMe
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="hero-unit">
+        <h1>
+          Commission <%=@artist.name%>
+        </h1>
+      </div>
+    </div>
+    <div class="container">
+      <form>
+        <div class="row">
+          <div class="col-md-3">
+            <h2>Sketch</h2>
+            <label for="sketch">Base Price: $5</label>
+            <img src="http://i.imgur.com/7LUtp2e.png">
+            <input type="radio" name="base" id="sketch" />
+          </div>
+          <div class="col-md-3">
+            <h2>Line Art</h2>
+            <label for="lines">Base Price: $10</label>
+            <img src="http://th04.deviantart.net/fs70/PRE/f/2011/171/5/e/mlp__bompp_panel_04_line_art_by_flamingo1986-d3jg4i4.png">
+            <input type="radio" name="base" id="lines" />
+          </div>
+          <div class="col-md-3">
+            <h2>Full Color</h2>
+            <label for="full">Base Price: $20</label>
+            <img src="http://www.ponymindbleach.com/images/filly_dashie_by_tartii-d5crfcj.jpg">
+            <input type="radio" name="base" id="full" />
+          </div>
+        </div>
+        <button class="btn btn-small btn-primary" type="submit">Next</button>
+      </form>
+    </div>
+  </body>
 </html>
+

@@ -7,40 +7,37 @@
   <%= csrf_meta_tags %>
 </head>
 <body>
-	    <div class="navbar navbar-default">
-	      <div class="header navbar-inner">
-	        <div class="container">
-	          <ul class="nav">
-	            <a href="/">CommissionMe</a>
-	          </ul>
-
-	          <ul class="nav pull-right">
-		    <%if current_user %>
-			<%= link_to "Log Out", users_logout_path, method:"post", class:"brand"%>
-		    <% else %>
-	            	<a href="/authenticate.html">Sign up/Log in</a>
-	            <% end %>
-                  </ul>
-		  <%if current_user %>
-			<ul class="nav pull-right">
-                          <%= link_to "Settings", edit_user_path(:id => current_user.id)%>
-			</ul>
-		  	<ul class="nav pull-right">
-                          <%= link_to current_user.name, current_user%>
-			</ul>
-		  <%end%>
-	        </div>
-	      </div>
-  		</div>
-
-<hr />
-<% flash.each do |key, value| %>
-	<div class="flash <%= key%>"><%= value%></div>
-      <% end %>
-<%= yield %>
-
-<!-- Render the partial template for the common footer -->
-<%= render "layouts/footer" %>
-
+  <div class="navbar navbar-default">
+    <div class="header navbar-inner">
+      <div class="container">
+        <ul class="nav">
+          <a href="/">CommissionMe</a>
+        </ul>
+        <ul class="nav pull-right">
+          <%if current_user %>
+            <%= link_to "Log Out", users_logout_path, method:"post", class:"brand"%>
+          <% else %>
+            <a href="/authenticate.html">Sign up/Log in</a>
+          <% end %>
+        </ul>
+        <%if current_user %>
+          <ul class="nav pull-right">
+            <%= link_to "Settings", edit_user_path(:id => current_user.id)%>
+          </ul>
+          <ul class="nav pull-right">
+            <%= link_to current_user.name, current_user%>
+          </ul>
+        <%end%>
+      </div>
+    </div>
+  </div>
+  <hr />
+  <% flash.each do |key, value| %>
+    <div class="flash <%= key%>"><%= value%></div>
+  <% end %>
+  <%= yield %>
+  
+  <!-- Render the partial template for the common footer -->
+  <%= render "layouts/footer" %>
 </body>
 </html>
