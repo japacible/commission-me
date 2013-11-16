@@ -1,128 +1,126 @@
 <!DOCTYPE html>
 <html>
-    <head>
+  <head>
     <title>CommissionMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
-    </head>
-    <body>
-		<div class="navbar navbar-default">
-			<div class="navbar-inner">
-				<div class="container">
-					<ul class="nav">
-						<li class="active">
-							<a class="brand" href="index.html">CommissionMe</a>
-						</li>
-					</ul>
-					<ul class="nav pull-right">
-						<a class="brand" href="authenticate.html">Sign up/Log in</a>
-					</ul>
-				</div>
-			</div>
-		</div>
-					
-		<div class="container">
-			<div class="page-header">
-				<h1>Commission Settings</h1>
-			</div>
-		</div>
-		
-		<div class="container">
-		<span class="glyphicon glyphicon-search"></span>
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Commission Settings</h1>
+      </div>
+    </div>
+    
+    <form style="width:90%;margin:4%;padding:3%;background:#fafafa;border-radius:20px;" role="form">
+    
+<!-- STEP 1 -->
 
-			<div class="row">
-				<div class="span1"><h2>v</h2><span class="glyphicon glyphicon-star"></span></div>
-				<div class="span6">
-					<h2>Step 1</h2>
-					
-					<div class="row">
-						<div class="span5">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<input class="form-control input-lg" type="text" value="Cagegory 1">
-								</div>
-								<div class="panel-body">
-									<span class="span1">Price:</span>$<input class="form-control span1" type="text" value="10"><br>
-									<span class="span1">Example:</span><input class="form-control" type="file"><br>
-									<span class="span1"><img src="http://i.imgur.com/PuJwL2k.png"></span><textarea placeholder="Enter a description..."></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="span1"><button type="button" class="btn btn-default">&#150;</button></div>
-					</div>
-					
-					<hr>
-				
-					<div class="row">
-						<div class="span5">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<input class="form-control input-lg" type="text" value="Cagegory 2">
-								</div>
-								<div class="panel-body">
-									<span class="span1">Price:</span>$<input class="form-control span1" type="text" value="20"><br>
-									<span class="span1">Example:</span><input class="form-control" type="file"><br>
-									<span class="span1"><img src="http://i.imgur.com/PuJwL2k.png"></span><textarea placeholder="Enter a description..."></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="span1"><button type="button" class="btn btn-default">&#150;</button></div>
-					</div>
-					
-					<hr>
-				
-					<div class="row">
-						<div class="span5">
-							<div class="panel panel-default">
-								<div class="panel-heading">
-									<input class="form-control input-lg" type="text" value="Cagegory 3">
-								</div>
-								<div class="panel-body">
-									<span class="span1">Price:</span>$<input class="form-control span1" type="text" value="30"><br>
-									<span class="span1">Example:</span><input class="form-control" type="file"><br>
-									<span class="span1"><img src="http://i.imgur.com/PuJwL2k.png"></span><textarea placeholder="Enter a description..."></textarea>
-								</div>
-							</div>
-						</div>
-						<div class="span1"><button type="button" class="btn btn-default">&#150;</button></div>
-					</div>
-					
-					<hr>
-				
-					<div class="row">
-						<div class="span5"></div>
-						<div class="span1"><button type="button" class="btn btn-default">+</button></div>
-					</div>
-				
-				</div>
-				<div class="span1"><button type="button" class="btn btn-default">&#150;</button></div>
-			</div>
-			
-			
-			<div class="row">
-				<div class="span1"><h2>^</h2><span class="glyphicon glyphicon-star"></span></div>
-				<div class="span6"><h2>Step 2</h2></div>
-				<div class="span1"><button type="button" class="btn btn-default">&#150;</button></div>
-			</div>
-			
-			<div class="row">
-				<div class="span1"><h2>^</h2><span class="glyphicon glyphicon-star"></span></div>
-				<div class="span6"><h2>Step 3</h2></div>
-				<div class="span1"><button type="button" class="btn btn-default">&#150;</button></div>
-			</div>
-			
-			<div class="row">
-				<div class="span1"></div>
-				<div class="span6"></div>
-				<div class="span1"><button type="button" class="btn btn-default">+</button></div>
-			</div>
-		</div>
-		
-		<div class="container">
-			<button class="btn btn-primary">Save</button>
-		</div>
-		
-		<br><br><br><br>
-		
-    </body>
+  <!-- STEP HEADER -->
+      <div>
+        <button type="button" class="btn btn-default" style="float:right;">&#150;</button>
+        <span style="float:left;font-size:24pt;margin-right:20px;"><strong>v</strong></span>
+        <div class="form-group">
+          <label class="sr-only" for="step-1">Step Name</label>
+          <input style="width:50%;" type="text" class="form-control input-lg" id="step-1" placeholder="Step 1">
+        </div>
+      </div>
+  <!-- STEP HEADER -->
+  
+<!-- OPTIONS -->
+      <div style="width:90%;margin:auto;">
+      
+  <!-- STEP 1, OPTION 1 -->
+        <div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="form-group">
+                <label class="sr-only" for="option-1-1">Option Name</label>
+                <input type="text" class="form-control input-lg" id="option-1-1" placeholder="Option 1">
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="input-group">
+                <label for="example-1-1">
+                  Example:
+                  <input type="file" id="example-1-1">
+                  <img class="img-thumbnail" style="float:left;margin:10px;" src="http://i.imgur.com/PuJwL2k.png">
+                </label>
+              </div>
+              <div class="input-group">
+                <label class="sr-only" for="price-1-1">Price</label>
+                <span class="input-group-addon">$</span>
+                <input type="text" class="form-control" id="price-1-1" placeholder="Price (e.g. &quot;10.00&quot;)">
+              </div>
+              <textarea class="form-control" placeholder="Enter a description..."></textarea>
+            </div>
+          </div>
+        </div>
+  <!-- STEP 1, OPTION 1 -->
+        
+  <!-- STEP 1, OPTION 2 -->
+        <div>
+          <div class="panel panel-default">
+            <div class="panel-heading">
+              <div class="form-group">
+                <label class="sr-only" for="option-1-2">Option Name</label>
+                <input type="text" class="form-control input-lg" id="option-1-2" placeholder="Option 2">
+              </div>
+            </div>
+            <div class="panel-body">
+              <div class="input-group">
+                <label for="example-1-2">
+                  Example:
+                  <input type="file" id="example-1-2">
+                  <img class="img-thumbnail" style="float:left;margin:10px;" src="http://i.imgur.com/PuJwL2k.png">
+                </label>
+              </div>
+              <div class="input-group">
+                <label class="sr-only" for="price-1-2">Price</label>
+                <span class="input-group-addon">$</span>
+                <input type="text" class="form-control" id="price-1-2" placeholder="Price (e.g. &quot;10.00&quot;)">
+              </div>
+              <textarea class="form-control" placeholder="Enter a description..."></textarea>
+            </div>
+          </div>
+        </div>
+  <!-- STEP 1, OPTION 2 -->
+        
+      </div>
+<!-- OPTIONS -->
+      
+      <hr>
+      
+      <div>
+        <button type="button" class="btn btn-default" style="float:right;">&#150;</button>
+        <span style="float:left;font-size:24pt;margin-right:20px;"><strong>^</strong></span>
+        <div class="form-group">
+          <label class="sr-only" for="step-2">Step Name</label>
+          <input style="width:50%;" type="text" class="form-control input-lg" id="step-2" placeholder="Step 2">
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div>
+        <button type="button" class="btn btn-default" style="float:right;">&#150;</button>
+        <span style="float:left;font-size:24pt;margin-right:20px;"><strong>^</strong></span>
+        <div class="form-group">
+          <label class="sr-only" for="step-3">Step Name</label>
+          <input style="width:50%;" type="text" class="form-control input-lg" id="step-3" placeholder="Step 3">
+        </div>
+      </div>
+      
+      <hr>
+      
+      <div>
+        <button type="button" class="btn btn-default pull-right">+</button>
+      </div>
+      
+      <div style="margin-top:60px;">
+        <button type="submit" class="btn btn-default btn-lg">Preview</button>
+        <button type="submit" class="btn btn-primary btn-lg">Submit</button>
+      </div>
+    </form>
+  </body>
 </html>
