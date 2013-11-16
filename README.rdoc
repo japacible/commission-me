@@ -7,11 +7,11 @@ Clone the repository by running the following command:
 
 Within the directory with the project, run the following command to make sure all of the dependencies are installed.
 
-```$ bundle install
+``` $ bundle install
 
 
 To set up the rails database, run the following command to migrate the database such that it will set up automatically:
-        ```
+        ``` aa
 	$ heroku run rake db:migrate
         ```
 
