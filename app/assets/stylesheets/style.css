@@ -9,6 +9,10 @@
   /*background:rgba(55, 78, 102, 1);*/
 }
 
+.commission-category {
+  font-size:24px;
+}
+
 img {
   max-width:100%;
   height:auto;
