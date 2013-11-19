@@ -1,4 +1,8 @@
 Myapp::Application.routes.draw do
+  resources :conversations
+
+  resources :messages
+
   get "about/index"
   resources :commissions
   get 'users/:id/artist_dashboard' => 'users#artist_dashboard' 
