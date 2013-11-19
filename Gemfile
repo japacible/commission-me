@@ -12,8 +12,6 @@ group :development, :test do
 	gem 'capybara'
 end
 
-
-
 # Use postgresql as the database for Active Record
 gem 'pg'
 
@@ -45,6 +43,11 @@ group :doc do
 gem 'rails_12factor', group: :production
 
 gem 'unicorn'
+
+# Messaging feature
+# gem 'messaging', git: 'git://github.com/frodefi/rails-messaging.git'
+# gem 'mailboxer', git: 'git://github.com/ging/mailboxer.git'
+gem 'simple-private-messages', '0.0.0', git: 'git://github.com/jongilbraith/simple-private-messages.git'
 
 ruby "1.9.3"
 end
