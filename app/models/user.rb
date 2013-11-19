@@ -10,11 +10,16 @@ class User < ActiveRecord::Base
 	validates_presence_of :email
 	validates_format_of :email, :with => /.+@.+\..+/i
 	validates_presence_of :password, :on => :create	
-
+  #Used by mailboxer to know that users can message each other
+  acts_as_messageable
 	def get_featured_art
 		arts.first
 	end
-	
+
+  #Used by Mailboxer to get a user's email address to send notifications to
+  def mailboxcer_email(object)
+    return email
+  end	
 	
 	#Returns the URL of the highest rated featured image or a default image if no art by this user exists
 	#Currently just returns the first art	
