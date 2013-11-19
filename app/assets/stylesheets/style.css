@@ -1,3 +1,8 @@
+/* Make nav bar horizontal */
+.navbar .nav > li {
+    display:inline-block;
+}
+
 .header {
   background:rgba(45, 62, 79, 1);
   font-size: 24px;
