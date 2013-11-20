@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 	end
 
   #Used by Mailboxer to get a user's email address to send notifications to
-  def mailboxcer_email(object)
+  def mailboxer_email(object)
     return email
   end	
 	

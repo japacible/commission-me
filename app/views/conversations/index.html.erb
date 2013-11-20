@@ -1,0 +1,17 @@
+<!-- This is just an example page of what is perhaps a very
+     poor way to use conversations and messages -->
+
+<h2> Conversations </h2>
+<hr/>
+<%@conversations.each do |convo| %>
+  <h3> Participiants </h3>
+  <%convo.participants.each do |p| %>
+    <%=p.name%><br />
+  <%end%>
+  Originator: <%=convo.originator.name%> <br />
+  <h3> Messages </h3>
+  <%convo.messages.each do |msg| %>
+    Subject: <%=link_to msg.subject, msg%><br /> 
+  <%end%>
+  <hr>
+<%end%>

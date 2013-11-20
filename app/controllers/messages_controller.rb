@@ -5,15 +5,14 @@ class MessagesController < ApplicationController
   #Copied from social_stream example
   #Probably needs work before it can be used
   def show
-    if @message = Message.find_by_id(params[:id]) 
-      and @conversation = @message.conversation
-      if @conversation.is_participant?(@actor)
-        redirect_to conversation_path(@conversation, :box => @box, 
-          :anchor => "message_" + @message.id.to_s)
-      return
+    if @message = Message.find_by_id(params[:id]) and @conversation = @message.conversation
+      if @conversation.is_participant?(@user)
+        #redirect_to conversation_path(@conversation, :box => @box, 
+        #  :anchor => "message_" + @message.id.to_s)
+        #return
       end
     end
-    redirect_to conversations_path(:box => @box)
+    #redirect_to conversations_path(:box => @box)
   end
 
   def new
@@ -43,7 +42,7 @@ class MessagesController < ApplicationController
 private
 
   def get_mailbox
-    @mailbox = current_subject.mailbox
+    @mailbox = current_user.mailbox
   end
 
   def get_user

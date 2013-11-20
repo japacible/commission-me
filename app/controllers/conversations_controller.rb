@@ -6,7 +6,7 @@ class ConversationsController < ApplicationController
 
   def index
     if @box.eql? "inbox"
-      @conversations = @mailbox.inbox.page(params[:page]).per(9)
+      @conversations = @mailbox.inbox
     elsif @box.eql? "sentbox"
       @conversations = @mailbox.sentbox.page(params[:page]).per(9)
     else
