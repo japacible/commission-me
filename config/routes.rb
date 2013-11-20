@@ -8,7 +8,7 @@ Myapp::Application.routes.draw do
            end
   get "about/index"
   resources :commissions
-  
+  get 'users/:id/artist_dashboard' => 'users#artist_dashboard' 
   post 'users/login' => 'users#login'
   post 'users/logout' => 'users#logout'
   #get "users/new"

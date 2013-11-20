@@ -10,28 +10,32 @@
   <div class="navbar navbar-default">
     <div class="header navbar-inner">
       <div class="container">
-        <ul class="nav">
-          <a href="/">CommissionMe</a>
-        </ul>
-        <ul class="nav pull-right">
-          <%if current_user %>
-            <%= link_to "Log Out", users_logout_path, method:"post", class:"brand"%>
-          <% else %>
-            <a href="/authenticate.html">Sign up/Log in</a>
-          <% end %>
-        </ul>
-        <%if current_user %>
-          <ul class="nav pull-right">
-            <%= link_to "Settings", edit_user_path(:id => current_user.id)%>
-          </ul>
-          <ul class="nav pull-right">
-            <%= link_to current_user.name, current_user%>
-          </ul>
-        <%end%>
+        <div class="navbar">
+          <div class="navbar-inner">
+            <a class="brand" href="/">CommissionMe</a>
+            <ul class="nav pull-right">
+              <%if current_user %>
+                <li>
+                  <%= link_to current_user.name, current_user%>
+                </li>
+                <li>
+                  <%= link_to "Settings", edit_user_path(:id => current_user.id)%>
+                </li>
+              <%end%>
+              <li>
+                <%if current_user %>
+                  <%= link_to "Log Out", users_logout_path, method:"post", class:"brand"%>
+                <% else %>
+                  <a href="/authenticate.html">Sign up/Log in</a>
+                <% end %>
+              </li>
+            </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-  <hr />
+  <hr>
   <% flash.each do |key, value| %>
     <div class="flash <%= key%>"><%= value%></div>
   <% end %>

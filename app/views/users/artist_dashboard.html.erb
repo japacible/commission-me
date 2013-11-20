@@ -1,29 +1,15 @@
 <!DOCTYPE html>
 <html>
     <head>
-    <title>CommissionMe</title>
+    <title>Dashboard</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
     </head>
     <body>
-		<div class="navbar navbar-default">
-			<div class="navbar-inner">
-				<div class="container">
-					<ul class="nav">
-						<li class="active">
-							<a class="brand" href="index.html">CommissionMe</a>
-						</li>
-					</ul>
-					<ul class="nav pull-right">
-						<a class="brand" href="authenticate.html">Sign up/Log in</a>
-					</ul>
-				</div>
-			</div>
-		</div>
 					
 		<div class="container">
 			<div class="page-header">
-				<h1>Schmapple's Dashboard</h1>
+				<h1><%=current_user.name%>'s Dashboard</h1>
 			</div>
 		</div>
 		
