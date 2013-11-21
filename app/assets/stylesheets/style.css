@@ -10,6 +10,8 @@
     font-size: 30px;
     position: relative;
     color:rgba(244, 245, 225, 1);
+    background:none;
+    padding:0;
 }
 
 .navbar .navbar-right > li {
