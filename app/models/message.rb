@@ -1,6 +1,6 @@
 class Message < ActiveRecord::Base
 
-  is_private_message
+  # is_private_message
   
   # The :to accessor is used by the scaffolding,
   # uncomment it if using it or you can remove it if not
