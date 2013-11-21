@@ -14,8 +14,6 @@ group :development, :test do
 	gem 'capybara'
 end
 
-
-
 # Use postgresql as the database for Active Record
 gem 'pg'
 

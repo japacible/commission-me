@@ -7,8 +7,8 @@ class MessagesController < ApplicationController
   def show
     if @message = Message.find_by_id(params[:id]) and @conversation = @message.conversation
       if @conversation.is_participant?(@user)
-        #redirect_to conversation_path(@conversation, :box => @box, 
-        #  :anchor => "message_" + @message.id.to_s)
+        #redirect_to conversation_path(@conversation, :box => @box,
+        # :anchor => "message_" + @message.id.to_s)
         #return
       end
     end
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     if params[:receiver].present?
       @recipient = User.find_by_name(params[:receiver])
       return if @recipient.nil?
-      @recipient = nil if @recipient == current_user 
+      @recipient = nil if @recipient == current_user
     end
   end
 

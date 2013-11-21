@@ -102,3 +102,4 @@ ActiveRecord::Schema.define(version: 20131119215220) do
   add_foreign_key "receipts", "notifications", name: "receipts_on_notification_id"
 
 end
+
