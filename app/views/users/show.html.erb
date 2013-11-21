@@ -29,7 +29,12 @@
                   </span> Commissions</p>
                 <% end %>
             <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
-            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary"%>
+            <!-- Make sure that the "CommissionMe »" button is inactive if the user views his/her public profile -->
+            <% if @user.name == current_user.name %>
+              <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary disabled" %>
+            <% else %>
+              <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary" %>
+            <% end %>
             <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
           </div> <!-- span 9-->
         </div> <!-- end of span12 in hero -->

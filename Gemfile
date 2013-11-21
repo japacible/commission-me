@@ -42,7 +42,11 @@ group :doc do
 
 gem 'rails_12factor', group: :production
 
-gem 'unicorn'
+# Commenting this out since I'm on a non-Unix machine.
+##### gem 'unicorn'
+
+# Adding gem 'thin' to eliminate the "WARN Could not determine content-length" messages
+gem 'thin' 
 
 # Messaging feature
 # gem 'messaging', git: 'git://github.com/frodefi/rails-messaging.git'
