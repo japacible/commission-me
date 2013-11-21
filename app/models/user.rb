@@ -4,7 +4,6 @@ class User < ActiveRecord::Base
   has_many :received_commissions, :class_name => "Commission", :foreign_key => "artist_id"
   has_many :requested_commissions, :class_name => "Commission", :foreign_key => "commissioner_id" 
   has_secure_password
-  has_private_messages :class_name => "Message"
   before_create :create_remember_token
   validates_format_of :name, :with => /\A[\w \-\xC0-\xFF]+\z/
   validates_uniqueness_of :email
