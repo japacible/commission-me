@@ -1,60 +1,59 @@
 class MessagesController < ApplicationController
+
+  before_filter :get_mailbox, :get_box, :get_user
   
-  before_filter :set_user
-  
-  def index
-    if params[:mailbox] == "sent"
-      @messages = @user.sent_messages
-    else
-      @messages = @user.received_messages
-    end
-  end
-  
+  #Copied from social_stream example
+  #Probably needs work before it can be used
   def show
-    @message = Message.read_message(params[:id], current_user)
+    if @message = Message.find_by_id(params[:id]) and @conversation = @message.conversation
+      if @conversation.is_participant?(@user)
+        #redirect_to conversation_path(@conversation, :box => @box,
+        # :anchor => "message_" + @message.id.to_s)
+        #return
+      end
+    end
+    #redirect_to conversations_path(:box => @box)
   end
-  
+
   def new
-    @message = Message.new
+    if params[:receiver].present?
+      @recipient = User.find_by_name(params[:receiver])
+      return if @recipient.nil?
+      @recipient = nil if @recipient == current_user
+    end
+  end
 
-    if params[:reply_to]
-      @reply_to = @user.received_messages.find(params[:reply_to])
-      unless @reply_to.nil?
-        @message.to = @reply_to.sender.login
-        @message.subject = "Re: #{@reply_to.subject}"
-        @message.body = "\n\n*Original message*\n\n #{@reply_to.body}"
-      end
-    end
-  end
-  
-  def create
-    @message = Message.new(params[:message])
-    @message.sender = @user
-    @message.recipient = User.find_by_login(params[:message][:to])
+  def edit
 
-    if @message.save
-      flash[:notice] = "Message sent"
-      redirect_to user_messages_path(@user)
-    else
-      render :action => :new
-    end
   end
-  
-  def delete_selected
-    if request.post?
-      if params[:delete]
-        params[:delete].each { |id|
-          @message = Message.find(:first, :conditions => ["messages.id = ? AND (sender_id = ? OR recipient_id = ?)", id, @user, @user])
-          @message.mark_deleted(@user) unless @message.nil?
-        }
-        flash[:notice] = "Messages deleted"
-      end
-      redirect_to :back
-    end
+
+  # PUT /messages/1
+  # PUT /messages/1.xml
+  def update
+
   end
-  
-  private
-    def set_user
-      @user = User.find(params[:user_id])
+
+  # DELETE /messages/1
+  # DELETE /messages/1.xml
+  def destroy
+
+  end
+
+private
+
+  def get_mailbox
+    @mailbox = current_user.mailbox
+  end
+
+  def get_user
+    @user = current_user
+  end
+
+  def get_box
+    if params[:box].blank? or !["inbox","sentbox","trash"].include?params[:box]
+      @box = "inbox"
+    return
     end
+    @box = params[:box]
+  end
 end
