@@ -14,7 +14,7 @@
           <div class="navbar-inner">
 
             <ul class="nav navbar-left">
-              <li>
+              <li class="clearfix">
                   <a href="/">CommissionMe</a>
               </li>
             </ul>
@@ -36,18 +36,21 @@
                 <% end %>
               </li>
             </ul>
+
           </div>
         </div>
       </div>
     </div>
   </div>
-  <hr>
-  <% flash.each do |key, value| %>
-    <div class="flash <%= key%>"><%= value%></div>
-  <% end %>
-  <%= yield %>
-  
+
+  <div class="imageview">
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key%>"><%= value%></div>
+    <% end %>
+    <%= yield %>
+
   <!-- Render the partial template for the common footer -->
   <%= render "layouts/footer" %>
+  </div>
 </body>
 </html>

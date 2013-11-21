@@ -1,5 +1,6 @@
-/* Make nav bar horizontal */
-.navbar-inner {
+/* Navbar */
+
+.navbar {
     filter:none;
     box-shadow:none;
     border-radius:0px;
@@ -8,16 +9,21 @@
 
 .navbar .nav > li > a{
     font-size: 30px;
-    position: relative;
     color:rgba(244, 245, 225, 1);
     background:none;
     padding:0;
+}
+
+.navbar .navbar-left > li {
+    display:inline;
+    position:inherit;
 }
 
 .navbar .navbar-right > li {
     font-size: 18px;
     color:rgba(244, 245, 225, 1);
     display:inline;
+    position:inherit;
 }
 
 .navbar .navbar-right > li > a{
@@ -27,9 +33,28 @@
     margin-right:10px;
 }
 
+.navbar {
+    <!-- position:table-caption;-->
+}
+
+/* Homepage Images */
+.imageview {
+    background-color:rgba(212, 214, 214, 1);
+    max-height: inherit;
+}
+
+/* General body */
+body {
+    background-color:rgba(153, 156, 161, 1);
+}
+
 .header {
   background:rgba(45, 62, 79, 1);
-  font-family: sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerdescription {
+  background:rgba(55, 78, 102, 1);
 }
 
 /*
