@@ -12,8 +12,14 @@
       <div class="container">
         <div class="navbar">
           <div class="navbar-inner">
-            <a class="brand" href="/">CommissionMe</a>
-            <ul class="nav pull-right">
+
+            <ul class="nav navbar-left">
+              <li>
+                  <a href="/index.html">CommissionMe</a>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-right">
               <%if current_user %>
                 <li>
                   <%= link_to current_user.name, current_user%>
@@ -26,7 +32,7 @@
                 <%if current_user %>
                   <%= link_to "Log Out", users_logout_path, method:"post", class:"brand"%>
                 <% else %>
-                  <a href="/authenticate.html">Sign up/Log in</a>
+                  <a href="/authenticate.html">sign up/log in</a>
                 <% end %>
               </li>
             </ul>

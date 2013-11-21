@@ -6,16 +6,33 @@
     border:none;
 }
 
-/*
-.navbar .nav > li {
-    display:inline-block;
+.navbar .nav > li > a{
+    font-size: 30px;
+    position: relative;
+    color:rgba(244, 245, 225, 1);
+}
+
+.navbar .navbar-right > li {
+    font-size: 18px;
+    color:rgba(244, 245, 225, 1);
+    display:inline;
+}
+
+.navbar .navbar-right > li > a{
+    font-size: 18px;
+    color:rgba(244, 245, 225, 1);
+    float:left;
+    margin-right:10px;
 }
 
 .header {
   background:rgba(45, 62, 79, 1);
-  font-size: 24px;
   font-family: sans-serif;
-  padding-top:10px;
+}
+
+/*
+.navbar .navbar-inner .nav > li {
+    display:inline-block;
 }
 
 .banner {
