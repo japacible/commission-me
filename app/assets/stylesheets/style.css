@@ -1,4 +1,12 @@
 /* Make nav bar horizontal */
+.navbar-inner {
+    filter:none;
+    box-shadow:none;
+    border-radius:0px;
+    border:none;
+}
+
+/*
 .navbar .nav > li {
     display:inline-block;
 }
@@ -41,3 +49,4 @@ img {
   color:#000 !important;
   z-index:2;
 }
+*/
