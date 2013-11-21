@@ -8,9 +8,9 @@ class ConversationsController < ApplicationController
     if @box.eql? "inbox"
       @conversations = @mailbox.inbox
     elsif @box.eql? "sentbox"
-      @conversations = @mailbox.sentbox.page(params[:page]).per(9)
+      @conversations = @mailbox.sentbox
     else
-      @conversations = @mailbox.trash.page(params[:page]).per(9)
+      @conversations = @mailbox.trash
     end
 
     respond_to do |format|
@@ -19,13 +19,14 @@ class ConversationsController < ApplicationController
   end
 
   def show
-    if @box.eql? 'trash'
-      @receipts = @mailbox.receipts_for(@conversation).trash
-    else
-      @receipts = @mailbox.receipts_for(@conversation).not_trash
-    end
-    render :action => :show
-    @receipts.mark_as_read
+    @conversation = Conversation.find(params[:id])
+    #if @box.eql? 'trash'
+    #  @receipts = @mailbox.receipts_for(@conversation).trash
+    #else
+    #  @receipts = @mailbox.receipts_for(@conversation).not_trash
+    #end
+    #render :action => :show
+    #@receipts.mark_as_read
   end
 
   def update

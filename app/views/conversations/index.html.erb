@@ -4,14 +4,9 @@
 <h2> Conversations </h2>
 <hr/>
 <%@conversations.each do |convo| %>
-  <h3> Participiants </h3>
-  <%convo.participants.each do |p| %>
-    <%=p.name%><br />
-  <%end%>
+  
   Originator: <%=convo.originator.name%> <br />
-  <h3> Messages </h3>
-  <%convo.messages.each do |msg| %>
-    Subject: <%=link_to msg.subject, msg%><br /> 
-  <%end%>
+  <%= link_to convo.last_message.subject, convo %>
+  <br />
   <hr>
 <%end%>
