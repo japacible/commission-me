@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131119215220) do
+ActiveRecord::Schema.define(version: 20131122043338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,16 +28,21 @@ ActiveRecord::Schema.define(version: 20131119215220) do
     t.string   "title"
   end
 
+  create_table "commission_requests", force: true do |t|
+    t.json     "commission_current"
+    t.json     "commission_previous"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "commission_id"
+  end
+
   create_table "commissions", force: true do |t|
-    t.text     "request_form"
-    t.text     "revision_request"
-    t.time     "closed_date"
     t.text     "state"
     t.integer  "commissioner_id"
     t.integer  "artist_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "commission_request_data"
+    t.json     "commission_current"
   end
 
   create_table "conversations", force: true do |t|
@@ -92,7 +97,7 @@ ActiveRecord::Schema.define(version: 20131119215220) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "remember_token"
-    t.text     "commission_request_template"
+    t.json     "commission_request_template_json"
   end
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
