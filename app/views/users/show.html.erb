@@ -10,7 +10,6 @@
     <![endif]-->
   </head>
   <body>
-
     <div class="container">
       <div class="row-fluid">
         <div class="span12">
@@ -28,15 +27,20 @@
                 <% else %>
                   </span> Commissions</p>
                 <% end %>
-            <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
-            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary"%>
-            <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
-          </div> <!-- span 9-->
-        </div> <!-- end of span12 in hero -->
-      </div> <!-- end of row-fluid in hero -->
+            <p>Joined <%=@user.created_at.strftime("%B %Y")%></p>
+            <!-- Proper buttons/links displayed based on who is logged in -->
+            <% if @user.name != current_user.name %>
+              <%=link_to "CommissionMe »", 
+                new_commission_path(:artist_id => @user.id), 
+                :class => "btn btn-primary" %>
+              <!-- Do the same with a messaging link -->
+            <% end %>
+          </div>
+        </div> 
+      </div>
     </div>
 
-<!-- Container for : Artist's work -->
+  <!-- Container for : Artist's work -->
   <hr>
   <div class="container">
     <div class="row-fluid">
