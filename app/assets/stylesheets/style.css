@@ -29,7 +29,6 @@ img {
   height:auto;
 }
 
-/*
 .thumbnail {
   position:relative;
   overflow:hidden;
@@ -47,5 +46,9 @@ img {
   text-align:center;
   color:#000 !important;
   z-index:2;
+  display:none;
 }
-*/
+
+.thumbnail:hover .caption { 
+  display: block;
+}
