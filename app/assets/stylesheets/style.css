@@ -45,12 +45,19 @@
     margin-left:auto;
     margin-right:auto;
     margin-top:0px;
+    padding-top:25px;
     width:1200px;
+    position:fixed; top:62px; left:0px; bottom:0px; right:0px;
 }
 
 /* General body */
 body {
     background-color:rgba(153, 156, 161, 1);
+    height: 100%;
+}
+
+html {
+  height: 100%;
 }
 
 .header {
