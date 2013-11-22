@@ -18,19 +18,18 @@
   padding-top:10px;
 }
 
-.banner {
-  /*background:rgba(55, 78, 102, 1);*/
-}
-
 .commission-category {
   font-size:24px;
 }
+*/
 
+/* Don't delete this. It makes images not huge */
 img {
   max-width:100%;
   height:auto;
 }
 
+/*
 .thumbnail {
   position:relative;
   overflow:hidden;

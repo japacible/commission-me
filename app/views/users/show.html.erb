@@ -10,112 +10,108 @@
     <![endif]-->
   </head>
   <body>
-
     <div class="container">
       <div class="row-fluid">
         <div class="span12">
           <div class="col-md-3">
             <%= image_tag @user.masterpiece %>
-          </div> <!-- end of span3 -->
+          </div>
           <div class="span9">
-            <h2><%=@user.name%>'s Profile</h2>
-            <h5>My name is <%=@user.name%>, and my motto is 'just keep swimming!'</h5>
+            <h2><%=@user.name%></h2>
+            <!-- <h5>user's bio/info</h5> -->
             <p><span class="badge badge-important">
               <%=@user.received_commissions.count%>
-                <!-- Make sure that the singular / plural grammar is correct -->
+                <!-- Make sure that the singular / plural grammar is 
+                     correct -->
                 <% if @user.received_commissions.count == 1 %>
                   </span> Commission</p>
                 <% else %>
                   </span> Commissions</p>
                 <% end %>
-            <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
-            <!-- Make sure that the "CommissionMe »" button is not displayed if the user views his/her public profile -->
+            <p>Joined <%=@user.created_at.strftime("%B %Y")%></p>
+            <!-- Proper buttons/links displayed based on who is logged in -->
             <% if @user.name != current_user.name %>
-              <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary" %>
+              <%=link_to "CommissionMe »", 
+                new_commission_path(:artist_id => @user.id), 
+                :class => "btn btn-primary" %>
+              <!-- TODO: Do the same with a messaging link -->
             <% end %>
-            <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
-          </div> <!-- span 9-->
-        </div> <!-- end of span12 in hero -->
-      </div> <!-- end of row-fluid in hero -->
-    </div>
-
-<!-- Container for : Artist's work -->
-  <hr>
-  <div class="container">
-    <div class="row-fluid">
-      <div class="row">
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div>  
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
           </div>
         </div> 
       </div>
-
-      <div class="row">
-        &nbsp
-      </div>
-
-      <div class="row">
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div>  
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-      </div> 
     </div>
-  </div>
+
+    <!-- break between user info and art --> 
+    <hr>
+
+    <!-- Container for : Artist's work -->
+    <div class="container">
+      <div class="row-fluid">
+        <div class="row">
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div>  
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+        </div>
+        <div class="row">
+          &nbsp
+        </div>
+        <div class="row">
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div>  
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg" %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+        </div> 
+      </div>
+    </div>
 
 
     <!-- Le javascript
