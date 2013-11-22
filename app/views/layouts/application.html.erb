@@ -43,6 +43,7 @@
     </div>
   </div>
 
+  <div>
   <div class="imageview">
     <% flash.each do |key, value| %>
       <div class="flash <%= key%>"><%= value%></div>
@@ -52,5 +53,7 @@
   <!-- Render the partial template for the common footer -->
   <%= render "layouts/footer" %>
   </div>
+  </div>
+  
 </body>
 </html>
