@@ -20,7 +20,7 @@
           <div class="span9">
             <h2><%=@user.name%>'s Profile</h2>
             <h5>My name is <%=@user.name%>, and my motto is 'just keep swimming!'</h5>
-            <p><span class="badge badge-important">
+            <p><span class="badge">
               <%=@user.received_commissions.count%>
                 <!-- Make sure that the singular / plural grammar is correct -->
                 <% if @user.received_commissions.count == 1 %>
@@ -29,7 +29,7 @@
                   </span> Commissions</p>
                 <% end %>
             <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
-            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary"%>
+            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "commissionbtn"%>
             <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
           </div> <!-- span 9-->
         </div> <!-- end of span12 in hero -->

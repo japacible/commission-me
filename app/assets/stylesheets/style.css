@@ -39,6 +39,15 @@
     margin-bottom:0px;
 }
 
+.header {
+  background:rgba(45, 62, 79, 1);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.headerdescription {
+  background:rgba(55, 78, 102, 1);
+}
+
 /* Homepage Images */
 .imageview {
     background-color:rgba(235, 239, 240, 1);
@@ -50,42 +59,19 @@
     position:fixed; top:62px; left:0px; bottom:0px; right:0px;
 }
 
-/* General body */
-body {
-    background-color:rgba(153, 156, 161, 1);
-    height: 100%;
-}
-
-img {
-   border:3px solid rgba(235, 239, 240, 1);
-}
-
-html {
-  height: 100%;
-}
-
-.header {
-  background:rgba(45, 62, 79, 1);
-  font-family: Arial, Helvetica, sans-serif;
-}
-
-.headerdescription {
-  background:rgba(55, 78, 102, 1);
-}
-
 /* Sign up/Log in and Settings*/
 .signuplogin {
   line-height:120%;
 }
 
-.btn {
+/*.btn {
   background-color:rgba(45, 62, 79, 1);
   color:rgba(235, 239, 240, 1);
 }
 
 .btn:hover {
    color: #FFFFFF;
-}
+}*/
 
 .form-signin-heading {
   margin-right:0px;
@@ -95,6 +81,38 @@ html {
 
 .input-block-level {
   margin-bottom:10px
+}
+
+/* Profile */
+.commissionbtn {
+  background-color:rgba(28, 186, 152, 1);
+  padding:7px;
+  color:rgba(235, 239, 240, 1);
+}
+
+.commissionbtn:hover {
+  text-decoration:none;
+  color: #FFFFFF;
+}
+
+.badge {
+  background-color:rgba(230, 76, 62, 1);
+}
+
+/* General body */
+body {
+    background-color:rgba(153, 156, 161, 1);
+    height: 100%;
+}
+
+img {
+   border:3px solid rgba(235, 239, 240, 1);
+   max-width:100%;
+   height:auto;
+}
+
+html {
+  height: 100%;
 }
 
 /*
@@ -108,11 +126,6 @@ html {
 
 .commission-category {
   font-size:24px;
-}
-
-img {
-  max-width:100%;
-  height:auto;
 }
 
 .thumbnail {
