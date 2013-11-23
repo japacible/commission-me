@@ -5,8 +5,18 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+  <script type="text/javascript">
+    var item = document.getElementById("imageview");
+    if(item) {
+        alert("FOUND");
+    }
+  </script>
+
 </head>
-<body>
+
+<body onload="resizeContent()" onResize="resizeContent()">
+  <div class="header">
   <div class="navbar navbar-default">
     <div class="header navbar-inner">
       <div class="container">
@@ -42,18 +52,19 @@
       </div>
     </div>
   </div>
+  </div>
 
-  <div>
-  <div class="imageview">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key%>"><%= value%></div>
-    <% end %>
+  <% flash.each do |key, value| %>
+  <div class="flash <%= key%>"><%= value%></div>
+  <% end %>
+      
+  <div class="bodyview">
+    <!--Renders body of page-->
     <%= yield %>
+  </div>
 
-  <!-- Render the partial template for the common footer -->
-  <%= render "layouts/footer" %>
-  </div>
-  </div>
-  
+   <!-- Render the partial template for the common footer -->
+   <%= render "layouts/footer" %>
+
 </body>
 </html>
