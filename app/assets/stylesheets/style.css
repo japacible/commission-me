@@ -83,6 +83,10 @@ html {
   color:rgba(235, 239, 240, 1);
 }
 
+.btn:hover {
+   color: #FFFFFF;
+}
+
 .form-signin-heading {
   margin-right:0px;
   margin-top:0px;
