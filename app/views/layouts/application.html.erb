@@ -5,15 +5,31 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
+  
+  <script type="text/javascript">
+    var item = document.getElementById("imageview");
+    if(item) {
+        alert("FOUND");
+    }
+  </script>
+
 </head>
-<body>
+
+<body onload="resizeContent()" onResize="resizeContent()">
+  <div class="header">
   <div class="navbar navbar-default">
     <div class="header navbar-inner">
       <div class="container">
         <div class="navbar">
           <div class="navbar-inner">
-            <a class="brand" href="/">CommissionMe</a>
-            <ul class="nav pull-right">
+
+            <ul class="nav navbar-left">
+              <li class="clearfix">
+                  <a href="/">CommissionMe</a>
+              </li>
+            </ul>
+
+            <ul class="nav navbar-right">
               <%if current_user %>
                 <li>
                   <%= link_to current_user.name, current_user%>
@@ -26,22 +42,29 @@
                 <%if current_user %>
                   <%= link_to "Log Out", users_logout_path, method:"post", class:"brand"%>
                 <% else %>
-                  <a href="/authenticate.html">Sign up/Log in</a>
+                  <a href="/authenticate.html">sign up/log in</a>
                 <% end %>
               </li>
             </ul>
+
           </div>
         </div>
       </div>
     </div>
   </div>
-  <hr>
+  </div>
+
   <% flash.each do |key, value| %>
-    <div class="flash <%= key%>"><%= value%></div>
+  <div class="flash <%= key%>"><%= value%></div>
   <% end %>
-  <%= yield %>
-  
-  <!-- Render the partial template for the common footer -->
-  <%= render "layouts/footer" %>
+      
+  <div class="bodyview">
+    <!--Renders body of page-->
+    <%= yield %>
+  </div>
+
+   <!-- Render the partial template for the common footer -->
+   <%= render "layouts/footer" %>
+
 </body>
 </html>

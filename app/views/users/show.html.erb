@@ -17,9 +17,9 @@
             <%= image_tag @user.masterpiece %>
           </div>
           <div class="span9">
-            <h2><%=@user.name%></h2>
-            <!-- <h5>user's bio/info</h5> -->
-            <p><span class="badge badge-important">
+            <h2><%=@user.name%>'s Profile</h2>
+            <h5>My name is <%=@user.name%>, and my motto is 'just keep swimming!'</h5>
+            <p><span class="badge">
               <%=@user.received_commissions.count%>
                 <!-- Make sure that the singular / plural grammar is 
                      correct -->
@@ -28,14 +28,48 @@
                 <% else %>
                   </span> Commissions</p>
                 <% end %>
-            <p>Joined <%=@user.created_at.strftime("%B %Y")%></p>
-            <!-- Proper buttons/links displayed based on who is logged in -->
-            <% if current_user != nil && @user.name != current_user.name %>
-              <%=link_to "CommissionMe »", 
-                new_commission_path(:artist_id => @user.id), 
-                :class => "btn btn-primary" %>
-              <!-- TODO: Do the same with a messaging link -->
-            <% end %>
+            <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
+            <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "commissionbtn"%>
+            <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
+          </div> <!-- span 9-->
+        </div> <!-- end of span12 in hero -->
+      </div> <!-- end of row-fluid in hero -->
+    </div>
+
+  <hr>
+<!-- Container for : Artist's work -->
+  <div class="container">
+    <div class="row-fluid">
+      <div class="row">
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div>  
+
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
           </div>
         </div> 
       </div>
