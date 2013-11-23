@@ -7,6 +7,8 @@ Myapp::Application.routes.draw do
              end
            end
   get "about/index"
+  get "edit_template" => 'commission_request_templates#edit'
+  post "update_template" => 'commission_request_templates#update'
   resources :commissions
   get 'users/:id/artist_dashboard' => 'users#artist_dashboard' 
   post 'users/login' => 'users#login'
