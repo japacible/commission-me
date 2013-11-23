@@ -1,0 +1,11 @@
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#inbox" data-toggle="tab">Inbox</a></li>
+  <li><a href="#sent" data-toggle="tab">Sent</a></li>
+  <li><a href="#trash" data-toggle="tab">Trash</a></li>
+</ul>
+
+<div class="tab-content">
+  <%= render 'box', :id => "inbox", :active => 'active', :box => @conversations_inbox%>
+  <%= render 'box', :id => "sent", :active => '', :box => @conversations_sentbox%>
+  <%= render 'box', :id => "trash", :active => '', :box => @conversations_trash%> 
+</div>

@@ -102,4 +102,8 @@ ActiveRecord::Schema.define(version: 20131122043338) do
 
   add_index "users", ["remember_token"], name: "index_users_on_remember_token", using: :btree
 
+  add_foreign_key "notifications", "conversations", name: "notifications_on_conversation_id"
+
+  add_foreign_key "receipts", "notifications", name: "receipts_on_notification_id"
+
 end

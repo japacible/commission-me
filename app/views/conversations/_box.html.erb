@@ -1,0 +1,26 @@
+<!-- Rails partial. Expects variable 'box' and 'id'-->
+  <div class="tab-pane fade in <%=active%>" id="<%=id%>">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Sender</th>
+            <th>Subject</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+        <!-- For each conversation/message, populate a <tr> -->
+          <%box.each do |conversation| %>         
+            <tr>
+              <!-- Sender name should link to user profile -->
+              <td><%=link_to conversation.originator.name, conversation.originator %></td>
+              <!-- Subject should link to reading message -->
+              <td><%=link_to conversation.subject, conversation%></td>
+              <td><%= conversation.updated_at %></td>
+            </tr>
+          <%end%>  
+        </tbody>
+      </table>
+    </div>
+  </div>
