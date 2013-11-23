@@ -5,17 +5,9 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  
-  <script type="text/javascript">
-    var item = document.getElementById("imageview");
-    if(item) {
-        alert("FOUND");
-    }
-  </script>
-
 </head>
 
-<body onload="resizeContent()" onResize="resizeContent()">
+<body onload="updateHeader()">
   <div class="header">
   <div class="navbar navbar-default">
     <div class="header navbar-inner">
@@ -46,13 +38,14 @@
                 <% end %>
               </li>
             </ul>
-
           </div>
         </div>
       </div>
     </div>
   </div>
   </div>
+
+
 
   <% flash.each do |key, value| %>
   <div class="flash <%= key%>"><%= value%></div>

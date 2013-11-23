@@ -1,42 +1,42 @@
 /* Navbar */
 
 .navbar {
-    filter:none;
-    box-shadow:none;
-    border-radius:0px;
-    border:none;
-    padding:0px;
-    margin-bottom:0px;
+  filter:none;
+  box-shadow:none;
+  border-radius:0px;
+  border:none;
+  padding:0px;
+  margin-bottom:0px;
 }
 
 .navbar .nav > li > a{
-    font-size: 30px;
-    color:rgba(244, 245, 225, 1);
-    background:none;
-    padding:0;
-    margin-top:20px;
-    margin-bottom:0px;
+  font-size: 30px;
+  color:rgba(244, 245, 225, 1);
+  background:none;
+  padding:0;
+  margin-top:20px;
+  margin-bottom:0px;
 }
 
 .navbar .navbar-left > li {
-    display:inline;
-    position:inherit;
+  display:inline;
+  position:inherit;
 }
 
 .navbar .navbar-right > li {
-    font-size: 18px;
-    color:rgba(244, 245, 225, 1);
-    display:inline;
-    position:inherit;
+  font-size: 18px;
+  color:rgba(244, 245, 225, 1);
+  display:inline;
+  position:inherit;
 }
 
 .navbar .navbar-right > li > a{
-    font-size: 18px;
-    color:rgba(244, 245, 225, 1);
-    float:left;
-    margin-right:10px;
-    margin-top:35px;
-    margin-bottom:0px;
+  font-size: 18px;
+  color:rgba(244, 245, 225, 1);
+  float:left;
+  margin-right:20px;
+  margin-top:35px;
+  margin-bottom:0px;
 }
 
 .header {
@@ -48,41 +48,42 @@
   background:rgba(55, 78, 102, 1);
 }
 
+/* Site Description (Homepage only) */
+.homepagedescription {
+  background-color:#FFFFFF;
+  margin-bottom:0px;
+}
 /* Page Body */
 .bodyview {
-    background-color:rgba(212, 214, 214, 1);
-    margin-left:auto;
-    margin-right:auto;
-    padding-top:25px;
-    width:1200px;
-    top:0px;
-    left:0px; 
-    bottom:0px; 
-    right:0px;
-    min-height:100%;
+  background-color:rgba(212, 214, 214, 1);
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:25px;
+  width:1200px;
+  top:0px;
+  left:0px;
+  bottom:0px;
+  right:0px;
+  min-height:100%;
 }
 
 img { 
-   border:3px solid rgba(244, 245, 225, 1);
+  border:3px solid rgba(244, 245, 225, 1);
 }
 
 /* General body */
 body {
-    background-color:rgba(153, 156, 161, 1);
-    height: 100%;
+  background-color:rgba(153, 156, 161, 1);
+  height: 100%;
 }
 
 html {
-    height: 100%;
+  height: 100%;
 }
 
 /*
 .navbar .navbar-inner .nav > li {
-    display:inline-block;
-}
-
-.banner {
-  /*background:rgba(55, 78, 102, 1);*/
+  display:inline-block;
 }
 
 .commission-category {
