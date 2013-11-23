@@ -97,6 +97,14 @@
 
 .badge {
   background-color:rgba(230, 76, 62, 1);
+  border-radius: 0;
+}
+
+hr {
+  display:block;
+  width:95%;
+  background-color:rgba(212, 214, 214, 1);
+  height: 3px;
 }
 
 /* General body */
