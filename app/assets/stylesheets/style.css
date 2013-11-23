@@ -73,7 +73,7 @@ html {
   background:rgba(55, 78, 102, 1);
 }
 
-/* Sign up/Log in */
+/* Sign up/Log in and Settings*/
 .signuplogin {
   line-height:120%;
 }
@@ -92,6 +92,7 @@ html {
 .input-block-level {
   margin-bottom:10px
 }
+
 /*
 .navbar .navbar-inner .nav > li {
     display:inline-block;
