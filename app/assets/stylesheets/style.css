@@ -125,36 +125,3 @@ img {
 html {
   height: 100%;
 }
-
-/*
-.navbar .navbar-inner .nav > li {
-    display:inline-block;
-}
-
-.banner {
-  /*background:rgba(55, 78, 102, 1);*/
-}
-
-.commission-category {
-  font-size:24px;
-}
-
-.thumbnail {
-  position:relative;
-  overflow:hidden;
-}
-
-.caption {
-  position:absolute;
-  top:0;
-  right:0;
-  background:rgba(255,255,255,0.75);
-  width:100%;
-  height:100%;
-  padding:2%;
-  display: none;
-  text-align:center;
-  color:#000 !important;
-  z-index:2;
-}
-*/
