@@ -8,7 +8,7 @@
 </head>
 <body>
 
-<body onload="updateHeader()">
+<body>
   <div class="header">
   <div class="navbar navbar-default">
     <div class="header navbar-inner">
@@ -45,16 +45,10 @@
     </div>
   </div>
 
-  <div>
   <div class="imageview">
     <% flash.each do |key, value| %>
       <div class="flash <%= key%>"><%= value%></div>
     <% end %>
-
-
-  <% flash.each do |key, value| %>
-  <div class="flash <%= key%>"><%= value%></div>
-  <% end %>
       
   <div class="bodyview">
     <!--Renders body of page-->
