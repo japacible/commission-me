@@ -16,9 +16,13 @@
 <hr>
 <div>
   <div class="col-sm-10">
-    <h3>From: <%=link_to @conversation.originator.name, @conversation.originator%></h3>
+    <h3>From: <%=link_to @conversation.originator.name, 
+      @conversation.originator%></h3>
     <h4><%=@conversation.messages.last.subject%></h4>
-    <textarea type="message" class="form-control" readonly="true" id="msg_body" rows="5">
+    <!-- The inner html should not be indented because white space will show up
+     in the text box if it is -->
+    <textarea type="message" class="form-control" readonly="true" 
+      id="msg_body" rows="5">
 <%=@conversation.messages.last.body%>
     </textarea>
   </div>
@@ -26,8 +30,7 @@
 </div>
 
 <script type="text/javascript">
-  function reply(){
-   
+  function reply(){   
     $("#msg_recipient").val("<%=@conversation.originator.name%>");
     $("#msg_subject").val("RE: <%=@conversation.subject%>");
     $("#compose").modal();

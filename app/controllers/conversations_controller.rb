@@ -1,6 +1,5 @@
 class ConversationsController < ApplicationController
-  before_filter :get_mailbox, :get_box, :get_user
-
+  before_filter :get_user, :get_mailbox, :get_box
   before_filter :check_current_subject_in_conversation, 
     :only => [:show, :update, :destroy]
 
@@ -8,17 +7,6 @@ class ConversationsController < ApplicationController
     @conversations_inbox = @mailbox.inbox
     @conversations_sentbox = @mailbox.sentbox
     @conversations_trash = @mailbox.trash
-    #if @box.eql? "inbox"
-    #  @conversations = @mailbox.inbox
-    #elsif @box.eql? "sentbox"
-    #  @conversations = @mailbox.sentbox
-    #else
-    #  @conversations = @mailbox.trash
-    #end
-
-    respond_to do |format|
-      format.html { render @conversations if request.xhr? }
-    end
   end
 
   def show
@@ -26,56 +14,6 @@ class ConversationsController < ApplicationController
     @conversations_inbox = @mailbox.inbox
     @conversations_sentbox = @mailbox.sentbox
     @conversations_trash = @mailbox.trash
-    #if @box.eql? 'trash'
-    #  @receipts = @mailbox.receipts_for(@conversation).trash
-    #else
-    #  @receipts = @mailbox.receipts_for(@conversation).not_trash
-    #end
-    #render :action => :show
-    #@receipts.mark_as_read
-  end
-
-  def update
-    if params[:untrash].present?
-    @conversation.untrash(@actor)
-    end
-
-    if params[:reply_all].present?
-      last_receipt = @mailbox.receipts_for(@conversation).last
-      @receipt = @actor.reply_to_all(last_receipt, params[:body])
-    end
-
-    if @box.eql? 'trash'
-      @receipts = @mailbox.receipts_for(@conversation).trash
-    else
-      @receipts = @mailbox.receipts_for(@conversation).not_trash
-    end
-    redirect_to :action => :show
-    @receipts.mark_as_read
-
-  end
-
-  def destroy
-
-    @conversation.move_to_trash(@actor)
-
-    respond_to do |format|
-      format.html {
-        if params[:location].present? and params[:location] == 'conversation'
-          redirect_to conversations_path(:box => :trash)
-        else
-          redirect_to conversations_path(:box => @box,:page => params[:page])
-        end
-      }
-      format.js {
-        if params[:location].present? and params[:location] == 'conversation'
-          render :js => "window.location = 
-            '#{conversations_path(:box => @box,:page => params[:page])}';"
-        else
-          render 'conversations/destroy'
-        end
-      }
-    end
   end
 
 private
@@ -85,7 +23,12 @@ private
   end
 
   def get_user
-    @user = current_user
+    if !@user = current_user
+      flash[:alert] = "You must be logged in to view conversations." 
+      redirect_to root_path
+      #Ideally we need to set up a general purpose 'redirect_back_or_to_root'
+      #so that the user doesn't get confused by always getting pushed to root'
+    end
   end
 
   def get_box
@@ -98,9 +41,9 @@ private
 
   def check_current_subject_in_conversation
     @conversation = Conversation.find_by_id(params[:id])
-
     if @conversation.nil? or !@conversation.is_participant?(@user)
-      redirect_to conversations_path(:box => @box)
+      redirect_to conversations_path(:box => @box),
+        alert:"Cannot access conversation with id: #{params[:id]}"
     return
     end
   end

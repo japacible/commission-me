@@ -7,12 +7,13 @@ class MessagesController < ApplicationController
   def show
     if @message = Message.find_by_id(params[:id]) and @conversation = @message.conversation
       if @conversation.is_participant?(@user)
-        #redirect_to conversation_path(@conversation, :box => @box,
-        # :anchor => "message_" + @message.id.to_s)
-        #return
+      else
+        redirect_to :back, alert: "You are not authorized to view this message."
       end
+    else
+      redirect_to :back, alert: "Invalid Message Id: #{params[:id]}"
     end
-    #redirect_to conversations_path(:box => @box)
+    #implicitly render show
   end
 
   def new
@@ -20,7 +21,6 @@ class MessagesController < ApplicationController
       @recipient = User.find_by_name(params[:msg_recipient])
       return if @recipient.nil?
       @recipient = nil if @recipient == current_user
-      
     end
   end
 
@@ -28,26 +28,26 @@ class MessagesController < ApplicationController
     alerts = []
     can_send = true
    
-    if !params[:msg_recipient].present? or 
-          !(@recipient = User.find_by_name(params[:msg_recipient]))
-      alerts << "Invalid Recipent" 
+    if (!params[:msg_recipient].present? or 
+          !(@recipient = User.find_by_name(params[:msg_recipient])))
+      alerts << "Error: Invalid Recipent" 
       can_send = false
     end
 
     if !params[:msg_body].present?
-      alerts << "Invalid message body" 
+      alerts << "Error: Invalid Message Body" 
       can_send = false
     end   
 
     if !params[:msg_subject].present?
-       alerts << "Invalid message subject"
+       alerts << "Error: Invalid Message Subject"
        can_send = false
     end
     if can_send
       @receipt = current_user.send_message @recipient, params[:msg_body], params[:msg_subject]
       alerts << "Message sent successfully!"
     end
-    redirect_to conversations_path, :alert => alerts.to_s
+    redirect_to conversations_path, :alert => alerts.join("<br/>").html_safe
   end
 
   def edit
