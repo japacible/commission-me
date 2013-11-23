@@ -28,7 +28,7 @@
                 <% else %>
                   </span> Commissions</p>
                 <% end %>
-            <p>Artist since <%=@user.created_at.strftime("%B, %Y")%></p>
+            <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
             <%=link_to "CommissionMe »", new_commission_path(:artist_id => @user.id), :class => "btn btn-primary"%>
             <!-- a class="btn btn-large btn-primary">CommissionMe &raquo;</a-->
           </div> <!-- span 9-->
