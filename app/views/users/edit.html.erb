@@ -3,26 +3,25 @@
 <div class="container">
   <div class="row">
     <div class="col-md-7">
-      <h2>Update Settings</h2>
+      <h2 class="form-signin-heading">Update Settings</h2>
       <%=form_for @user do |f| %>
       <div class="form-group">
         <%=f.label :email, class: "col-md-3"%>
-        <%=f.text_field :email, class: "col-sm-offset-3 col-md-4"%>
+        <%=f.text_field :email%>
       </div>
       <div class="form-group">
         <%=f.label :password, class: "col-md-3"%>
-        <%=f.password_field :password, class: "col-sm-offset-3 col-md-4"%>
+        <%=f.password_field :password%>
       </div>
       <div class="form-group">
         <%=f.label :password_confirmation, "Password Confirmation", 
           class: "col-md-3"%>
-          <%=f.password_field :password_confirmation, 
-            class: "col-sm-offset-3 col-md-4"%>
+          <%=f.password_field :password_confirmation%>
       </div>
 
       <div class="form-group">
         <%= f.submit "Save Changes", 
-          class: "btn btn-medium btn-primary col-sm-offset-3" %>
+          class: "btn" %>
       </div>
       <%end%>
     </div>
