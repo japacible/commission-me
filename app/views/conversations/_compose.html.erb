@@ -5,7 +5,7 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%=form_tag({ controller: "messages", action: "create"},
-        method: "post", class: "form-horizontal", role:"form") do %> 
+        method: "post", class: "form-horizontal", id:"compose_form", role:"form") do %> 
         <div class="modal-header">
 	  <button type="button" class="close" data-dismiss="modal" 
             aria-hidden="true">&times;</button>
