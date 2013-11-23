@@ -73,6 +73,7 @@ html {
   background:rgba(55, 78, 102, 1);
 }
 
+/* Sign up/Log in */
 .signuplogin {
   line-height:120%;
 }
@@ -82,6 +83,15 @@ html {
   color:rgba(235, 239, 240, 1);
 }
 
+.form-signin-heading {
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:20px;
+}
+
+.input-block-level {
+  margin-bottom:10px
+}
 /*
 .navbar .navbar-inner .nav > li {
     display:inline-block;
