@@ -1,53 +1,24 @@
 
 <%= render 'compose_with_btn' %>
-
 <hr>
+<ul class="nav nav-tabs">
+  <li><a href="#inbox" data-toggle="tab">Inbox</a></li>
+  <li><a href="#sent" data-toggle="tab">Sent</a></li>
+  <li><a href="#trash" data-toggle="tab">Trash</a></li>
+</ul>
 
+<div class="tab-content">
+  <%= render 'box', :id => "inbox", :active => '', :box => @conversations_inbox%>
+  <%= render 'box', :id => "sent", :active => '', :box => @conversations_sentbox%>
+  <%= render 'box', :id => "trash", :active => '', :box => @conversations_trash%> 
+</div>
 
-
-<div class="modal show" id="display" tabindex="-1" role="dialog" 
-  aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <form class="form-horizontal" role="form">
-        <div class="modal-header">
-	 
-  
-	  <h4 class="modal-title" id="myModalLabel">New Message</h4>
-        </div>
-        <div class="modal-body">
-          <div class="form-group">
-            <label for="msg_recipient" class="col-sm-2 control-label">
-              Recipient</label>
-            <div class="col-sm-10">
-              <input type="email" class="form-control" id="msg_recipient" 
-              placeholder="Recipient Name">
-            </div>
-          </div>
-        <div class="form-group">
-          <label for="msg_subject" class="col-sm-2 control-label">
-            Subject</label>
-          <div class="col-sm-10">
-            <input type="password" class="form-control" id="msg_subject" 
-            placeholder="Subject">
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="msg_body" class="col-sm-2 control-label">Message</label>
-          <div class="col-sm-10">
-            <textarea type="message" class="form-control" readonly="true" id="msg_body" rows="5">
-                <%=@conversation.messages.last.body%>
-              </textarea>
-          </div>
-        </div>
-        </div>
-        <div class="modal-footer">
-	  <a href="index.html" class="btn btn-default" data-dismiss="modal">
-            Close</a>
-	  <button type="submit" class="btn btn-primary">
-            Reply</button>
-        </div>
-      </form>
-    </div>
+<div>
+  <div class="col-sm-10"
+    <h3><%=@conversation.messages.last.subject%></h3>
+    <textarea type="message" class="form-control" readonly="true" id="msg_body" rows="5">
+<%=@conversation.messages.last.body%>
+    </textarea>
   </div>
+  <button type="submit" class="btn btn-primary">Reply</button>
 </div>

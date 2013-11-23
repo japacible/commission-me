@@ -23,6 +23,9 @@ class ConversationsController < ApplicationController
 
   def show
     @conversation = Conversation.find(params[:id])
+    @conversations_inbox = @mailbox.inbox
+    @conversations_sentbox = @mailbox.sentbox
+    @conversations_trash = @mailbox.trash
     #if @box.eql? 'trash'
     #  @receipts = @mailbox.receipts_for(@conversation).trash
     #else
