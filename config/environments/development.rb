@@ -6,7 +6,7 @@ Myapp::Application.configure do
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
   #Need to add a similar line to prod for heroku
-  config.action_mailer.default_url_options = { :host => "localhost" }
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
   # Do not eager load code on boot.
   config.eager_load = false
 

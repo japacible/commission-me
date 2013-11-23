@@ -16,11 +16,38 @@ class MessagesController < ApplicationController
   end
 
   def new
-    if params[:receiver].present?
-      @recipient = User.find_by_name(params[:receiver])
+    if params[:msg_recipient].present?
+      @recipient = User.find_by_name(params[:msg_recipient])
       return if @recipient.nil?
       @recipient = nil if @recipient == current_user
+      
     end
+  end
+
+  def create
+    alerts = []
+    can_send = true
+   
+    if !params[:msg_recipient].present? or 
+          !(@recipient = User.find_by_name(params[:msg_recipient]))
+      alerts << "Invalid Recipent" 
+      can_send = false
+    end
+
+    if !params[:msg_body].present?
+      alerts << "Invalid message body" 
+      can_send = false
+    end   
+
+    if !params[:msg_subject].present?
+       alerts << "Invalid message subject"
+       can_send = false
+    end
+    if can_send
+      @receipt = current_user.send_message @recipient, params[:msg_body], params[:msg_subject]
+      alerts << "Message sent successfully!"
+    end
+    redirect_to conversations_path, :alert => alerts.to_s
   end
 
   def edit

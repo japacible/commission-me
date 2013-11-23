@@ -5,13 +5,16 @@ class ConversationsController < ApplicationController
     :only => [:show, :update, :destroy]
 
   def index
-    if @box.eql? "inbox"
-      @conversations = @mailbox.inbox
-    elsif @box.eql? "sentbox"
-      @conversations = @mailbox.sentbox
-    else
-      @conversations = @mailbox.trash
-    end
+    @conversations_inbox = @mailbox.inbox
+    @conversations_sentbox = @mailbox.sentbox
+    @conversations_trash = @mailbox.trash
+    #if @box.eql? "inbox"
+    #  @conversations = @mailbox.inbox
+    #elsif @box.eql? "sentbox"
+    #  @conversations = @mailbox.sentbox
+    #else
+    #  @conversations = @mailbox.trash
+    #end
 
     respond_to do |format|
       format.html { render @conversations if request.xhr? }
