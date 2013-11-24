@@ -35,9 +35,8 @@
                 new_commission_path(:artist_id => @user.id), 
                 :class => "commissionbtn"%>
                 <!-- TODO: Do the same with a messaging link-->
-                <%=link_to "Message",
-                conversations_path,
-                :class => "btn btn-large"%>
+                <button type="submit" class="btn btn-large" onClick="reply()">
+    		Message</button>
               <% end %>
           </div> 
         </div> 
@@ -158,3 +157,12 @@
     </div>
   </body>
 </html>
+
+<%= render 'compose_to_user' %>
+
+<script type="text/javascript">
+  function reply(){
+    $("#msg_recipient").val("<%=@user.name%>");
+    $("#compose-to-user").modal();
+  }
+</script>
