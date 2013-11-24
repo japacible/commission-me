@@ -16,7 +16,6 @@ class CommissionRequestTemplatesController < ApplicationController
   #This method is full of debug alerts because it has a strange problem
   #for some reason commissio nrequest tempalte updates are not being properly updated
   def update
-    #flash[:message] = build_json_from_params
     @user = current_user
     if @user.commission_request_template_json.nil? 
       @user.commission_request_template_json = {"categories" => []}.to_json
@@ -25,13 +24,11 @@ class CommissionRequestTemplatesController < ApplicationController
     hash["categories"] = [ build_json_from_params ] #Use Currently overrides all categories
     @user.commission_request_template_json = nil
     @user.save
-    #flash[:message] = @user.commission_request_template_json
     @user.commission_request_template_json = hash
-    #@user.save
     if @user.save
-      flash[:alert] = "JSON saved successfully"  #+@user.commission_request_template_json.to_s
+      flash[:alert] = "Commission Template Saved!"  #+@user.commission_request_template_json.to_s
     else
-      flash[:alert] = "Error saving json"
+      flash[:alert] = "Error Saving Template"
     end
     #sleep 8
     redirect_to root_url

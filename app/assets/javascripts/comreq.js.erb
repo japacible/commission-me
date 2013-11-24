@@ -23,8 +23,8 @@ FUTURE MODIFICATIONS
 */
 
 $(document).ready(function() {
-  $.getJSON("blobexample.txt", function(data) {
-    
+  var data = $('#json_id').data('url');
+  //$.getJSON("blobexample.txt", function(data) {    
     /* LOOP THROUGH EACH CATEGORY */
     $.each(data.categories, function(catkey, val) {
     
@@ -40,7 +40,7 @@ $(document).ready(function() {
       }).appendTo(tablia);
     
       // Category Container (Form)
-      var category = $("<div/>", {
+      var category = $("<form/>", {
         "id": "category-" + catkey,
         "class": "category tab-pane"
       }).appendTo(".tab-content");
@@ -51,7 +51,9 @@ $(document).ready(function() {
         // Step Name : step-[cat]-[step]
         var step = $("<div/>", {
           "id": "step-" + catkey + "-" + stepkey,
-          "class": "step"
+          "class": "step",
+	  "action": "request_commission",
+	  "method": "post"
         }).appendTo(category);
         $("<h2/>", {
           "class": "step-name",
@@ -115,16 +117,16 @@ $(document).ready(function() {
       var submit = $("<div/>", {
         "id": "control-btns"
       }).appendTo(category);
-      $("<button/>", {
+      $("<input/>", {
         "id": "submit",
         "class": "btn btn-primary btn-lg",
-        "type": "button",
-        on: {
-          click: function() {
-            alert($("form").serialize());
-            $.post("",$("form").serialize());
-          }
-        },
+        "type": "submit",
+        //on: {
+        //  click: function() {
+        //    alert($("form").serialize());
+        //    $.post("",$("form").serialize());
+        //  }
+        //},
         html: "Submit"
       }).appendTo(submit);
       $("<button/>", {
@@ -140,4 +142,8 @@ $(document).ready(function() {
       }).appendTo(submit);
     });
   });
-});
+//});
+
+function post() {
+  $.put("request_commission", { blargh: blob });
+}

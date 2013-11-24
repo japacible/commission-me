@@ -1,31 +1,41 @@
-<% provide(:title, "New Commission") %>
-
-<div class="container">
-  <div class="row">
-    <div class="col-md-12">
-      <h2 class="form-signin-heading">Commission <%=@artist.name%>!</h2>
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      CommissionMe
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <link rel="stylesheet" href="http://bejoty.com/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://bejoty.com/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="http://bejoty.com/css/custom.css">
+    <link rel="stylesheet" href="comreq.css">
+    
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="http://bejoty.com/js/vendor/jquery-1.10.2.min.js"><\/script>')</script>
+    <script src="http://bejoty.com/js/bootstrap.min.js"></script>
+    <script type="text/javascript">
+      function getAuthToken(){ 
+        return "<%=form_authenticity_token%>"
+      }
+    </script>
+    <div id="json_id" data-url="<%= @json.to_json %>" />
+<!--script src="assets/comsreq.js"></script-->  
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Commission <%=@artist.name%>!</h1>
+      </div>
+      
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs"></ul>
       
       <form>
-        <label class="col-md-4 commission-category" for="sketch">
-            Sketch  <input id="sketch" type="radio" name="base" />
-            <img src="http://i.imgur.com/7LUtp2e.png">
-          </label>
-
-          <label class="col-md-4 commission-category" for="lines">
-            Line Art  <input id="lines" type="radio" name="base" />
-            <img src="http://th04.deviantart.net/fs70/PRE/f/2011/171/5/e/mlp__bompp_panel_04_line_art_by_flamingo1986-d3jg4i4.png">
-          </label>
-
-          <label class="col-md-4 commission-category" for="full">
-            Full Color  <input id="full" type="radio" name="base" />
-            <img src="http://www.ponymindbleach.com/images/filly_dashie_by_tartii-d5crfcj.jpg">
-          </label>
-          
-          <button class="btn nextbtn pull-right" type="submit">
-          Next</button>
+        <!-- Tab panes -->
+        <div class="tab-content"></div>
       </form>
-
     </div>
-  </div>
-</div>
+  </body>
+</html>
 
