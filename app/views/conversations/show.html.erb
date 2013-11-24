@@ -6,10 +6,9 @@
     <h3>From: <%=link_to @conversation.originator.name,
       @conversation.originator%></h3>
     <h4><%=@conversation.messages.last.subject%></h4>
-in the text box if it is -->
+    <!-- Do not indent; extra white space will show -->
     <textarea type="message" class="form-control" readonly="true"
       id="msg_body" rows="5">
-<!-- Do not indent; extra white space will show -->
 <%=@conversation.messages.last.body%>
     </textarea>
   </div>
