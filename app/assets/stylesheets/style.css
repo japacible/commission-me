@@ -1,38 +1,120 @@
-/* Make nav bar horizontal */
-.navbar-inner {
+/* Navbar */
+.navbar {
     filter:none;
     box-shadow:none;
     border-radius:0px;
     border:none;
+    padding:0px;
+    margin-bottom:0px;
 }
 
-/*
-.navbar .nav > li {
-    display:inline-block;
+.navbar .nav > li > a{
+    font-size: 30px;
+    color:rgba(244, 245, 225, 1);
+    background:none;
+    padding:0;
+    margin-top:20px;
+    margin-bottom:0px;
+}
+
+.navbar .navbar-left > li {
+    display:inline;
+    position:inherit;
+}
+
+.navbar .navbar-right > li {
+    font-size: 18px;
+    color:rgba(244, 245, 225, 1);
+    display:inline;
+    position:inherit;
+}
+
+.navbar .navbar-right > li > a{
+    font-size: 18px;
+    color:rgba(244, 245, 225, 1);
+    float:left;
+    margin-right:10px;
+    margin-top:35px;
+    margin-bottom:0px;
 }
 
 .header {
   background:rgba(45, 62, 79, 1);
-  font-size: 24px;
-  font-family: sans-serif;
-  padding-top:10px;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
-.commission-category {
-  font-size:24px;
+.headerdescription {
+  background:rgba(55, 78, 102, 1);
 }
-*/
 
-/* Don't delete this. It makes images not huge */
-img {
-  max-width:100%;
-  height:auto;
+/* Homepage Images */
+.bodyview {
+    background-color:rgba(235, 239, 240, 1);
+    margin-left:auto;
+    margin-right:auto;
+    padding-top:25px;
+    width:1200px;
+    top:0px;
+    left:0px; 
+    bottom:0px; 
+    right:0px;
+    min-height:100%;
+}
+
+/* Sign up/Log in and Settings*/
+.signuplogin {
+  line-height:120%;
+}
+
+.btn {
+  background-color:rgba(45, 62, 79, 1);
+  color:rgba(235, 239, 240, 1);
+  border-radius: 0;
+}
+
+.btn:hover {
+   color: #FFFFFF;
+}
+
+.form-signin-heading {
+  margin-right:0px;
+  margin-top:0px;
+  margin-bottom:25px;
+}
+
+.input-block-level {
+  margin-bottom:10px
+}
+
+/* Profile */
+.commissionbtn {
+  background-color:rgba(28, 186, 152, 1);
+  padding:7px;
+  color:rgba(235, 239, 240, 1);
+}
+
+.commissionbtn:hover {
+  text-decoration:none;
+  color: #FFFFFF;
+}
+
+.badge {
+  background-color:rgba(230, 76, 62, 1);
+  border-radius: 0;
+}
+
+hr {
+  display:block;
+  width:95%;
+  background-color:rgba(212, 214, 214, 1);
+  height: 3px;
 }
 
 .thumbnail {
   position:relative;
   overflow:hidden;
 }
+
 
 .caption {
   position:absolute;
@@ -49,6 +131,48 @@ img {
   display:none;
 }
 
-.thumbnail:hover .caption { 
+.thumbnail:hover .caption {
   display: block;
+}
+
+/* Commission Request */
+.nextbtn {
+  background-color:rgba(28, 186, 152, 1);
+  color:rgba(235, 239, 240, 1);
+  margin-top:10px;
+  border:0px;
+  outline:none !important;
+}
+
+.nextbtn:hover {
+   color: #FFFFFF;
+}
+
+.commission-category > input[type=radio]{
+  display:none;
+}
+
+input[type=radio] + img{
+  cursor:pointer;
+  border:3px solid transparent;
+}
+
+input[type=radio]:checked + img{
+  border:3px solid rgba(28, 186, 152, 1);
+}
+
+/* General body */
+body {
+    background-color:rgba(153, 156, 161, 1);
+    height: 100%;
+}
+
+img {
+   border:3px solid #FFFFFF;
+   max-width:100%;
+   height:auto;
+}
+
+html {
+  height: 100%;
 }

@@ -12,8 +12,6 @@ class UsersController < ApplicationController
     @user = verify_current_user
   end
 
-
-
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(params[:user])

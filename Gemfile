@@ -1,6 +1,10 @@
 source 'https://rubygems.org'
 gem 'protected_attributes'
 
+
+#For messaging feature
+gem 'mailboxer'
+
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.0.0'
 
@@ -44,10 +48,6 @@ gem 'rails_12factor', group: :production
 
 gem 'unicorn'
 
-# Messaging feature
-# gem 'mailboxer', git: 'git://github.com/ging/mailboxer.git'
-gem 'simple-private-messages', '0.0.0', git: 'git://github.com/jongilbraith/simple-private-messages.git'
-
 ruby "1.9.3"
 end
 
@@ -56,3 +56,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use Font Awesome for UI
+gem 'font-awesome-sass-rails'
