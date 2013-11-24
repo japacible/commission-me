@@ -30,7 +30,7 @@
                 <% end %>
               <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
 
-              <% if @user.name != current_user.name %>
+              <% if current_user != nil && @user.name != current_user.name %>
                 <%=link_to "CommissionMe »", 
                 new_commission_path(:artist_id => @user.id), 
                 :class => "commissionbtn"%>
