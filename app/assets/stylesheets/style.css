@@ -141,6 +141,11 @@ hr {
   color:rgba(235, 239, 240, 1);
   margin-top:10px;
   border:0px;
+  outline:none !important;
+}
+
+.nextbtn:hover {
+   color: #FFFFFF;
 }
 
 .commission-category > input[type=radio]{
