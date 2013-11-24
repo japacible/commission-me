@@ -49,7 +49,8 @@ GEM
     diff-lcs (1.2.5)
     erubis (2.7.0)
     execjs (2.0.2)
-    font-awesome-sass (4.0.2)
+    font-awesome-sass-rails (3.0.2.2)
+      railties (>= 3.1.1)
       sass-rails (>= 3.1.1)
     foreigner (1.6.0)
       activerecord (>= 3.0.0)
@@ -160,7 +161,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)
-  font-awesome-sass
+  font-awesome-sass-rails
   jbuilder (~> 1.2)
   jquery-rails
   mailboxer
