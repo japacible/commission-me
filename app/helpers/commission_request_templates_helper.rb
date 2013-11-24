@@ -1,0 +1,2 @@
+module CommissionRequestTemplatesHelper
+end

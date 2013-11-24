@@ -28,10 +28,9 @@ FUTURE MODIFICATIONS
 - Anonymize Root Function Calls
 
 */
-
-$(document).ready(function() {
-  $.getJSON("blobexample.txt", function(data) {
-  
+$(document).ready(function() { 
+  var data = $('#json_id').data('url');
+  //$.getJSON("assets/blobexample.txt", function(data) {
     /* LOOP THROUGH EACH CATEGORY */
     $.each(data.categories, function(catkey, val) {
     
@@ -47,11 +46,17 @@ $(document).ready(function() {
       }).appendTo(tablia);
     
       // Category Container (Form)
-      var category = $("<div/>", {
+      var category = $("<form/>", {
         "id": "category-" + catkey,
-        "class": "category tab-pane"
+        "class": "category tab-pane",
+        "action": "update_template",
+        "method": "post"
       }).appendTo(".tab-content");
-      
+      var authenticity_token = $("<input/>", {
+        "name": "authenticity_token",
+        "value": getAuthToken(),
+        "type": "hidden"
+      }).appendTo(category);
       /* LOOP THROUGH EACH STEP */
       $.each(val.steps, function(stepkey, val) {
       
@@ -178,8 +183,7 @@ $(document).ready(function() {
             "value": val.price
           }).appendTo(option_price);
           
-          $("<br>").appendTo(panel_body);
-          
+          $("<br>").appendTo(panel_body); 
           // Option Description : option-[cat]-[step]-[opt]-description
           $("<textarea/>", {
             "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-description",
@@ -233,16 +237,16 @@ $(document).ready(function() {
         "type": "button",
         html: "Preview"
       }).appendTo(submit);
-      $("<button/>", {
+      $("<input/>", {
         "id": "submit",
         "class": "btn btn-primary btn-lg",
-        "type": "button",
-        on: {
-          click: function() {
-            //parse();
-            alert($("form").serialize());
-          }
-        },
+        "type": "submit",
+        //on: {
+        //  click: function() {
+        //    //parse();
+        //    $.post("update_template");
+        //  }
+        //},
         html: "Submit"
       }).appendTo(submit);
       $("<button/>", {
@@ -252,15 +256,15 @@ $(document).ready(function() {
         html: "Cancel"
       }).appendTo(submit);
     });
-  });
-});
+  }); 
+//});
 
 function post() {
-  $.post("http://bejoty.com/test/process.php", { blargh: blob });
+  $.put("update_template", { blargh: blob });
 }
 
-/*
 
+/*
 // JavaScript parsing HTML -> JSON
 function parse() {
   var catnames = [];
@@ -272,6 +276,7 @@ function parse() {
     var catname = catnames[key];
     var steps = [];
     $(this).children(".step").each(function() {
+      alert(this);
       var stepname = $("#" + this.id + " .step-name").attr("value");
       var options = [];
       $(this).children(".option").each(function() {
@@ -289,7 +294,7 @@ function parse() {
   var blob = '{\n  "categories": [\n    ' + categories + '\n  ]\n}';
   
   // Post Submit Test (saves 'blob' to 'http://bejoty.com/test/output.txt')
-  $.post("http://bejoty.com/test/process.php", { blargh: blob });
+  //$.post("http://bejoty.com/test/process.php", { blargh: blob });
   
   // Post Submit Test (opens 'blob' in new window)
   var myWindow = window.open("","_blank","scrollbars=yes");
