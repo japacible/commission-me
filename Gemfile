@@ -58,4 +58,4 @@ end
 # gem 'debugger', group: [:development, :test]
 
 # Use Font Awesome for UI
-gem 'font-awesome-sass'
+gem 'font-awesome-sass-rails'
