@@ -1,31 +1,22 @@
 <%= render 'compose_with_btn' %>
-<hr>
-<ul class="nav nav-tabs">
-  <li><a href="#inbox" data-toggle="tab">Inbox</a></li>
-  <li><a href="#sent" data-toggle="tab">Sent</a></li>
-  <li><a href="#trash" data-toggle="tab">Trash</a></li>
-</ul>
-
-<div class="tab-content">
-  <%= render 'box', :id => "inbox", :active => '', :box => @conversations_inbox%>
-  <%= render 'box', :id => "sent", :active => '', :box => @conversations_sentbox%>
-  <%= render 'box', :id => "trash", :active => '', :box => @conversations_trash%>
-</div>
 
 <hr>
 <div>
   <div class="col-sm-10">
-    <h3>From: <%=link_to @conversation.originator.name,
+    <h4>From: <%=link_to @conversation.originator.name,
       @conversation.originator%></h3>
+    <h4>To: <%=link_to @conversation.recipients[0].name,
+      @conversation.recipients[0]%></h3>
     <h4><%=@conversation.messages.last.subject%></h4>
-    <!-- The inner html should not be indented because white space will show up
-in the text box if it is -->
+    <!-- Do not indent; extra white space will show -->
     <textarea type="message" class="form-control" readonly="true"
       id="msg_body" rows="5">
 <%=@conversation.messages.last.body%>
     </textarea>
   </div>
-  <button type="submit" class="btn btn-primary" onClick="reply()">Reply</button>
+  <button type="submit" class="btn btn-large btn-primary" onClick="reply()">
+    Reply</button>
+  <%= link_to("Back", conversations_path, :class => "btn btn-large") %>
 </div>
 
 <script type="text/javascript">
