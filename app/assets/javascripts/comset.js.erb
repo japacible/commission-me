@@ -29,6 +29,7 @@ FUTURE MODIFICATIONS
 
 */
 $(document).ready(function() { 
+  
   var data = $('#json_id').data('url');
   //$.getJSON("assets/blobexample.txt", function(data) {
     /* LOOP THROUGH EACH CATEGORY */
