@@ -14,7 +14,8 @@
           <%box.each do |conversation| %>         
             <tr>
               <!-- Sender name should link to user profile -->
-              <td><%=link_to conversation.originator.name, conversation.originator %></td>
+              <td><%=link_to conversation.originator.name, 
+                conversation.originator %></td>
               <!-- Subject should link to reading message -->
               <td><%=link_to conversation.subject, conversation%></td>
               <td><%= conversation.updated_at %></td>
