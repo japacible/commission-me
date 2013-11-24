@@ -1,0 +1,37 @@
+<%= render 'compose_with_btn' %>
+<hr>
+<ul class="nav nav-tabs">
+  <li><a href="#inbox" data-toggle="tab">Inbox</a></li>
+  <li><a href="#sent" data-toggle="tab">Sent</a></li>
+  <li><a href="#trash" data-toggle="tab">Trash</a></li>
+</ul>
+
+<div class="tab-content">
+  <%= render 'box', :id => "inbox", :active => '', :box => @conversations_inbox%>
+  <%= render 'box', :id => "sent", :active => '', :box => @conversations_sentbox%>
+  <%= render 'box', :id => "trash", :active => '', :box => @conversations_trash%>
+</div>
+
+<hr>
+<div>
+  <div class="col-sm-10">
+    <h3>From: <%=link_to @conversation.originator.name,
+      @conversation.originator%></h3>
+    <h4><%=@conversation.messages.last.subject%></h4>
+    <!-- The inner html should not be indented because white space will show up
+in the text box if it is -->
+    <textarea type="message" class="form-control" readonly="true"
+      id="msg_body" rows="5">
+<%=@conversation.messages.last.body%>
+    </textarea>
+  </div>
+  <button type="submit" class="btn btn-primary" onClick="reply()">Reply</button>
+</div>
+
+<script type="text/javascript">
+  function reply(){
+    $("#msg_recipient").val("<%=@conversation.originator.name%>");
+    $("#msg_subject").val("RE: <%=@conversation.subject%>");
+    $("#compose").modal();
+  }
+</script>
