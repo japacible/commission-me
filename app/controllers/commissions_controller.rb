@@ -3,12 +3,13 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:id])
   end
   
-  def new
-    @artist = User.find(params[:artist_id])
-    @commission = Commission.new
-  end
+  #def new
+  #  @artist = User.find(params[:artist_id])
+  #  @commission = Commission.new
+  #end
 
   def edit
+    @artist = User.find(params[:artist_id])
     @json = User.find(params[:artist_id]).commission_request_template_json
   end
 

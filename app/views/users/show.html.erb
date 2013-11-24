@@ -32,7 +32,7 @@
 
               <% if current_user != nil && @user.name != current_user.name %>
                 <%=link_to "Commission", 
-                new_commission_path(:artist_id => @user.id), 
+                edit_commission_path(:artist_id => @user.id), 
                 :class => "commissionbtn"%>
                 <!-- TODO: Do the same with a messaging link-->
                 <button type="submit" class="btn btn-large" onClick="reply()">
