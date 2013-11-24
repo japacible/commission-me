@@ -29,7 +29,8 @@ FUTURE MODIFICATIONS
 
 */
 $(document).ready(function() { 
-  $.getJSON("assets/blobexample.txt", function(data) {
+  var data = $('#json_id').data('url');
+  //$.getJSON("assets/blobexample.txt", function(data) {
     /* LOOP THROUGH EACH CATEGORY */
     $.each(data.categories, function(catkey, val) {
     
@@ -45,11 +46,17 @@ $(document).ready(function() {
       }).appendTo(tablia);
     
       // Category Container (Form)
-      var category = $("<div/>", {
+      var category = $("<form/>", {
         "id": "category-" + catkey,
-        "class": "category tab-pane"
+        "class": "category tab-pane",
+        "action": "update_template",
+        "method": "post"
       }).appendTo(".tab-content");
-      
+      var authenticity_token = $("<input/>", {
+        "name": "authenticity_token",
+        "value": getAuthToken(),
+        "type": "hidden"
+      }).appendTo(category);
       /* LOOP THROUGH EACH STEP */
       $.each(val.steps, function(stepkey, val) {
       
@@ -230,16 +237,16 @@ $(document).ready(function() {
         "type": "button",
         html: "Preview"
       }).appendTo(submit);
-      $("<button/>", {
+      $("<input/>", {
         "id": "submit",
         "class": "btn btn-primary btn-lg",
-        "type": "button",
-        on: {
-          click: function() {
-            //parse();
-            $.post("update_template");
-          }
-        },
+        "type": "submit",
+        //on: {
+        //  click: function() {
+        //    //parse();
+        //    $.post("update_template");
+        //  }
+        //},
         html: "Submit"
       }).appendTo(submit);
       $("<button/>", {
@@ -250,7 +257,7 @@ $(document).ready(function() {
       }).appendTo(submit);
     });
   }); 
-});
+//});
 
 function post() {
   $.put("update_template", { blargh: blob });
