@@ -3,8 +3,10 @@
 <hr>
 <div>
   <div class="col-sm-10">
-    <h3>From: <%=link_to @conversation.originator.name,
+    <h4>From: <%=link_to @conversation.originator.name,
       @conversation.originator%></h3>
+    <h4>To: <%=link_to @conversation.recipients[0].name,
+      @conversation.recipients[0]%></h3>
     <h4><%=@conversation.messages.last.subject%></h4>
     <!-- Do not indent; extra white space will show -->
     <textarea type="message" class="form-control" readonly="true"
