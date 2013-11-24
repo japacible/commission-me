@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title><%=@user.name%></title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<head>
+  <title><%=@user.name%></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
-    <!--[if lt IE 9]>
-      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
-  </head>
+  <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+</head>
   <body>
     <div class="container">
       <div class="row-fluid">
@@ -17,9 +17,9 @@
             <%= image_tag @user.masterpiece %>
           </div>
           <div class="span9">
-            <h2><%=@user.name%></h2>
-            <!-- <h5>user's bio/info</h5> -->
-            <p><span class="badge badge-important">
+            <h2><%=@user.name%>'s Profile</h2>
+            <!--<h5>user's bio/info</h5>-->
+            <p><span class="badge">
               <%=@user.received_commissions.count%>
                 <!-- Make sure that the singular / plural grammar is 
                      correct -->
@@ -28,14 +28,55 @@
                 <% else %>
                   </span> Commissions</p>
                 <% end %>
-            <p>Joined <%=@user.created_at.strftime("%B %Y")%></p>
-            <!-- Proper buttons/links displayed based on who is logged in -->
-            <% if current_user != nil && @user.name != current_user.name %>
-              <%=link_to "CommissionMe »", 
+              <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
+
+              <% if current_user != nil && @user.name != current_user.name %>
+                <%=link_to "CommissionMe »", 
                 new_commission_path(:artist_id => @user.id), 
-                :class => "btn btn-primary" %>
-              <!-- TODO: Do the same with a messaging link -->
-            <% end %>
+                :class => "commissionbtn"%>
+                <!-- TODO: Do the same with a messaging link-->
+              <% end %>
+          </div> 
+        </div> 
+      </div> 
+    </div>
+
+    <!-- break between user info and art --> 
+    <hr>
+  
+  <!-- Container for : Artist's work -->
+  <div class="container">
+    <div class="row-fluid">
+      <div class="row">
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div>  
+
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
+          </div>
+        </div> 
+
+        <div class="thumbnail col-md-3">
+          <%= image_tag "BioCorgi.jpg" %>
+          <div class="caption">
+            <h2>Title</h2>
+            <p>Description</p>
           </div>
         </div> 
       </div>
