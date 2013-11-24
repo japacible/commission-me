@@ -3,9 +3,14 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:id])
   end
   
-  def new
+  #def new
+  #  @artist = User.find(params[:artist_id])
+  #  @commission = Commission.new
+  #end
+
+  def edit
     @artist = User.find(params[:artist_id])
-    @commission = Commission.new
+    @json = User.find(params[:artist_id]).commission_request_template_json
   end
 
   def create
@@ -16,6 +21,8 @@ class CommissionsController < ApplicationController
       t.commissioner_id = params[:commissioner_id]
       #TODO: t.commission_current = ?
     end
+    hash["categories"] = [ build_json_from_params ]
+    @commission.commission_current = hash
     flash[:alert] = ""
     if @commission.save
       flash[:alert] << "Commission successfully sent!"
@@ -32,6 +39,7 @@ class CommissionsController < ApplicationController
       end
       #redirect to?
     end
+    redirect_to root_url
   end
 
   def accept
