@@ -8,7 +8,7 @@
 <div class="tab-content">
   <%= render 'box', :id => "inbox", :active => 'active', 
     :box => @conversations_inbox%>
-  <%= render 'box', :id => "sent", :active => '', 
+  <%= render 'sent', :id => "sent", :active => '', 
     :box => @conversations_sentbox%>
     <!-- Not currently called until trash view implemented -->
   <%= render 'box', :id => "trash", :active => '', 
