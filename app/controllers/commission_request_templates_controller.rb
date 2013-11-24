@@ -33,6 +33,7 @@ class CommissionRequestTemplatesController < ApplicationController
     else
       flash[:alert] = "Error saving json"
     end
+    sleep 8
     redirect_to root_url
   end
 
