@@ -1,52 +1,31 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
-  <head>
-    <title>
-      CommissionMe
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  </head>
-  <body>
-    <div class="container">
-      <div class="hero-unit">
-        <h1>
-          Commission <%=@artist.name%>!
-        </h1>
-      </div>
-    </div>
-    <div class="container">
+<% provide(:title, "New Commission") %>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <h2 class="form-signin-heading">Commission <%=@artist.name%>!</h2>
+      
       <form>
-        <div class="row">
-          <div class="col-md-4 commission-category">
-            Sketch  <input type="radio" name="base" id="sketch" />
-          </div>
-          <div class="col-md-4 commission-category">
-            Line Art  <input type="radio" name="base" id="lines" />
-          </div>
-          <div class="col-md-4 commission-category">
-            Full Color  <input type="radio" name="base" id="full" />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-4">
+        <label class="col-md-4 commission-category" for="sketch">
+            Sketch  <input id="sketch" type="radio" name="base" />
             <img src="http://i.imgur.com/7LUtp2e.png">
-          </div>
-          <div class="col-md-4">
+          </label>
+
+          <label class="col-md-4 commission-category" for="lines">
+            Line Art  <input id="lines" type="radio" name="base" />
             <img src="http://th04.deviantart.net/fs70/PRE/f/2011/171/5/e/mlp__bompp_panel_04_line_art_by_flamingo1986-d3jg4i4.png">
-          </div>
-          <div class="col-md-4">
+          </label>
+
+          <label class="col-md-4 commission-category" for="full">
+            Full Color  <input id="full" type="radio" name="base" />
             <img src="http://www.ponymindbleach.com/images/filly_dashie_by_tartii-d5crfcj.jpg">
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-12">
-            <button class="btn btn-small btn-primary pull-right" 
-              type="submit">Next</button>
-          </div>
-        </div>
+          </label>
+          
+          <button class="btn nextbtn pull-right" type="submit">
+          Next</button>
       </form>
+
     </div>
-  </body>
-</html>
+  </div>
+</div>
 
