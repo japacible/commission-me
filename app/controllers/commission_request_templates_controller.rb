@@ -23,13 +23,13 @@ class CommissionRequestTemplatesController < ApplicationController
     end
     hash = @user.commission_request_template_json 
     hash["categories"] = [ build_json_from_params ] #Use Currently overrides all categories
-    str = hash
-    @user.commission_request_template_json = str
-    flash[:message] = @user.commission_request_template_json
-        
+    @user.commission_request_template_json = nil
+    @user.save
+    #flash[:message] = @user.commission_request_template_json
+    @user.commission_request_template_json = hash
     #@user.save
     if @user.save
-      flash[:alert] = "JSON saved successfully, json="+@user.commission_request_template_json.to_s
+      flash[:alert] = "JSON saved successfully"  #+@user.commission_request_template_json.to_s
     else
       flash[:alert] = "Error saving json"
     end
