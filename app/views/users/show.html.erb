@@ -31,10 +31,13 @@
               <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
 
               <% if current_user != nil && @user.name != current_user.name %>
-                <%=link_to "CommissionMe »", 
+                <%=link_to "Commission", 
                 new_commission_path(:artist_id => @user.id), 
                 :class => "commissionbtn"%>
                 <!-- TODO: Do the same with a messaging link-->
+                <%=link_to "Message",
+                conversations_path,
+                :class => "btn btn-large"%>
               <% end %>
           </div> 
         </div> 
