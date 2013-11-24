@@ -140,6 +140,20 @@ hr {
   background-color:rgba(28, 186, 152, 1);
   color:rgba(235, 239, 240, 1);
   margin-top:10px;
+  border:0px;
+}
+
+.commission-category > input[type=radio]{
+  display:none;
+}
+
+input[type=radio] + img{
+  cursor:pointer;
+  border:3px solid transparent;
+}
+
+input[type=radio]:checked + img{
+  border:3px solid rgba(28, 186, 152, 1);
 }
 
 /* General body */
