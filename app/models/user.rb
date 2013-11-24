@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_token
+  attr_accessible :name, :email, :password, :password_confirmation, :remember_token,
+  :commission_request_template_json
   has_many :arts        
   has_many :received_commissions, :class_name => "Commission", :foreign_key => "artist_id"
   has_many :requested_commissions, :class_name => "Commission", :foreign_key => "commissioner_id"
