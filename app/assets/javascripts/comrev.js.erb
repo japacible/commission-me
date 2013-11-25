@@ -12,8 +12,7 @@ FUTURE MODIFICATIONS
 
 $(document).ready(function() {
   // Data Pull
-  var data = $('#json_id').data('url');
-  var catagory = data.categories[0];
+  var category = $('#json_id').data('url');
   
   // Category Name
   $("<h1/>", {
@@ -34,23 +33,22 @@ $(document).ready(function() {
       html: step.name
     }).appendTo(step_container);
     
-    var choice = step.choice
+    var choice = step.choice;
     
-      // Choice Container
-      var choice_container = $("<div/>", {
-        "class": "choice"
-      }).appendTo(step_container);
-      
-      // Choice Name
-      $("<h3/>", {
-        html: choice.name
-      }).appendTo(choice_container);
-      
-      // Choice Description
-      $("<p/>", {
-        html: choice.description
-      }).appendTo(choice_container);
-    });
+    // Choice Container
+    var choice_container = $("<div/>", {
+      "class": "choice"
+    }).appendTo(step_container);
+    
+    // Choice Name
+    $("<h3/>", {
+      html: choice.name
+    }).appendTo(choice_container);
+    
+    // Choice Description
+    $("<p/>", {
+      html: choice.description
+    }).appendTo(choice_container);
   });
   
   // Buttons: Accept and Decline
