@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      CommissionMe
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/comreq.css">
+   
+    <script type="text/javascript">
+      function getAuthToken(){ 
+        return "<%=form_authenticity_token%>"
+      }
+    </script>
+    <script type="text/javascript">
+      function getArtist(){
+        return "<%=@artist.id%>"
+      }
+    </script>
+    <div id="json_id" data-url="<%= @json.to_json %>" />
+    <script src="/assets/comreq.js"></script>  
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Commission <%=@artist.name%>!</h1>
+      </div>
+      
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs"></ul>
+      
+      <form>
+        <!-- Tab panes -->
+        <div class="tab-content"></div>
+      </form>
+    </div>
+  </body>
+</html>
+
