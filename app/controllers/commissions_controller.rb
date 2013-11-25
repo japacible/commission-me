@@ -16,37 +16,28 @@ class CommissionsController < ApplicationController
   def create
     #TODO: create new commission request
     @template = User.find(params[:artist_id]).commission_request_template_json
+    @user = current_user
     @commission = Commission.new do |t|
       t.state = "NewRequest"
       t.artist_id = params[:artist_id]
-      t.commissioner_id = params[:commissioner_id]
-      #TODO: t.commission_current = ?
+      t.commissioner_id = @user.id
+      t.commission_current = build_json_from_params
     end
-    #flash[:alert] = ""
-    #params.each do |k,v|
-    #  flash[:alert] << "$$$  " + k + " --- " + v
-    #end
-    blob_test = build_json_from_params
-    flash[:alert] = blob_test
-    #hash["categories"] = [ build_json_from_params ]
-    #@commission.commission_current = hash
-    #flash[:alert] = ""
-    #if @commission.save
-    #  flash[:alert] << "Commission successfully sent!"
-    #  #redirect to?
-    #else
-    #  i = 0
-    #  for message in @commission.errors.full_messages do
-    #    if i == 0
-    #      flash[:alert] << message
-    #      i = 1
-    #    else
-    #      flash[:alert] << ", " + message
-    #    end
-    #  end
-      #redirect to?
-    #end
-    redirect_to root_url
+    if @commission.save
+      flash[:alert] = "Commission successfully sent!"
+      flash[:alert] << @commission.id
+      redirect_to root_url
+    else
+      i = 0
+      for message in @commission.errors.full_messages do
+        if i == 0
+          flash[:alert] = message
+          i = 1
+        else
+          flash[:alert] << ", " + message
+        end
+      end
+    end
   end
 
   def accept
