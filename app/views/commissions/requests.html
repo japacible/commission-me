@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      CommissionMe
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+   
+    <script type="text/javascript">
+      function getAuthToken(){ 
+        return "<%=form_authenticity_token%>"
+      }
+    </script>
+    <script type="text/javascript">
+      function getArtist(){
+        return "<%=@artist.id%>"
+      }
+    </script>
+    <div id="json_id" data-url="<%= @json.to_json %>" />
+    <script src="/assets/reqlist.js"></script>  
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Commission Requests: <%=@artist.name%>!</h1>
+      </div>
+      
+      <div id="req-list"></div>
+      
+    </div>
+  </body>
+</html>
+
