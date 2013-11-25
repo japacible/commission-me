@@ -5,20 +5,17 @@
       CommissionMe
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/comreq.css">
-   
-    <script type="text/javascript">
-      function getAuthToken(){ 
-        return "<%=form_authenticity_token%>"
-      }
-    </script>
+    <link rel="stylesheet" href="/assets/comreq.css"> 
     <script type="text/javascript">
       function getArtist(){
         return "<%=@artist.id%>"
       }
+      function getAuthToken(){ 
+        return "<%=form_authenticity_token%>"
+      }
+      <%= render 'comrev.js' %>
     </script>
-    <div id="json_id" data-url="<%= @json.to_json %>" />
-    <script src="/assets/comrev.js"></script>  
+    <div id="json_id" data-url="<%= @json.to_json %>" /> 
   </head>
   <body>
     <div class="container">
