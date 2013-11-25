@@ -10,7 +10,7 @@ class CommissionsController < ApplicationController
   end
   
   def requests
-    #@artist = User.find(params[:artist_id])
+    #TODO: check for current_user == nil, route to login/signup?
     @user = current_user
   end
 
@@ -46,13 +46,21 @@ class CommissionsController < ApplicationController
   end
 
   def accept
+    @commission = Commission.find(params[:commission_id])
     @commission.state = "Accepted"
-    #TODO: Deletion of associated commission request
+    @commission.save
+    flash[:alert] = "Commission Accepted!"
+    redirect_to root_url
+    #TODO: redirect to commissions list instead
   end
   
   def decline
+    @commission = Commission.find(params[:commission_id])
     @commission.state = "Declined"
-    #TODO: Deletion of associated commission request
+    @commission.save
+    flash[:alert] = "Commission Declined!"
+    redirect_to root_url
+    #TODO: redirect to commissions list instead
   end
 
   def finish
