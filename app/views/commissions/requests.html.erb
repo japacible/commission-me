@@ -11,7 +11,7 @@
         return "<%=form_authenticity_token%>"
       }
     </script>
-    <div id="json_id" data-url="<%= @json.to_json %>" />
+    <div id="commissions" data-url="<%= @user.received_commissions %>" />
     <script src="/assets/reqlist.js"></script>  
   </head>
   <body>
@@ -20,7 +20,17 @@
         <h1>Commission Requests: <%=@user.name%>!</h1>
       </div>
       
-      <div id="req-list"></div>
+      <!--div id="req-list"></div-->
+
+      <div class="list">
+	<ul>
+	  <% @user.received_commissions.each do |commission| %>
+	  <li><%=link_to "Commission: " + commission.commission_current["name"], 
+		review_path(:commission_id => commission.id), 
+            :class => "link"%> Status: <%=commission.state%></li>
+	<% end %>
+	</ul>
+      </div>
       
     </div>
   </body>

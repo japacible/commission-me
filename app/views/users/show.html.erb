@@ -37,6 +37,9 @@
                 <!-- TODO: Do the same with a messaging link-->
                 <button type="submit" class="btn btn-large" onClick="reply()">
     		Message</button>
+	      <% else %>
+		<%=link_to "My Commissions", commissions_requests_path,
+		:class => "commissionlistbtn"%>
               <% end %>
           </div> 
         </div> 
