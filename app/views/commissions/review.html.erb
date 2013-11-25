@@ -29,12 +29,10 @@
       <div id="com-req"></div>
     </div>
     <center>
-      <button class="btn acceptbtn pull-right" type="submit" action="">Accept</button>
-      <%= link_to("Accept", commissions_requests_accept_path(:commission_id => 
-      @commission.id), :class => "btn btn-large") %>
-      <button class="btn declinebtn pull-right" type="reject" action="">Decline</button>
+      <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
+      @commission.id), :class => "btn") %>
       <%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
-      @commission.id), :class => "btn btn-large") %>
+      @commission.id), :class => "btn") %>
     </center>
   </body>
 </html>
