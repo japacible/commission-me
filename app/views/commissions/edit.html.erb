@@ -12,6 +12,11 @@
         return "<%=form_authenticity_token%>"
       }
     </script>
+    <script type="text/javascript">
+      function getArtist(){
+        return "<%=@artist.id%>"
+      }
+    </script>
     <div id="json_id" data-url="<%= @json.to_json %>" />
     <script src="/assets/comreq.js"></script>  
   </head>
