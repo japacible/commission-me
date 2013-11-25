@@ -83,7 +83,7 @@ $(document).ready(function() {
           // Option Container
           var option = $("<label/>", {
             "for": "option-" + catkey + "-" + stepkey + "-" + optkey,
-            "class": "col-md-4 option"
+            "class": "col-md-4"
           }).appendTo(options);
           
           // Option Name : option-[cat]-[step]-[opt]-name
@@ -125,6 +125,16 @@ $(document).ready(function() {
         });
       });
       
+      $("<hr/>").appendTo(category);
+      
+      // Final Step
+      $("<textarea/>", {
+        "id": "final",
+        "name": "final",
+        "class": "form-control",
+        "placeholder": "Describe your request in detail..."
+      }).appendTo(category);
+      
       // Buttons: Preview, Submit, Cancel
       var submit = $("<div/>", {
         "id": "control-btns"
@@ -133,12 +143,6 @@ $(document).ready(function() {
         "id": "submit",
         "class": "btn btn-primary btn-lg",
         "type": "submit",
-        //on: {
-        //  click: function() {
-        //    alert($("form").serialize());
-        //    $.post("",$("form").serialize());
-        //  }
-        //},
         html: "Submit"
       }).appendTo(submit);
       $("<button/>", {
