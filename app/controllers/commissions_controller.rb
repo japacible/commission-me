@@ -9,10 +9,10 @@ class CommissionsController < ApplicationController
     @json = @commission.commission_current
   end
   
-  #def new
-  #  @artist = User.find(params[:artist_id])
-  #  @commission = Commission.new
-  #end
+  def requests
+    #@artist = User.find(params[:artist_id])
+    @user = current_user
+  end
 
   def edit
     @artist = User.find(params[:artist_id])

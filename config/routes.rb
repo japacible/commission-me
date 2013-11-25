@@ -8,6 +8,7 @@ Myapp::Application.routes.draw do
   post "update_template" => 'commission_request_templates#update'
   post "commissions/:artist_id/request_commission" => 'commissions#create'
   get "commissions/new" => 'commissions#edit'
+  get "commissions/requests" => 'commissions#requests'
   get "commissions/:artist_id" => 'commissions#edit'
   get "commissions/review/:commission_id" => 'commissions#review'
   resources :commissions
