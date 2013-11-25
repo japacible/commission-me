@@ -1,6 +1,12 @@
 class CommissionsController < ApplicationController
   def show
-    @commission = Commission.find(params[:id])
+    @commission = Commission.find(params[:commission_id])
+  end
+
+  def review
+    @commission = Commission.find(params[:commission_id])
+    @artist = User.find(@commission.artist_id)
+    @json = @commission.commission_current
   end
   
   #def new
@@ -25,7 +31,6 @@ class CommissionsController < ApplicationController
     end
     if @commission.save
       flash[:alert] = "Commission successfully sent!"
-      flash[:alert] << @commission.id
       redirect_to root_url
     else
       i = 0

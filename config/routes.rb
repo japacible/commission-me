@@ -9,6 +9,7 @@ Myapp::Application.routes.draw do
   post "commissions/:artist_id/request_commission" => 'commissions#create'
   get "commissions/new" => 'commissions#edit'
   get "commissions/:artist_id" => 'commissions#edit'
+  get "commissions/review/:commission_id" => 'commissions#review'
   resources :commissions
   get 'users/:id/artist_dashboard' => 'users#artist_dashboard' 
   post 'users/login' => 'users#login'
