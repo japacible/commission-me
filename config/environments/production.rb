@@ -61,10 +61,10 @@ Myapp::Application.configure do
   # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
   config.assets.initialize_on_precompile = false 
 
-  config.assets.precompile += %w( comreq.js )
-  config.assets.precompile += %w( comrev.js )
-  config.assets.precompile += %w( comset.js )
-  config.assets.precompile += %w( reqlist.js )
+  config.assets.precompile += %w( comreq.js.erb )
+  config.assets.precompile += %w( comrev.js.erb )
+  config.assets.precompile += %w( comset.js.erb )
+  config.assets.precompile += %w( reqlist.js.erb )
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
