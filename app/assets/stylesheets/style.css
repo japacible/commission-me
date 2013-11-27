@@ -188,7 +188,11 @@ html {
 }
 
 .btn:hover {
-   color: #FFFFFF;
-   border:0;
+  color: #FFFFFF;
+  border:0;
 }
 
+.navicon {
+  height: 25px;
+  border: none;
+}
