@@ -142,7 +142,7 @@ $(document).ready(function() {
       
       $("<button/>", {
         "id": "cancel",
-        "class": "btn",
+        "class": "btn pull-right",
         "type": "button",
         on: {
           click: function() {
@@ -153,7 +153,7 @@ $(document).ready(function() {
       }).appendTo(submit);
       $("<input/>", {
         "id": "submit",
-        "class": "btn",
+        "class": "btn pull-right",
         "type": "submit",
         html: "Submit"
       }).appendTo(submit);
