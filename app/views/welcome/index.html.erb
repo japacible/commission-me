@@ -18,8 +18,8 @@
         <%if index % num_cols == 0 %>
           <div class="row"> 
           <%end%>
-          <div>
-            <%=link_to(user, :class => "col-md-3") do%>
+          <div class="col-md-3 col-sm-4 col-xs-12">
+            <%=link_to(user) do%>
               <img src="<%=user.get_featured_art.location%>">
             <%end%>
           </div>
