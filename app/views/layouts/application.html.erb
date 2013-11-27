@@ -50,10 +50,15 @@
     </div>
   </div>
 
-  <% flash.each do |key, value| %>
-  <div class="flash <%= key%>"><%= value%></div>
-  <% end %>
-      
+  <div class="flash-messages">
+    <% flash.each do |name, msg| %>
+    <div class="alert-message <%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    </div>
+    <% end %>
+  </div>
+
   <div class="bodyview">
     <!--Renders body of page-->
     <%= yield %>
