@@ -83,7 +83,7 @@ $(document).ready(function() {
           // Option Container
           var option = $("<label/>", {
             "for": "option-" + catkey + "-" + stepkey + "-" + optkey,
-            "class": "col-md-4"
+            "class": "col-md-4 commission-category"
           }).appendTo(options);
           
           // Option Name : option-[cat]-[step]-[opt]-name
@@ -91,13 +91,6 @@ $(document).ready(function() {
             "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
             "class": "option-name",
             html: val.name
-          }).appendTo(option);
-          
-          // Option Thumbnail : option-[cat]-[step]-[opt]-thumb
-          $("<img/>", {
-            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
-            "class": "img-thumbnail option-thumb",
-            "src": val.thumb
           }).appendTo(option);
           
           // Option Price : option-[cat]-[step]-[opt]-price
@@ -122,6 +115,13 @@ $(document).ready(function() {
             "class": "form-control",
             "type": "radio"
           }).appendTo(option);
+          
+          // Option Thumbnail : option-[cat]-[step]-[opt]-thumb
+          $("<img/>", {
+            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
+            "class": "img-thumbnail option-thumb",
+            "src": val.thumb
+          }).appendTo(option);
         });
       });
       
@@ -139,23 +139,26 @@ $(document).ready(function() {
       var submit = $("<div/>", {
         "id": "control-btns"
       }).appendTo(category);
+           
       $("<input/>", {
         "id": "submit",
-        "class": "btn btn-primary btn-lg",
+        "class": "btn pull-right",
         "type": "submit",
         html: "Submit"
       }).appendTo(submit);
+
       $("<button/>", {
         "id": "cancel",
-        "class": "btn btn-default btn-lg pull-right",
+        "class": "btn pull-right",
         "type": "button",
         on: {
           click: function() {
-            alert("Cancel! (Not yet functional.)");
-          }
+          alert("Cancel! (Not yet functional.)");
+           }
         },
         html: "Cancel"
-      }).appendTo(submit);
+        }).appendTo(submit);
+           
     });
   });
 //});

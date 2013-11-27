@@ -49,16 +49,25 @@
 
 /* Homepage Images */
 .bodyview {
-    background-color:rgba(235, 239, 240, 1);
-    margin-left:auto;
-    margin-right:auto;
-    padding-top:25px;
-    width:1200px;
-    top:0px;
-    left:0px; 
-    bottom:0px; 
-    right:0px;
-    min-height:100%;
+  background-color:rgba(235, 239, 240, 1);
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:25px;
+  width:1200px;
+  top:0px;
+  left:0px;
+  bottom:0px;
+  right:0px;
+  min-height:100%;
+}
+
+.banner {
+    background-color:rgba(55, 78, 102, 1);
+    color:rgba(244, 245, 225, 1);
+    text-align:center;
+    font-size: 18px;
+    margin-top:-25px;
+
 }
 
 /* Sign up/Log in and Settings*/
@@ -66,20 +75,15 @@
   line-height:120%;
 }
 
-.btn {
-  background-color:rgba(45, 62, 79, 1);
-  color:rgba(235, 239, 240, 1);
-  border-radius: 0;
-}
-
-.btn:hover {
-   color: #FFFFFF;
-}
-
 .form-signin-heading {
   margin-right:0px;
   margin-top:0px;
   margin-bottom:25px;
+}
+
+.form_signin {
+  background-color: rgba(255, 255, 255, 0.0);
+  border:0;
 }
 
 .input-block-level {
@@ -114,7 +118,6 @@ hr {
   position:relative;
   overflow:hidden;
 }
-
 
 .caption {
   position:absolute;
@@ -176,3 +179,16 @@ img {
 html {
   height: 100%;
 }
+
+.btn {
+  background-color:rgba(45, 62, 79, 1);
+  color:rgba(235, 239, 240, 1);
+  border-radius: 0;
+  margin:1px;
+}
+
+.btn:hover {
+   color: #FFFFFF;
+   border:0;
+}
+
