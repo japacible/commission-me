@@ -139,18 +139,7 @@ $(document).ready(function() {
       var submit = $("<div/>", {
         "id": "control-btns"
       }).appendTo(category);
-      
-      $("<button/>", {
-        "id": "cancel",
-        "class": "btn pull-right",
-        "type": "button",
-        on: {
-          click: function() {
-            alert("Cancel! (Not yet functional.)");
-          }
-        },
-        html: "Cancel"
-      }).appendTo(submit);
+           
       $("<input/>", {
         "id": "submit",
         "class": "btn pull-right",
@@ -158,6 +147,18 @@ $(document).ready(function() {
         html: "Submit"
       }).appendTo(submit);
 
+      $("<button/>", {
+        "id": "cancel",
+        "class": "btn pull-right",
+        "type": "button",
+        on: {
+          click: function() {
+          alert("Cancel! (Not yet functional.)");
+           }
+        },
+        html: "Cancel"
+        }).appendTo(submit);
+           
     });
   });
 //});
