@@ -29,7 +29,8 @@ class MessagesController < ApplicationController
     can_send = true
    
     if (!params[:msg_recipient].present? or 
-          !(@recipient = User.find_by_name(params[:msg_recipient])))
+          !(@recipient = User.find_by_name(params[:msg_recipient])) or 
+        @recipient == current_user )
       alerts << "Error: Invalid Recipient" 
       can_send = false
     end
