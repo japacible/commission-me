@@ -214,8 +214,8 @@ html {
   .alert-message.error:hover, 
   .alert-message.success, 
   alert-message.success:hover, 
-  .alert-message.info, .
-  alert-message.info:hover {
+  .alert-message.info, 
+  .alert-message.info:hover {
   color: #ffffff;
 }
 
