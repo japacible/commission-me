@@ -49,16 +49,25 @@
 
 /* Homepage Images */
 .bodyview {
-    background-color:rgba(235, 239, 240, 1);
-    margin-left:auto;
-    margin-right:auto;
-    padding-top:25px;
-    width:1200px;
-    top:0px;
-    left:0px; 
-    bottom:0px; 
-    right:0px;
-    min-height:100%;
+  background-color:rgba(235, 239, 240, 1);
+  margin-left:auto;
+  margin-right:auto;
+  padding-top:25px;
+  width:1200px;
+  top:0px;
+  left:0px;
+  bottom:0px;
+  right:0px;
+  min-height:100%;
+}
+
+.banner {
+    background-color:rgba(55, 78, 102, 1);
+    color:rgba(244, 245, 225, 1);
+    text-align:center;
+    font-size: 18px;
+    margin-top:-25px;
+
 }
 
 /* Sign up/Log in and Settings*/
@@ -70,7 +79,6 @@
   margin-right:0px;
   margin-top:0px;
   margin-bottom:25px;
-
 }
 
 .form_signin {

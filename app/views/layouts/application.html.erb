@@ -7,7 +7,7 @@
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body onload="resizeContent()" onResize="resizeContent()">
+<body>
   <div class="header">
   <div class="navbar navbar-default">
     <div class="header navbar-inner">
@@ -31,21 +31,21 @@
                   <%= link_to "Settings", 
                     edit_user_path(:id => current_user.id)%>
                 </li>
-              <%end%>
-              <li>
-                <%if current_user %>
-                  <%= link_to "Log Out", users_logout_path, 
-                    method:"post", class:"brand"%>
-                <% else %>
-                  <a href="/authenticate.html">sign up/log in</a>
-                <% end %>
-              </li>
-            </ul>
+                <%end%>
+                <li>
+                  <%if current_user %>
+                    <%= link_to "Log Out", users_logout_path,
+                      method:"post", class:"brand"%>
+                  <% else %>
+                    <a href="/authenticate.html">sign up/log in</a>
+                  <% end %>
+                </li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
   </div>
 
   <% flash.each do |key, value| %>
