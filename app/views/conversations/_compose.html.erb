@@ -4,7 +4,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <%=form_tag({ controller: "messages", action: "create"},
-        method: "post", class: "form-horizontal", id:"compose_form", role:"form") do %> 
+        method: "post", class: "form-horizontal", id:"compose_form", 
+        role:"form") do %> 
         <div class="modal-header">
 	  <button type="button" class="close" data-dismiss="modal" 
             aria-hidden="true">&times;</button>
@@ -15,8 +16,8 @@
             <label for="msg_recipient" class="col-sm-2 control-label">
               Recipient</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="msg_recipient" id="msg_recipient" 
-              placeholder="Recipient Name">
+              <input type="text" class="form-control" name="msg_recipient" 
+              id="msg_recipient" placeholder="Recipient Name">
             </div>
           </div>
           <div class="form-group">
@@ -28,10 +29,12 @@
             </div>
           </div>
           <div class="form-group">
-            <label for="msg_body" class="col-sm-2 control-label">Message</label>
+            <label for="msg_body" class="col-sm-2 control-label">
+              Message</label>
             <div class="col-sm-10">
-              <textarea type="message" class="form-control" id="msg_body" name="msg_body"
-                placeholder="Write your message here!" rows="5"></textarea>
+              <textarea type="message" class="form-control" id="msg_body" 
+                name="msg_body" placeholder="Write your message here!" 
+                rows="5"></textarea>
             </div>
           </div>
         </div>
