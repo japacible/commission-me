@@ -4,9 +4,8 @@
     <title>CommissionMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
-    <link rel="stylesheet" href="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/css/reset.css">
-    <link rel="stylesheet" href="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/css/style.css">
-
+    <link rel="stylesheet" href="/assets/reset.css">
+    <link rel="stylesheet" href="/assets/homepageimages.css">
   </head>
 
   <body>
@@ -14,41 +13,74 @@
       <p>WELCOME BANNER</p>
     </div>
   
-  <div id="container">
-  
+
+
+<div id="container">
     <div id="main" role="main">
-
       <ul id="tiles">
-    <% index = 0%>
-      <%@featured_users.each_with_index do |user|%>
-        <%if !user.get_featured_art %>
-          <%next%>
-        <%end%>
-          <div>
-            <li><%=link_to(user, :class => "item") do%>
-              <img src="<%=user.get_featured_art.location%>">
-            <%end%><li>
-          </div>
-        <%index+=1%>
-      <% end %>
-        <!-- End of grid blocks -->
-      </ul>
-
+        <% index = 0%>
+          <%@featured_users.each_with_index do |user|%>
+            <%if !user.get_featured_art %>
+              <%next%>
+            <%end%>
+              <div>
+                <li><%=link_to(user, :class => "item") do%>
+                  <img src="<%=user.get_featured_art.location%>"></li>
+                <%end%>
+              </div>
+            <%index+=1%>
+          <% end %>
+          
+          
+          <!-- DELETEEE TEST -->
+            <li><img src="images/image_1.jpg" width="200" height="283"></li>
+        <li><img src="images/image_2.jpg" width="200" height="300"></li>
+        <li><img src="images/image_3.jpg" width="200" height="252"></li>
+        <li><img src="images/image_4.jpg" width="200" height="158"></li>
+        <li><img src="images/image_5.jpg" width="200" height="300"></li>
+        <li><img src="images/image_6.jpg" width="200" height="297"><p>6</p></li>
+        <li><img src="images/image_7.jpg" width="200" height="200"><p>7</p></li>
+        <li><img src="images/image_8.jpg" width="200" height="200"><p>8</p></li>
+        <li><img src="images/image_9.jpg" width="200" height="398"><p>9</p></li>
+        <li><img src="images/image_10.jpg" width="200" height="267"><p>10</p></li>
+        <li><img src="images/image_1.jpg" width="200" height="283"><p>11</p></li>
+        <li><img src="images/image_2.jpg" width="200" height="300"><p>12</p></li>
+        <li><img src="images/image_3.jpg" width="200" height="252"><p>13</p></li>
+        <li><img src="images/image_4.jpg" width="200" height="158"><p>14</p></li>
+        <li><img src="images/image_5.jpg" width="200" height="300"><p>15</p></li>
+        <li><img src="images/image_6.jpg" width="200" height="297"><p>16</p></li>
+        <li><img src="images/image_7.jpg" width="200" height="200"><p>17</p></li>
+        <li><img src="images/image_8.jpg" width="200" height="200"><p>18</p></li>
+        <li><img src="images/image_9.jpg" width="200" height="398"><p>19</p></li>
+        <li><img src="images/image_10.jpg" width="200" height="267"><p>20</p></li>
+        <li><img src="images/image_1.jpg" width="200" height="283"><p>21</p></li>
+        <li><img src="images/image_2.jpg" width="200" height="300"><p>22</p></li>
+        <li><img src="images/image_3.jpg" width="200" height="252"><p>23</p></li>
+        <li><img src="images/image_4.jpg" width="200" height="158"><p>24</p></li>
+        <li><img src="images/image_5.jpg" width="200" height="300"><p>25</p></li>
+        <li><img src="images/image_6.jpg" width="200" height="297"><p>26</p></li>
+        <li><img src="images/image_7.jpg" width="200" height="200"><p>27</p></li>
+        <li><img src="images/image_8.jpg" width="200" height="200"><p>28</p></li>
+        <li><img src="images/image_9.jpg" width="200" height="398"><p>29</p></li>
+        <li><img src="images/image_10.jpg" width="200" height="267"><p>30</p></li>
+          <!-- END DELETEEE -->
+        </ul>
     </div>
-    <footer>
 
-    </footer>
   </div>
 
-  <!-- include jQuery -->
-  <script src="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/js/jquery-1.7.1.min.js"></script>
+   <!-- include jQuery -->
+  <script src="http://www.wookmark.com/jquery-plugin-imagesloaded/js/jquery-1.7.1.min.js"></script>
+  
+  <!-- Include the imagesLoaded plug-in -->
+  <script src="http://www.wookmark.com/jquery-plugin-imagesloaded/js/jquery.imagesloaded.js"></script>
   
   <!-- Include the plug-in -->
-  <script src="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/js/jquery.wookmark.js"></script>
+  <script src="http://www.wookmark.com/jquery-plugin-imagesloaded/js/jquery.wookmark.js"></script>
   
-  <!-- Once the page is loaded, initalize the plug-in. -->
+  <!-- Once the images are loaded, initalize the Wookmark plug-in. -->
   <script type="text/javascript">
-    $(document).ready(new function() {
+    $('#tiles').imagesLoaded(function() {
       // Prepare layout options.
       var options = {
         autoResize: true, // This will auto-update the layout when the browser window is resized.
@@ -73,7 +105,10 @@
         handler.wookmark();
       });
     });
+    handler.wookmark();
   </script>
+
+
 
     
   </body>
