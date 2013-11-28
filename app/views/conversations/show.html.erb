@@ -13,10 +13,10 @@
       id="msg_body" rows="5">
 <%=@conversation.messages.last.body%>
     </textarea>
-  </div>
-  <button type="submit" class="btn btn-large btn-primary" onClick="reply()">
+  <button type="submit" class="btn btn-large btn-primary pull-right" onClick="reply()">
     Reply</button>
-  <%= link_to("Back", conversations_path, :class => "btn btn-large") %>
+  <%= link_to("Back", conversations_path, :class => "btn btn-large pull-right") %>
+  </div>
 </div>
 
 <script type="text/javascript">
