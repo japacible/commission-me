@@ -19,7 +19,39 @@
           <div class="span9">
             <h2><%=@user.name%>'s Profile</h2>
             <!--<h5>user's bio/info</h5>-->
-            <p><span class="badge">
+
+            <!-- Counts the different states of the commissions the user
+                   has received -->
+            <% @numNewR = 0 %>
+            <% @numPending = 0 %>
+            <% @numAccepted = 0 %>
+            <% @numDeclined = 0 %>
+            <% @numFinished = 0 %>
+            <%@user.received_commissions.each do |commission| %>
+                <% if commission.state == "NewRequest" %>
+                  <% @numNewR += 1 %>
+                <% elsif commission.state == "pending" %>
+                  <% @numPending += 1 %>
+                <% elsif commission.state == "Accepted" %>
+                  <% @numAccepted += 1 %>
+                <% elsif commission.state == "Declined" %>
+                  <% @numDeclined += 1 %>
+                <% elsif commission.state == "Finished" %>
+                  <% @numFinished +=1 %>
+                <% end %>
+            <%end%>
+
+            <!-- Set the data-content of the portfolio popover to include the 
+                   counts of the different states of the user's received 
+                   commissions -->
+            <p><span class="badge" id="commissionPortfolio"
+              data-toggle="popover" title="Portfolio" 
+              data-content=<%= "New_Requests=" + @numNewR.to_s +
+                "<br>Pending=" + @numPending.to_s +
+                "<br>Accepted=" + @numAccepted.to_s +
+                "<br>Declined=" + @numDeclined.to_s +
+                "<br>Finished=" + @numFinished.to_s +
+                "<br>Total=" + @user.received_commissions.count.to_s%>>
               <%=@user.received_commissions.count%>
                 <!-- Make sure that the singular / plural grammar is 
                      correct -->
@@ -169,3 +201,6 @@
     $("#compose-to-user").modal();
   }
 </script>
+
+<!-- Include js for the popover displaying the user's commissions portfolio -->
+<script src="/assets/comportfolio.js"></script>
