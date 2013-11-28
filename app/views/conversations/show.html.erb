@@ -7,7 +7,7 @@
       @conversation.originator%></h3>
     <h4>To: <%=link_to @conversation.recipients[0].name,
       @conversation.recipients[0]%></h3>
-    <h4><%=@conversation.messages.last.subject%></h4>
+    <h4>Subject: <%=@conversation.messages.last.subject%></h4>
     <!-- Do not indent; extra white space will show -->
     <textarea type="message" class="form-control" readonly="true"
       id="msg_body" rows="5">
