@@ -11,41 +11,49 @@ describe "Log in page" do
 
   it "must have login text" do
     visit authenticate_path
-    page.should have_content('Log in')
+    page.should have_content('log in')
   end
   it "must have a log in link" do
     visit authenticate_path
-    page.should have_button('Log in')
-    page.should have_field('email')
+    within(:css, "form#log_in") do
+      page.should have_button('Log in')
+      page.should have_field('email')
+    end
   end
 
 
   it "must display error message if a user provides bad email" do
     visit authenticate_path
-    fill_in 'email', :with => "teddy@gmail.co.uk"
-    fill_in 'password', :with => "secret"
-    click_button 'Log in'
+    within(:css, "form#log_in") do
+      fill_in 'email', :with => "teddy@gmail.co.uk"
+      fill_in 'password', :with => "secret"
+      click_button 'Log in'
+    end
     page.should have_content('Invalid')
   end
     
 
   it "must display error message if a user provides bad password" do
     visit authenticate_path
-    fill_in 'email', :with => "teddy@gmail.com"
-    fill_in 'password', :with => "secretary"
-    click_button 'Log in'
+    
+    within(:css, "form#log_in") do
+      fill_in 'email', :with => "teddy@gmail.com"
+      fill_in 'password', :with => "secretary"
+      click_button 'Log in'
+    end
     page.should have_content('Invalid')
   end
 
   it "must log in a valid user" do
     visit authenticate_path
-    page.fill_in 'email', :with => "teddy@gmail.com"
-    fill_in 'password', :with => "secret"
-    click_button 'Log in'
-    #Check for content specific to CommissionMe front page (or wherever we should be redirected)
-    within 'head' do
-	page.should have_content("CommissionMe")
+    within(:css, "form#log_in") do
+      page.fill_in 'email', :with => "teddy@gmail.com"
+      fill_in 'password', :with => "secret"
+      click_button 'Log in'
     end
+    #Check for content specific to CommissionMe front page (or wherever we should be redirected)	
+    #uri = URI.parse(current_url)
+    #"#{uri.path}".should == root_url
   end
 end
 
@@ -55,7 +63,7 @@ describe "Sign up page" do
     visit authenticate_path
   end
   it "must have sign up text" do 
-    page.should have_content('Sign up')
+    page.should have_content('Sign Up')
   end
 
   it "must have correct fields" do
