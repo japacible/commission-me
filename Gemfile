@@ -13,7 +13,9 @@ gem 'rails', '4.0.0'
 
 group :development, :test do
 	gem 'rspec-rails'
-	gem 'capybara'
+	gem 'capybara' 
+  gem 'poltergeist'
+
 end
 
 # Use postgresql as the database for Active Record

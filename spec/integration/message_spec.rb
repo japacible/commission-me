@@ -17,23 +17,26 @@ describe "Mailbox" do
   
   it "must log in Eddy and send a message to Jimmy" do
     visit authenticate_path
-    puts "PATH = #{current_path}"
+  
     within(:css, "form#log_in") do
       page.fill_in 'email', :with => "Eddy@gmail.com"
       fill_in 'password', :with => "secret"
       click_button 'Log in'
     end 
-    puts "PATH = #{current_path}" 
+   
     page.should have_content("Eddy")
-    visit conversations_path
-    puts "PATH = #{current_path}" 
+    visit conversations_path 
     page.should have_selector('div', 'btn.btn-primary.btn-mid')
-    #For some reason test cannot click this button, even though above line verifies its existence
+        
+    recip = User.find_by_name("Jimmy") 
+    recip.mailbox.conversations.count.should eql(0)
     click_button "Compose"
-    fill_in 'msg_recipient', :with => "Jimmy@gmail.com"
+    fill_in 'msg_recipient', :with => recip.name
     fill_in 'msg_subject', :with => "Hello"
     fill_in 'msg_body', :with => "Just sayin hi"
-    click_button 'Send'
+    click_button 'Send' 
+    page.should_not have_content("Invalid")
+    recip.mailbox.conversations.count.should eql(1)
   end
 
 end
