@@ -84,7 +84,7 @@ class UsersController < ApplicationController
 
   def authenticate
     if(current_user)
-      redirect_to root_url, :alert => "Already logged in."
+      redirect_to root_url, :alert => "Already logged in"
     end
   end
 
@@ -134,7 +134,7 @@ class UsersController < ApplicationController
 
   def do_logout(user)
     sign_out(user)
-    redirect_to root_url, :notice => "Logged out user: "+user.name
+    redirect_to root_url, :notice => "You are now logged out"
     end
 
     def user_params
