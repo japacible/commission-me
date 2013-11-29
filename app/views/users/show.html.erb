@@ -67,7 +67,7 @@
                 edit_commission_path(:artist_id => @user.id), 
                 :class => "commissionbtn"%>
                 <!-- TODO: Do the same with a messaging link-->
-                <button type="submit" class="btn btn-large" onClick="reply()">
+                <button type="submit" class="messagebtn" onClick="reply()">
     		Message</button>
 	      <% else %>
 		<%=link_to "My Commissions", commissions_requests_path,
