@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Include js for the popover displaying commissions statistics -->
+  <%= javascript_include_tag "commissions-profile"%>
   <title><%=@user.name%></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -18,7 +20,6 @@
           </div>
           <div class="span9">
             <h2><%=@user.name%>'s Profile</h2>
-            <!--<h5>user's bio/info</h5>-->
 
             <!-- Counts the different states of the commissions the user
                    has received -->
@@ -44,22 +45,37 @@
             <!-- Set the data-content of the portfolio popover to include the 
                    counts of the different states of the user's received 
                    commissions -->
-            <p><span class="badge" id="commissionPortfolio"
-              data-toggle="popover" title="Portfolio" 
-              data-content=<%= "New_Requests=" + @numNewR.to_s +
-                "<br>Pending=" + @numPending.to_s +
-                "<br>Accepted=" + @numAccepted.to_s +
-                "<br>Declined=" + @numDeclined.to_s +
-                "<br>Finished=" + @numFinished.to_s +
-                "<br>Total=" + @user.received_commissions.count.to_s%>>
-              <%=@user.received_commissions.count%>
-                <!-- Make sure that the singular / plural grammar is 
-                     correct -->
-                <% if @user.received_commissions.count == 1 %>
-                  </span> Commission</p>
-                <% else %>
-                  </span> Commissions</p>
-                <% end %>
+            <p><span class="btn" data-toggle="popover" 
+              data-original-title="<b>Stats</b>"
+              data-content="<table>
+              <tr>
+                <td>New Requests</td>
+                <td align=right width=30%><%=@numNewR%></td>
+              </tr>
+              <tr>
+                <td>Pending</td>
+                <td align=right><%=@numPending%></td>
+              </tr>
+              <tr>
+                <td>Accepted</td>
+                <td align=right><%=@numAccepted.to_s%></td>
+              </tr>
+              <tr>
+                <td>Declined</td>
+                <td align=right><%=@numDeclined.to_s%></td>
+              </tr>
+              <tr>
+                <td>Finished</td>
+                <td align=right><%=@numFinished.to_s%></td>
+              </tr>
+              <tr>
+                <td><b>Total</b></td>
+                <td align=right><b>
+                  <%=@user.received_commissions.count.to_s%></b></td>
+              </tr>
+            </table>">
+              View Commission Stats </span></p>
+
               <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
 
               <% if current_user != nil && @user.name != current_user.name %>
@@ -67,7 +83,7 @@
                 edit_commission_path(:artist_id => @user.id), 
                 :class => "commissionbtn"%>
                 <!-- TODO: Do the same with a messaging link-->
-                <button type="submit" class="btn btn-large" onClick="reply()">
+                <button type="submit" class="messagebtn" onClick="reply()">
     		Message</button>
 	      <% else %>
 		<%=link_to "My Commissions", commissions_requests_path,
@@ -201,6 +217,3 @@
     $("#compose-to-user").modal();
   }
 </script>
-
-<!-- Include js for the popover displaying the user's commissions portfolio -->
-<script src="/assets/comportfolio.js"></script>

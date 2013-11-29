@@ -47,12 +47,14 @@ class MessagesController < ApplicationController
     end
 
     if can_send
-      @receipt = current_user.send_message @recipient, params[:msg_body], 
-        params[:msg_subject]
-      redirect_to conversations_path, :flash => { :alert => "Message sent!" }
+      @receipt = current_user.send_message @recipient, params[:msg_body], params[:msg_subject]
+      alerts << "Message sent successfully!"
+    end
+
+    if !can_send
+      redirect_to conversations_path, :alert => alerts.join("<br/>").html_safe
     else
-      redirect_to conversations_path, :flash => { 
-        :alert => alerts.join("<br/>").html_safe }
+      redirect_to conversations_path, :notice => alerts.join("<br/>").html_safe
     end
   end
 
