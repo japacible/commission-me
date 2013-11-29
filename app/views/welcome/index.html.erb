@@ -35,6 +35,7 @@
           <% end %>
 
         <!-- START TEST BLOCKS -->
+
         <li><img src="images/image_1.jpg" width="200" height="283"><p>1</p></li>
         <li><img src="images/image_2.jpg" width="200" height="300"><p>2</p></li>
         <li><img src="images/image_3.jpg" width="200" height="252"><p>3</p></li>
@@ -65,6 +66,7 @@
         <li><img src="images/image_8.jpg" width="200" height="200"><p>28</p></li>
         <li><img src="images/image_9.jpg" width="200" height="398"><p>29</p></li>
         <li><img src="images/image_10.jpg" width="200" height="267"><p>30</p></li>
+
         <!-- End of test grid blocks -->
       </ul>
 
@@ -84,14 +86,13 @@
   <script src="/assets/jquery.wookmark.js"></script>
   
   <!-- Once the images are loaded, initalize the plug-in. -->
-  <script type="text/javascript">
+  <script>
     $('#tiles').imagesLoaded(function() {
-      // Call the layout function.
       $('#tiles li').wookmark({
-        autoResize: true, // This will auto-update the layout when the browser window is resized.
-        container: $('#tiles'), // Optional, used for some extra CSS styling
-        offset: 2, // Optional, the distance between grid items
-        itemWidth: 210 // Optional, the width of a grid item
+        autoResize: true,
+        container: $('#tiles'),
+        offset: 2,
+        itemWidth: 210
       });
     });
     var handler = $('#tiles li');
