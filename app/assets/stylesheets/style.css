@@ -61,12 +61,16 @@
 }
 
 .banner {
-    background-color:rgba(55, 78, 102, 1);
-    color:rgba(244, 245, 225, 1);
-    text-align:center;
-    font-size: 18px;
-    margin-top:-25px;
+  background-color:rgba(55, 78, 102, 1);
+  color:rgba(244, 245, 225, 1);
+  text-align:center;
+  font-size: 18px;
+  margin-top:-25px;
 
+}
+
+.featuredimg {
+  width:200px;
 }
 
 /* Sign up/Log in and Settings*/

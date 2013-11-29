@@ -28,7 +28,7 @@
             <%end%>
               <div>
                 <li><%=link_to(user, :class => "item") do%>
-                  <img src="<%=user.get_featured_art.location%>" width="200" height="500"></li>
+                  <img class="featuredimg" src="<%=user.get_featured_art.location%>"></li>
                 <%end%>
               </div>
             <%index+=1%>
@@ -86,18 +86,6 @@
   <script src="/assets/jquery.wookmark.js"></script>
   
   <!-- Once the images are loaded, initalize the plug-in. -->
-  <script>
-    $('#tiles').imagesLoaded(function() {
-      $('#tiles li').wookmark({
-        autoResize: true,
-        container: $('#tiles'),
-        offset: 2,
-        itemWidth: 210
-      });
-    });
-    var handler = $('#tiles li');
-    handler.wookmark();
-  </script>
-
+  <script src="/assets/homepageimages.js"></script>
 </body>
 </html>
