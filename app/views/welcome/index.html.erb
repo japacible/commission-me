@@ -3,20 +3,23 @@
   <head>
     <title>CommissionMe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
-    <link rel="stylesheet" href="/assets/reset.css">
-    <link rel="stylesheet" href="/assets/homepageimages.css">
-  </head>
 
-  <body>
-    <div class="banner">
-      <p>WELCOME BANNER</p>
-    </div>
+    <!-- CSS Reset -->
+    <link rel="stylesheet" href="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/css/reset.css">
   
+    <!-- Styling for grid blocks -->
+    <link rel="stylesheet" href="http://davidwalsh.name/demo/Wookmark-jQuery/example/css/style.css">
 
+</head>
 
-<div id="container">
+<body>
+  <div class="banner">
+    <p>WELCOME BANNER</p>
+  </div>
+
+  <div id="container">
     <div id="main" role="main">
+
       <ul id="tiles">
         <% index = 0%>
           <%@featured_users.each_with_index do |user|%>
@@ -25,19 +28,18 @@
             <%end%>
               <div>
                 <li><%=link_to(user, :class => "item") do%>
-                  <img src="<%=user.get_featured_art.location%>"></li>
+                  <img src="<%=user.get_featured_art.location%>" width="200" height="500"></li>
                 <%end%>
               </div>
             <%index+=1%>
           <% end %>
-          
-          
-          <!-- DELETEEE TEST -->
-            <li><img src="images/image_1.jpg" width="200" height="283"></li>
-        <li><img src="images/image_2.jpg" width="200" height="300"></li>
-        <li><img src="images/image_3.jpg" width="200" height="252"></li>
-        <li><img src="images/image_4.jpg" width="200" height="158"></li>
-        <li><img src="images/image_5.jpg" width="200" height="300"></li>
+
+        <!-- START TEST BLOCKS -->
+        <li><img src="images/image_1.jpg" width="200" height="283"><p>1</p></li>
+        <li><img src="images/image_2.jpg" width="200" height="300"><p>2</p></li>
+        <li><img src="images/image_3.jpg" width="200" height="252"><p>3</p></li>
+        <li><img src="images/image_4.jpg" width="200" height="158"><p>4</p></li>
+        <li><img src="images/image_5.jpg" width="200" height="300"><p>5</p></li>
         <li><img src="images/image_6.jpg" width="200" height="297"><p>6</p></li>
         <li><img src="images/image_7.jpg" width="200" height="200"><p>7</p></li>
         <li><img src="images/image_8.jpg" width="200" height="200"><p>8</p></li>
@@ -63,53 +65,38 @@
         <li><img src="images/image_8.jpg" width="200" height="200"><p>28</p></li>
         <li><img src="images/image_9.jpg" width="200" height="398"><p>29</p></li>
         <li><img src="images/image_10.jpg" width="200" height="267"><p>30</p></li>
-          <!-- END DELETEEE -->
-        </ul>
-    </div>
+        <!-- End of test grid blocks -->
+      </ul>
 
+    </div>
+    <footer>
+
+    </footer>
   </div>
 
-   <!-- include jQuery -->
-  <script src="http://www.wookmark.com/jquery-plugin-imagesloaded/js/jquery-1.7.1.min.js"></script>
+  <!-- include jQuery -->
+  <script src="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/js/jquery-1.7.1.min.js"></script>
   
   <!-- Include the imagesLoaded plug-in -->
   <script src="http://www.wookmark.com/jquery-plugin-imagesloaded/js/jquery.imagesloaded.js"></script>
-  
+
   <!-- Include the plug-in -->
-  <script src="http://www.wookmark.com/jquery-plugin-imagesloaded/js/jquery.wookmark.js"></script>
+  <script src="http://www.stanford.edu/group/thais/cgi-bin/step/gallery/js/jquery.wookmark.js"></script>
   
-  <!-- Once the images are loaded, initalize the Wookmark plug-in. -->
+  <!-- Once the page is loaded, initalize the plug-in. -->
   <script type="text/javascript">
     $('#tiles').imagesLoaded(function() {
-      // Prepare layout options.
-      var options = {
-        autoResize: true,
-        container: $('#main'),
-        offset: 2,
-        itemWidth: 210
-      };
-      
-      // Get a reference to your grid items.
-      var handler = $('#tiles li');
-      
       // Call the layout function.
-      handler.wookmark(options);
-      
-      // Capture clicks on grid items.
-      handler.click(function(){
-        // Randomize the height of the clicked item.
-        var newHeight = $('img', this).height() + Math.round(Math.random()*300+30);
-        $(this).css('height', newHeight+'px');
-        
-        // Update the layout.
-        handler.wookmark();
+      $('#tiles li').wookmark({
+        autoResize: true, // This will auto-update the layout when the browser window is resized.
+        container: $('#tiles'), // Optional, used for some extra CSS styling
+        offset: 2, // Optional, the distance between grid items
+        itemWidth: 210 // Optional, the width of a grid item
       });
     });
+    var handler = $('#tiles li');
     handler.wookmark();
   </script>
 
-
-
-    
-  </body>
+</body>
 </html>
