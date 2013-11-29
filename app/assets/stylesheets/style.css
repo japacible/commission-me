@@ -101,6 +101,17 @@
   color: #FFFFFF;
 }
 
+.messagebtn {
+  background-color:rgba(45, 62, 79, 1);
+  padding:5px;
+  color:rgba(235, 239, 240, 1);
+}
+
+.messagebtn:hover {
+  text-decoration:none;
+  color: #FFFFFF;
+}
+
 .badge {
   background-color:rgba(230, 76, 62, 1);
   border-radius: 0;
@@ -183,12 +194,20 @@ html {
   background-color:rgba(45, 62, 79, 1);
   color:rgba(235, 239, 240, 1);
   border-radius: 0;
+  border:0;
   margin:1px;
 }
 
 .btn:hover {
   color: #FFFFFF;
   border:0;
+}
+
+button {
+  border : 0px;
+  -moz-border-radius:0px;
+  -webkit-border-radius:0px;
+  border-radius:0px;
 }
 
 .navicon {
