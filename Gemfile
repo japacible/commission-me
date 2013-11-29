@@ -50,7 +50,7 @@ gem 'rails_12factor', group: :production
 
 gem 'unicorn'
 
-gem 'font-awesome-sass'
+#gem 'font-awesome-sass'
 
 ruby "1.9.3"
 end
