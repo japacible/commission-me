@@ -76,7 +76,7 @@
             </table>">
               View Commission Stats </span></p>
 
-              <p>Artist since <%=@user.created_at.strftime("%B %Y")%></p>
+              <p>Member since <%=@user.created_at.strftime("%B %Y")%></p>
 
               <% if current_user != nil && @user.name != current_user.name %>
                 <%=link_to "Commission", 
