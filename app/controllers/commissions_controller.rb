@@ -20,18 +20,34 @@ class CommissionsController < ApplicationController
   end
 
   def create
-    #TODO: create new commission request
     @template = User.find(params[:artist_id]).commission_request_template_json
     @user = current_user
+    json = build_json_from_params
     @commission = Commission.new do |t|
       t.state = "NewRequest"
       t.artist_id = params[:artist_id]
       t.commissioner_id = @user.id
-      t.commission_current = build_json_from_params
+      t.commission_current = json
     end
     if @commission.save
-      flash[:alert] = "Commission successfully sent!"
-      redirect_to root_url
+      @commission_request = CommissionRequest.new do |req|
+        req.commission_id = @commission.id
+        req.commission_current = json
+      end
+      if @commission_request.save
+        flash[:alert] = "Commission successfully sent!"
+        redirect_to root_url
+      else
+        @commission.delete
+        for message in @commission_request.errors.full_messages do
+          if i == 0
+            flash[:alert] = message
+            i = 1
+          else
+            flash[:alert] << ", " + message
+          end
+        end
+      end
     else
       i = 0
       for message in @commission.errors.full_messages do
