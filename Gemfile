@@ -60,3 +60,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use Font Awesome for UI
+gem "font-awesome-rails"
