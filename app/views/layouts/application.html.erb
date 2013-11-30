@@ -26,11 +26,11 @@
                   <%= link_to current_user.name, current_user%>
                 </li>
                 <li>
-                <%= link_to '<i class="fa-envelope-o icon-white">
-                  </i>Messages'.html_safe, conversations_path %>
+                <%= link_to '<i class="fa fa-envelope-o icon-white">
+                  </i> Messages'.html_safe, conversations_path %>
                 </li>
                 <li>
-                <%= link_to '<i class="fa-cog icon-white"></i>Settings'.html_safe, 
+                <%= link_to '<i class=" fa fa-cog icon-white"></i> Settings'.html_safe,
                     edit_user_path(:id => current_user.id)%>
                 </li>
                 <%end%>
