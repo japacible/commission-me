@@ -42,8 +42,20 @@ $(document).ready(function() {
       // Category Container (Form)
       var category = $("<form/>", {
         "id": "category-" + catkey,
-        "class": "category tab-pane"
+        "class": "category tab-pane",
+	"action": "request_commission",
+	"method": "post"
       }).appendTo(".tab-content");
+      var authenticity_token = $("<input/>", {
+        "name": "authenticity_token",
+        "value": getAuthToken(),
+        "type": "hidden"
+      }).appendTo(category);
+      var artist_id = $("<input/>", {
+        "name": "artist_id",
+	"value": getArtist(),
+	"type": "hidden"
+      }).appendTo(category);
       
       /* LOOP THROUGH EACH STEP */
       $.each(val.steps, function(stepkey, val) {
@@ -71,7 +83,7 @@ $(document).ready(function() {
           // Option Container
           var option = $("<label/>", {
             "for": "option-" + catkey + "-" + stepkey + "-" + optkey,
-            "class": "col-md-4 option"
+            "class": "col-md-4 commission-category"
           }).appendTo(options);
           
           // Option Name : option-[cat]-[step]-[opt]-name
@@ -79,13 +91,6 @@ $(document).ready(function() {
             "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
             "class": "option-name",
             html: val.name
-          }).appendTo(option);
-          
-          // Option Thumbnail : option-[cat]-[step]-[opt]-thumb
-          $("<img/>", {
-            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
-            "class": "img-thumbnail option-thumb",
-            "src": val.thumb
           }).appendTo(option);
           
           // Option Price : option-[cat]-[step]-[opt]-price
@@ -110,36 +115,50 @@ $(document).ready(function() {
             "class": "form-control",
             "type": "radio"
           }).appendTo(option);
+          
+          // Option Thumbnail : option-[cat]-[step]-[opt]-thumb
+          $("<img/>", {
+            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
+            "class": "img-thumbnail option-thumb",
+            "src": val.thumb
+          }).appendTo(option);
         });
       });
+      
+      $("<hr/>").appendTo(category);
+      
+      // Final Step
+      $("<textarea/>", {
+        "id": "final",
+        "name": "final",
+        "class": "form-control",
+        "placeholder": "Describe your request in detail..."
+      }).appendTo(category);
       
       // Buttons: Preview, Submit, Cancel
       var submit = $("<div/>", {
         "id": "control-btns"
       }).appendTo(category);
+           
       $("<input/>", {
         "id": "submit",
-        "class": "btn btn-primary btn-lg",
+        "class": "btn pull-right",
         "type": "submit",
-        //on: {
-        //  click: function() {
-        //    alert($("form").serialize());
-        //    $.post("",$("form").serialize());
-        //  }
-        //},
         html: "Submit"
       }).appendTo(submit);
+
       $("<button/>", {
         "id": "cancel",
-        "class": "btn btn-default btn-lg pull-right",
+        "class": "btn pull-right",
         "type": "button",
         on: {
           click: function() {
-            alert("Cancel! (Not yet functional.)");
-          }
+          alert("Cancel! (Not yet functional.)");
+           }
         },
         html: "Cancel"
-      }).appendTo(submit);
+        }).appendTo(submit);
+           
     });
   });
 //});

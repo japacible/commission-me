@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>
+      CommissionMe
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/commission-request.css">
+   
+    <script type="text/javascript">
+      function getAuthToken(){ 
+        return "<%=form_authenticity_token%>"
+      }
+    </script>
+    <script type="text/javascript">
+      function getArtist(){
+        return "<%=@artist.id%>"
+      }
+    </script>
+    <div id="json_id" data-url="<%= @json.to_json %>" />
+    <script src="/assets/commission-review.js"></script>  
+  </head>
+  <body>
+    <div class="container">
+      <div class="page-header">
+        <h1>Commission Review</h1>
+      </div>
+      
+      <div id="com-req"></div>
+      
+      <form action="" method="post">
+        <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
+        
+        <center>
+          <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
+          @commission.id), :class => "btn") %>
+          <input type="submit" name="revise" value="Revise">
+          <input type="submit" name="decline" value="Decline">
+          <!--<%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
+          @commission.id), :class => "btn") %>-->
+        </center>
+      </form>
+    </div>
+  </body>
+</html>
+

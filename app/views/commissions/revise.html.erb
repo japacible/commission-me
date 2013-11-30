@@ -5,7 +5,6 @@
       CommissionMe
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/commission-request.css">
    
     <script type="text/javascript">
       function getAuthToken(){ 
@@ -18,22 +17,21 @@
       }
     </script>
     <div id="json_id" data-url="<%= @json.to_json %>" />
-    <script src="/assets/commission-request.js"></script>  
+    <script src="/assets/commission-revision.js"></script>
   </head>
   <body>
     <div class="container">
       <div class="page-header">
-        <h1>Commission <%=@artist.name%>!</h1>
+        <h1>Commission Revision</h1>
       </div>
       
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs"></ul>
+      <div id="com-req"></div>
       
       <form>
-        <!-- Tab panes -->
-        <div class="tab-content"></div>
+        <textarea class="form-control" name="revision" placeholder="Enter your revisions...."></textarea>
+        
+        <input type="submit" value="Submit">
       </form>
     </div>
   </body>
 </html>
-
