@@ -14,7 +14,7 @@
     background:none;
     padding:0;
     margin-top:20px;
-    margin-bottom:0px;
+    margin-bottom:8px;
 }
 
 .navbar .navbar-left > li {
@@ -223,6 +223,11 @@ button {
   width:1200px;
   margin-left:auto;
   margin-right:auto;
+}
+
+.fa {
+  font-size:15px;
+  padding-left:8px;
 }
 
 /* Alerts */
