@@ -50,4 +50,17 @@ $(document).ready(function() {
       html: choice.description
     }).appendTo(choice_container);
   });
+
+  //Display final step
+  var step_container = $("<div/>", {
+    "class": "step"
+  }).appendTo("#com-req");
+
+  $("<h2/>", {
+    html: "Description: "
+  }).appendTo(step_container);
+
+  $("<p/>", {
+    html: category.final
+  }).appendTo(step_container);
 });

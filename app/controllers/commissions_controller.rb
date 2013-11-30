@@ -91,7 +91,9 @@ private
         choice_num = v.to_i
         blob_step["name"] = category_blob["steps"][num]["name"]
         blob_step["choice"] = category_blob["steps"][num]["options"][choice_num]
-        blob["steps"] << blob_step
+        blob["steps"] << blob_step      
+      elsif k.starts_with? "final"
+        blob["final"] = v;
       end
     end
     return blob
