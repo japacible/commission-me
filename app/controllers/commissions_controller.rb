@@ -74,20 +74,22 @@ class CommissionsController < ApplicationController
 
   def accept
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Accepted"
-    @commission.save
-    flash[:alert] = "Commission Accepted!"
-    redirect_to root_url
-    #TODO: redirect to commissions list instead
+    if current_user != nil && current_user.id == @commission.artist_id
+      @commission.state = "Accepted"
+      @commission.save
+      flash[:alert] = "Commission Accepted!"
+      redirect_to commissions_requests_path
+    end
   end
   
   def decline
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Declined"
-    @commission.save
-    flash[:alert] = "Commission Declined!"
-    redirect_to root_url
-    #TODO: redirect to commissions list instead
+    if current_user != nil && current_user.id == @commission.artist_id
+      @commission.state = "Declined"
+      @commission.save
+      flash[:alert] = "Commission Declined!"
+      redirect_to commissions_requests_path
+    end
   end
 
   def finish
