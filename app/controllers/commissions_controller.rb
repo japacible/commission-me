@@ -4,19 +4,30 @@ class CommissionsController < ApplicationController
   end
 
   def review
-    @commission = Commission.find(params[:commission_id])
-    @artist = User.find(@commission.artist_id)
-    @json = @commission.commission_current
+    if current_user.nil?
+      redirect_to authenticate_path
+    else
+      @commission = Commission.find(params[:commission_id])
+      @artist = User.find(@commission.artist_id)
+      @json = @commission.commission_current
+    end
   end
-  
+
   def requests
-    #TODO: check for current_user == nil, route to login/signup?
+    #TODO: route to login/signup?
     @user = current_user
+    if @user.nil?
+      redirect_to authenticate_path
+    end
   end
 
   def edit
-    @artist = User.find(params[:artist_id])
-    @json = User.find(params[:artist_id]).commission_request_template_json
+    if current_user.nil?
+      redirect_to authenticate_path
+    else
+      @artist = User.find(params[:artist_id])
+      @json = User.find(params[:artist_id]).commission_request_template_json
+    end
   end
 
   def create
