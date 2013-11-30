@@ -2,7 +2,7 @@
 //   popover.
 $(document).ready(function() {
   // Allow and convert html tags in data-content
-  $('.btn').popover({html: true, placement:'bottom'});
+  $('.btn').popover({html: true, placement:'right'});
   $(':not(#anything)').on('click', function (e) {
     $('.btn').each(function () {
       if (!$(this).is(e.target) && $(this).has(e.target).length === 0 

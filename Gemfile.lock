@@ -53,6 +53,8 @@ GEM
     faye-websocket (0.7.0)
       eventmachine (>= 0.12.0)
       websocket-driver (>= 0.3.0)
+    font-awesome-rails (4.0.3.0)
+      railties (>= 3.2, < 5.0)
     foreigner (1.6.0)
       activerecord (>= 3.0.0)
     hike (1.2.3)
@@ -168,6 +170,7 @@ DEPENDENCIES
   bcrypt-ruby (~> 3.0.0)
   capybara
   coffee-rails (~> 4.0.0)
+  font-awesome-rails
   jbuilder (~> 1.2)
   jquery-rails
   mailboxer
