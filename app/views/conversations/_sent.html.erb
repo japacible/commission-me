@@ -15,7 +15,7 @@
             <tr>
               <!-- Sender name should link to user profile -->
               <td><%=link_to conversation.recipients[0].name, 
-                conversation.recipients[0].name %></td>
+                conversation.recipients[0] %></td>
               <!-- Subject should link to reading message -->
               <td><%=link_to conversation.subject, conversation%></td>
               <td><%= conversation.updated_at %></td>
