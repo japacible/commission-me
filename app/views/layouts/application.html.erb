@@ -6,7 +6,7 @@
     "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
-  <script src="/app/assets/javascripts/masonry.pkgd.min.js"></script>
+
 </head>
 <body>
   <div class="header">
@@ -26,11 +26,11 @@
                   <%= link_to current_user.name, current_user%>
                 </li>
                 <li>
-                <%= link_to image_tag("mail.svg", :class => "navicon"), 
-                  conversations_path %>
+                <%= link_to '<i class="fa-envelope-o icon-white">
+                  </i>Messages'.html_safe, conversations_path %>
                 </li>
                 <li>
-                <%= link_to image_tag("gear.svg", :class => "navicon"),
+                <%= link_to '<i class="fa-cog icon-white"></i>Settings'.html_safe, 
                     edit_user_path(:id => current_user.id)%>
                 </li>
                 <%end%>
@@ -50,10 +50,15 @@
     </div>
   </div>
 
-  <% flash.each do |key, value| %>
-  <div class="flash <%= key%>"><%= value%></div>
-  <% end %>
-      
+  <div class="flash-messages">
+    <% flash.each do |name, msg| %>
+    <div class="alert-message <%= name == :notice ? "success" : "error" %>">
+    <a class="close" data-dismiss="alert">&#215;</a>
+    <%= content_tag :div, msg, :id => "flash_#{name}" if msg.is_a?(String) %>
+    </div>
+    <% end %>
+  </div>
+
   <div class="bodyview">
     <!--Renders body of page-->
     <%= yield %>

@@ -3,9 +3,10 @@ class UsersController < ApplicationController
 
   def index
     @users = User.all
-    end
-    def new
-      @user = User.new
+  end
+
+  def new
+    @user = User.new
   end
 
   def edit
@@ -51,11 +52,25 @@ class UsersController < ApplicationController
   end
 
   def create
+    #Attempt to read default commission request data, otherwise do not use
+    #default
+    begin
+      default_json = 
+        IO.read(Rails.root + "app/assets/default_crtemplate.json")
+    rescue Exception=>e
+      default_json = "{}"
+      logger.warn "Unable to read default JSON template when creating a new" +
+        " user. rescued exception was: #{e.to_s}"
+    end
+    #Now create actual user
     @user = User.new do |t|
       t.name = params[:name]
       t.email = params[:email]
       t.password = params[:password]
       t.password_confirmation = params[:password_confirmation]
+      #Give the user a default commission request template by reading it
+      #from a file in assets
+      t.commission_request_template_json = default_json 
     end
     if @user.save
       do_login(params[:email], params[:password])
@@ -84,7 +99,7 @@ class UsersController < ApplicationController
 
   def authenticate
     if(current_user)
-      redirect_to root_url, :alert => "Already logged in."
+      redirect_to root_url, :alert => "Already logged in"
     end
   end
 
@@ -134,7 +149,7 @@ class UsersController < ApplicationController
 
   def do_logout(user)
     sign_out(user)
-    redirect_to root_url, :notice => "Logged out user: "+user.name
+    redirect_to root_url, :notice => "You are now logged out"
     end
 
     def user_params
