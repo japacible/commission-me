@@ -131,6 +131,23 @@ hr {
 .thumbnail {
   position:relative;
   overflow:hidden;
+  max-width:20%
+  margin:auto;
+}
+
+.img-item {
+  max-width:100%;
+}
+
+.img-row {
+  display:block; 
+  margin:0; 
+  padding:0;
+  max-width:95%;
+}
+
+.img-container {
+  text-align:center;
 }
 
 .caption {
