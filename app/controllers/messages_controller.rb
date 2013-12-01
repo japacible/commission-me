@@ -5,9 +5,10 @@ class MessagesController < ApplicationController
   #Copied from social_stream example
   #Probably needs work before it can be used
   def show
-    if @message = Message.find_by_id(params[:id]) and @conversation = @message.conversation
-      if @conversation.is_participant?(@user)
-      else
+    if @message = Message.find_by_id(params[:id]) and 
+      @conversation = @message.conversation
+      if !@conversation.is_participant?(@user)
+      #else
         redirect_to :back, alert: "You are not authorized to view this message."
       end
     else
@@ -29,7 +30,8 @@ class MessagesController < ApplicationController
     can_send = true
    
     if (!params[:msg_recipient].present? or 
-          !(@recipient = User.find_by_name(params[:msg_recipient])))
+        !(@recipient = User.find_by_name(params[:msg_recipient])) or 
+        @recipient == current_user )
       alerts << "Error: Invalid Recipient" 
       can_send = false
     end
@@ -43,11 +45,17 @@ class MessagesController < ApplicationController
        alerts << "Error: Invalid Message Subject"
        can_send = false
     end
+
     if can_send
       @receipt = current_user.send_message @recipient, params[:msg_body], params[:msg_subject]
       alerts << "Message sent successfully!"
     end
-    redirect_to conversations_path, :alert => alerts.join("<br/>").html_safe
+
+    if !can_send
+      redirect_to conversations_path, :alert => alerts.join("<br/>").html_safe
+    else
+      redirect_to conversations_path, :notice => alerts.join("<br/>").html_safe
+    end
   end
 
   def edit

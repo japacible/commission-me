@@ -9,7 +9,12 @@ class CommissionRequestTemplatesController < ApplicationController
   
   #Renders a view
   def edit
-    @json = current_user.commission_request_template_json
+    @user = current_user
+    if @user.nil?
+      redirect_to authenticate_path
+    else
+      @json = @user.commission_request_template_json
+    end
   end
 
   #Receives post data

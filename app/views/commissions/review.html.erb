@@ -27,19 +27,20 @@
       </div>
       
       <div id="com-req"></div>
-      
-      <form action="" method="post">
-        <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
+      <% if current_user.id == @artist.id %>
+        <form action="" method="post">
+          <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
         
-        <center>
-          <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
-          @commission.id), :class => "btn") %>
-          <input type="submit" name="revise" value="Revise">
-          <input type="submit" name="decline" value="Decline">
-          <!--<%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
-          @commission.id), :class => "btn") %>-->
-        </center>
-      </form>
+          <center>
+            <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
+            @commission.id), :class => "btn") %>
+            <input type="submit" name="revise" value="Revise">
+            <input type="submit" name="decline" value="Decline">
+            <!--<%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
+            @commission.id), :class => "btn") %>-->
+          </center>
+        </form>
+      <% end %>
     </div>
   </body>
 </html>
