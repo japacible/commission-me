@@ -30,7 +30,7 @@ class CommissionsController < ApplicationController
       t.commission_current = build_json_from_params
     end
     if @commission.save
-      flash[:alert] = "Commission successfully sent!"
+      flash[:notice] = "Commission successfully sent!"
       redirect_to root_url
     else
       i = 0
