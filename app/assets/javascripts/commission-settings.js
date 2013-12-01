@@ -1,5 +1,5 @@
 /*
-v1.8
+v2.0
 This JavaScript file parses a "Commission Request Template" JSON object
 into an appropriate HTML form representation for an artist to edit
 commission settings. The modified form objects are then POST'd to the
@@ -31,280 +31,371 @@ FUTURE MODIFICATIONS
 $(document).ready(function() { 
   
   var data = $('#json_id').data('url');
-  //$.getJSON("assets/blobexample.txt", function(data) {
-    /* LOOP THROUGH EACH CATEGORY */
-    $.each(data.categories, function(catkey, val) {
+  /* LOOP THROUGH EACH CATEGORY */
+  $.each(data.categories, function(catkey, val) {
+  
+    // Navigation Tab
+    var tabli = $("<li/>").appendTo(".nav-tabs");
+    var tablia = $("<a/>", {
+      "href": "#category-" + catkey,
+      "data-toggle": "tab"
+    }).appendTo(tabli);
+    $("<span/>", {
+      "class": "cat-name",
+      html: val.name
+    }).appendTo(tablia);
     
-      // Navigation Tab
-      var tabli = $("<li/>").appendTo(".nav-tabs");
-      var tablia = $("<a/>", {
-        "href": "#category-" + catkey,
-        "data-toggle": "tab"
-      }).appendTo(tabli);
-      $("<span/>", {
-        "class": "cat-name",
-        html: val.name
-      }).appendTo(tablia);
+    // Remove Category
+    $("<button/>", {
+      "type": "button",
+      "class": "close remove-category",
+      html: "&times;"
+    }).appendTo(tablia);
+  
+    // Category Container (Form)
+    var category = $("<form/>", {
+      "id": "category-" + catkey,
+      "class": "category tab-pane",
+      "action": "update_template",
+      "method": "post"
+    }).appendTo(".tab-content");
+    var authenticity_token = $("<input/>", {
+      "name": "authenticity_token",
+      "value": getAuthToken(),
+      "type": "hidden"
+    }).appendTo(category);
+    /* LOOP THROUGH EACH STEP */
+    $.each(val.steps, function(stepkey, val) {
     
-      // Category Container (Form)
-      var category = $("<form/>", {
-        "id": "category-" + catkey,
-        "class": "category tab-pane",
-        "action": "update_template",
-        "method": "post"
-      }).appendTo(".tab-content");
-      var authenticity_token = $("<input/>", {
-        "name": "authenticity_token",
-        "value": getAuthToken(),
-        "type": "hidden"
+      // Step Container
+      var step = $("<div/>", {
+        "class": "step"
       }).appendTo(category);
-      /* LOOP THROUGH EACH STEP */
-      $.each(val.steps, function(stepkey, val) {
       
-        // Step Container
-        var step = $("<div/>", {
-          "class": "step"
-        }).appendTo(category);
-        
-        // Button: Remove Step
-        $("<button/>", {
-          "type": "button",
-          "class": "btn btn-default pull-right",
-          html: "&#150;"
-        }).appendTo(step);
-        
-        // Glyph: Dropdown
-        $("<span/>", {
-          html: "v"
-        }).appendTo(step);
-        
-        // Step Name : step-[cat]-[step]
-        var step_name = $("<div/>", {
-          "class": "form-group"
-        }).appendTo(step);
-        $("<label/>", {
-          "class": "sr-only",
-          "for": "step-" + catkey + "-" + stepkey,
-          html: "Step Name"
-        }).appendTo(step_name);
-        $("<input/>", {
-          "id": "step-" + catkey + "-" + stepkey,
-          "name": "step-" + catkey + "-" + stepkey,
-          "class": "form-control input-lg step-name",
-          "type": "text",
-          "placeholder": "Step Name",
-          "value": val.name
-        }).appendTo(step_name);
-        
-        /* LOOP THROUGH EACH OPTION */
-        $.each(val.options, function(optkey, val) {
-        
-          // Option Container
-          var option = $("<div/>", {
-            "class": "option"
-          }).appendTo(step);
-          
-          // Option Panel
-          var panel = $("<div/>", {
-            "class": "panel panel-default"
-          }).appendTo(option);
-          
-          // Panel Heading
-          var panel_heading = $("<div/>", {
-            "class": "panel-heading"
-          }).appendTo(panel);
-          // Button: Option Removal
-          $("<button/>", {
-            "type": "button",
-            "class": "btn btn-default pull-right",
-            html: "&#150;"
-          }).appendTo(panel_heading);
-          
-          // Option Name : option-[cat]-[step]-[opt]-name
-          var option_name = $("<div/>", {
-            "class": "form-group"
-          }).appendTo(panel_heading);
-          $("<label/>", {
-            "class": "sr-only",
-            "for": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
-            html: "Option Name"
-          }).appendTo(option_name);
-          $("<input/>", {
-            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
-            "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
-            "class": "form-control input-lg option-name",
-            "type": "text",
-            "placeholder": "Option Name",
-            "value": val.name
-          }).appendTo(option_name);
-          
-          // Panel Body
-          var panel_body = $("<div/>", {
-            "class": "panel-body"
-          }).appendTo(panel);
-          
-          // Option Thumbnail : option-[cat]-[step]-[opt]-thumb
-          var option_thumb = $("<div/>", {
-            "class": "form-group"
-          }).appendTo(panel_body);
-          var option_thumb_label = $("<label/>", {
-            "for": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
-            html: "Example:"
-          }).appendTo(option_thumb);
-          $("<input/>", {
-            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
-            "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
-            "class": "option-thumb",
-            "type": "file"
-          }).appendTo(option_thumb_label);
-          $("<img/>", {
-            "class": "img-thumbnail pull-left",
-            "src": val.thumb
-          }).appendTo(option_thumb_label);
-          
-          // Option Price : option-[cat]-[step]-[opt]-price
-          var option_price = $("<div/>", {
-            "class": "input-group"
-          }).appendTo(panel_body);
-          $("<label/>", {
-            "class": "sr-only",
-            "for": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
-            html: "Price:"
-          }).appendTo(option_price);
-          $("<span/>", {
-            "class": "input-group-addon",
-            html: "$"
-          }).appendTo(option_price);
-          $("<input/>", {
-            "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
-            "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
-            "class": "form-control option-price",
-            "type": "text",
-            "placeholder": "Price (e.g. &quot;10.00&quot;)",
-            "value": val.price
-          }).appendTo(option_price);
-          
-          $("<br>").appendTo(panel_body); 
-          // Option Description : option-[cat]-[step]-[opt]-description
-          $("<textarea/>", {
-            "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-description",
-            "class": "form-control option-description",
-            "placeholder": "Enter a description...",
-            html: val.description
-          }).appendTo(panel_body);
-        });
-        
-        /* ADD AN OPTION */
-        /*
+      // Remove Step
+      $("<button/>", {
+        "type": "button",
+        "class": "close remove-step",
+        html: "&times;"
+      }).appendTo(step);
+      
+      // Glyph: Dropdown
+      $("<button/>", {
+        "class": "btn btn-sm btn-default pull-left",
+        "type": "button",
+        "data-toggle": "collapse",
+        "data-target": "#step-options-" + catkey + "-" + stepkey,
+        html: "Expand"
+      }).appendTo(step);
+      
+      // Step Name : step-[cat]-[step]
+      var step_name = $("<div/>", {
+        "class": "form-group"
+      }).appendTo(step);
+      $("<label/>", {
+        "class": "sr-only",
+        "for": "step-" + catkey + "-" + stepkey,
+        html: "Step Name"
+      }).appendTo(step_name);
+      $("<input/>", {
+        "id": "step-" + catkey + "-" + stepkey,
+        "name": "step-" + catkey + "-" + stepkey,
+        "class": "form-control input-lg step-name",
+        "type": "text",
+        "placeholder": "Step Name",
+        "value": val.name
+      }).appendTo(step_name);
+      
+      var step_options = $("<div/>", {
+        "id": "step-options-" + catkey + "-" + stepkey,
+        "class": "collapse"
+      }).appendTo(step);
+      
+      /* LOOP THROUGH EACH OPTION */
+      $.each(val.options, function(optkey, val) {
+      
+        // Option Container
         var option = $("<div/>", {
-          "id": "new-option",
-          "class": "option-disabled"
-        }).appendTo(step);
-        // option panel
+          "class": "option"
+        }).appendTo(step_options);
+        
+        // Option Panel
         var panel = $("<div/>", {
           "class": "panel panel-default"
         }).appendTo(option);
-        // panel heading (option name)
+        
+        // Panel Heading
         var panel_heading = $("<div/>", {
           "class": "panel-heading"
         }).appendTo(panel);
-        // option name - id: #option-name-[cat]-[step]-[opt]
+        
+        // Remove Option
+        $("<button/>", {
+          "type": "button",
+          "class": "close remove-option",
+          html: "&times;"
+        }).appendTo(panel_heading);
+        
+        // Option Name : option-[cat]-[step]-[opt]-name
         var option_name = $("<div/>", {
           "class": "form-group"
         }).appendTo(panel_heading);
-        $("<input/>", {
-          "class": "form-control input-lg",
-          "type": "text",
-          "value": "Click Here To Add An Option",
-          "disabled": "true",
-          "style": "width: 70%"
+        $("<label/>", {
+          "class": "sr-only",
+          "for": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
+          html: "Option Name"
         }).appendTo(option_name);
-        */
+        $("<input/>", {
+          "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
+          "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-name",
+          "class": "form-control input-lg option-name",
+          "type": "text",
+          "placeholder": "Option Name",
+          "value": val.name
+        }).appendTo(option_name);
+        
+        // Panel Body
+        var panel_body = $("<div/>", {
+          "class": "panel-body"
+        }).appendTo(panel);
+        
+        // Option Thumbnail : option-[cat]-[step]-[opt]-thumb
+        var option_thumb = $("<div/>", {
+          "class": "form-group"
+        }).appendTo(panel_body);
+        var option_thumb_label = $("<label/>", {
+          "for": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
+          html: "Example:"
+        }).appendTo(option_thumb);
+        $("<input/>", {
+          "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
+          "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb",
+          "class": "option-thumb",
+          "type": "file"
+        }).appendTo(option_thumb_label);
+        $("<img/>", {
+          "class": "img-thumbnail pull-left",
+          "src": val.thumb
+        }).appendTo(option_thumb_label);
+        
+        // Option Price : option-[cat]-[step]-[opt]-price
+        var option_price = $("<div/>", {
+          "class": "input-group"
+        }).appendTo(panel_body);
+        $("<label/>", {
+          "class": "sr-only",
+          "for": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
+          html: "Price:"
+        }).appendTo(option_price);
+        $("<span/>", {
+          "class": "input-group-addon",
+          html: "$"
+        }).appendTo(option_price);
+        $("<input/>", {
+          "id": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
+          "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
+          "class": "form-control option-price",
+          "type": "text",
+          "placeholder": "Price (e.g. &quot;10.00&quot;)",
+          "value": val.price
+        }).appendTo(option_price);
+        
+        $("<br>").appendTo(panel_body); 
+        // Option Description : option-[cat]-[step]-[opt]-description
+        $("<textarea/>", {
+          "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-description",
+          "class": "form-control option-description",
+          "placeholder": "Enter a description...",
+          html: val.description
+        }).appendTo(panel_body);
       });
       
-      /* ADD A STEP */
-      
-      
-      /* FINAL STEP */
-      
-      
-      // Buttons: Preview, Submit, Cancel
-      var submit = $("<div/>", {
-        "id": "control-btns"
-      }).appendTo(category);
+      /* ADD AN OPTION */
       $("<button/>", {
-        "id": "preview",
-        "class": "btn btn-default btn-lg",
+        "class": "btn btn-default add-option",
         "type": "button",
-        html: "Preview"
-      }).appendTo(submit);
-      $("<input/>", {
-        "id": "submit",
-        "class": "btn btn-primary btn-lg",
-        "type": "submit",
-        //on: {
-        //  click: function() {
-        //    //parse();
-        //    $.post("update_template");
-        //  }
-        //},
-        html: "Submit"
-      }).appendTo(submit);
-      $("<button/>", {
-        "id": "cancel",
-        "class": "btn btn-default btn-lg pull-right",
-        "type": "button",
-        html: "Cancel"
-      }).appendTo(submit);
+        html: "Add an Option"
+      }).appendTo(step_options);
+      
+      $("<hr>").appendTo(step);
     });
-  }); 
-//});
-
-function post() {
-  $.put("update_template", { blargh: blob });
-}
-
-
-/*
-// JavaScript parsing HTML -> JSON
-function parse() {
-  var catnames = [];
-  $.each($(".cat-name"), function() {
-    catnames.push($(this).html());
-  });
-  var categories = [];
-  $.each($(".category"), function(key, val) {
-    var catname = catnames[key];
-    var steps = [];
-    $(this).children(".step").each(function() {
-      alert(this);
-      var stepname = $("#" + this.id + " .step-name").attr("value");
-      var options = [];
-      $(this).children(".option").each(function() {
-        var optname = $("#" + this.id + " .option-name").attr("value");
-        var thumb = "http://ponymindbleach.com/images/filly_derpy_sittin___by_chubble_munch-d522yos.png";
-        var price = $("#" + this.id + " .option-price").attr("value");
-        var description = $("#" + this.id + " .option-description").html();
-        options.push('\n            {\n              "name": "' + optname + '",\n              "thumb": "' + thumb + '",\n              "price": ' + price + ',\n              "description": "' + description + '"\n            }');
-      });
-      steps.push('{\n          "name": "' + stepname + '",\n          "options": [' + options + '\n          ]\n        }');
-    });
-    categories.push('{\n      "name": "' + catname + '",\n      "steps": [\n        ' + steps + '\n      ]\n    }');
+    
+    /* ADD A STEP */
+    $("<button/>", {
+      "class": "btn btn-default",
+      "type": "button",
+      html: "Add a Step"
+    }).appendTo(category);
+    
+    $("<hr>").appendTo(category);
+    
+    /* FINAL STEP */
+    $("<h3/>", {
+      html: "Final Step"
+    }).appendTo(category);
+    $("<textarea/>", {
+      "name": "prompt",
+      "class": "form-control",
+      "placeholder": "Prompt the customer for commission specification....",
+    }).appendTo(category);
+    
+    // Buttons: Preview, Submit, Cancel
+    var submit = $("<div/>", {
+      "id": "control-btns"
+    }).appendTo(category);
+    $("<button/>", {
+      "id": "preview",
+      "class": "btn btn-default btn-lg",
+      "type": "button",
+      html: "Preview"
+    }).appendTo(submit);
+    $("<input/>", {
+      "id": "submit",
+      "class": "btn btn-primary btn-lg",
+      "type": "submit",
+      html: "Submit"
+    }).appendTo(submit);
+    $("<button/>", {
+      "id": "cancel",
+      "class": "btn btn-default btn-lg pull-right",
+      "type": "button",
+      html: "Cancel"
+    }).appendTo(submit);
   });
   
-  var blob = '{\n  "categories": [\n    ' + categories + '\n  ]\n}';
+  /* ADD A CATEGORY */
+  var tabli = $("<li/>").appendTo(".nav-tabs");
+  var tablia = $("<a/>").appendTo(tabli);
+  $("<span/>", {
+    "class": "cat-name",
+    html: "Add a Category"
+  }).appendTo(tablia);
   
-  // Post Submit Test (saves 'blob' to 'http://bejoty.com/test/output.txt')
-  //$.post("http://bejoty.com/test/process.php", { blargh: blob });
+  $('.nav-tabs a:first').tab('show');
   
-  // Post Submit Test (opens 'blob' in new window)
-  var myWindow = window.open("","_blank","scrollbars=yes");
-  myWindow.document.write('<pre style="font-style:monospace">' + blob + '</pre>');
-}
-
-// dev test
-function bgtest() {
-  $("body").css("background", "blue");
-}
-
-*/
+  
+  function set_removals() {
+    // Remove Category
+    $(".remove-category").click(function() {
+      var r = confirm("Are you sure you want to remove this category?");
+      if (r) {
+        $($(this).parent().attr("href")).remove(); // remove form content
+        $(this).parent().parent().remove(); // remove tab
+      }
+    });
+    
+    // Remove Step
+    $(".remove-step").click(function() {
+      $(this).parent().remove();
+    });
+    
+    // Remove Option
+    $(".remove-option").click(function() {
+      $(this).parent().parent().remove();
+    });
+    
+    $(".add-option").click(function() {
+      add_option(this);
+    });
+  }
+  set_removals();
+  
+  function add_option(frame) {
+    // Option Container
+    var option = $("<div/>", {
+      "class": "option"
+    }).insertBefore($(frame));
+    
+    // Option Panel
+    var panel = $("<div/>", {
+      "class": "panel panel-default"
+    }).appendTo(option);
+    
+    // Panel Heading
+    var panel_heading = $("<div/>", {
+      "class": "panel-heading"
+    }).appendTo(panel);
+    
+    // Remove Option
+    $("<button/>", {
+      "type": "button",
+      "class": "close remove-option",
+      html: "&times;"
+    }).appendTo(panel_heading);
+    
+    // Option Name
+    var option_name = $("<div/>", {
+      "class": "form-group"
+    }).appendTo(panel_heading);
+    $("<label/>", {
+      "class": "sr-only",
+      "for": "",
+      html: "Option Name"
+    }).appendTo(option_name);
+    $("<input/>", {
+      "id": "",
+      "name": "",
+      "class": "form-control input-lg option-name",
+      "type": "text",
+      "placeholder": "Option Name"  
+    }).appendTo(option_name);
+    
+    // Panel Body
+    var panel_body = $("<div/>", {
+      "class": "panel-body"
+    }).appendTo(panel);
+    
+    // Option Thumbnail
+    var option_thumb = $("<div/>", {
+      "class": "form-group"
+    }).appendTo(panel_body);
+    var option_thumb_label = $("<label/>", {
+      "for": "",
+      html: "Example:"
+    }).appendTo(option_thumb);
+    $("<input/>", {
+      "id": "",
+      "name": "",
+      "class": "option-thumb",
+      "type": "file"
+    }).appendTo(option_thumb_label);
+    $("<img/>", {
+      "class": "img-thumbnail pull-left",
+      "src": ""
+    }).appendTo(option_thumb_label);
+    
+    // Option Price
+    var option_price = $("<div/>", {
+      "class": "input-group"
+    }).appendTo(panel_body);
+    $("<label/>", {
+      "class": "sr-only",
+      "for": "",
+      html: "Price:"
+    }).appendTo(option_price);
+    $("<span/>", {
+      "class": "input-group-addon",
+      html: "$"
+    }).appendTo(option_price);
+    $("<input/>", {
+      "id": "",
+      "name": "",
+      "class": "form-control option-price",
+      "type": "text",
+      "placeholder": "Price (e.g. &quot;10.00&quot;)",
+      "value": ""
+    }).appendTo(option_price);
+    
+    $("<br>").appendTo(panel_body); 
+    
+    // Option Description
+    $("<textarea/>", {
+      "name": "",
+      "class": "form-control option-description",
+      "placeholder": "Enter a description...",
+      html: ""
+    }).appendTo(panel_body);
+    
+    set_removals();
+  }
+});
