@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   include SessionsHelper
-
+  before_filter :verify_logged_in, :only => [:edit,:update]
   def index
     @users = User.all
   end
@@ -140,7 +140,14 @@ class UsersController < ApplicationController
     user = User.find_by_email(email)
     if user && user.authenticate(password)
       sign_in(user, remember_me)
-      redirect_to root_url
+      #If user stumbled upon log-in page via trying to access private area
+      #redirect them to their original location
+      if(session[:destination_page])
+        redirect_to session[:destination_page]
+      else
+        redirect_to root_url
+      end 
+      session[:destination_page] = nil
     else
       flash.alert = "Invalid email or password"
       redirect_to :action => "authenticate"
