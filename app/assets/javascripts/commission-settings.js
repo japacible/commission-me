@@ -1,5 +1,5 @@
 /*
-v2.0
+v2.1
 This JavaScript file parses a "Commission Request Template" JSON object
 into an appropriate HTML form representation for an artist to edit
 commission settings. The modified form objects are then POST'd to the
@@ -22,7 +22,7 @@ FUTURE MODIFICATIONS
 - Modifiable Category Titles
 - Add / Remove / Rearrange Categories
 - A/R/R Steps
-- A/R/R Options
+- Rearrange Options
 - Final Step (Specification)
 - Preview / Cancel Button Functionality
 - Anonymize Root Function Calls
@@ -196,7 +196,7 @@ $(document).ready(function() {
           "name": "option-" + catkey + "-" + stepkey + "-" + optkey + "-price",
           "class": "form-control option-price",
           "type": "text",
-          "placeholder": "Price (e.g. &quot;10.00&quot;)",
+          "placeholder": 'Price (e.g. "10.00")',
           "value": val.price
         }).appendTo(option_price);
         
@@ -222,7 +222,7 @@ $(document).ready(function() {
     
     /* ADD A STEP */
     $("<button/>", {
-      "class": "btn btn-default",
+      "class": "btn btn-default add-step",
       "type": "button",
       html: "Add a Step"
     }).appendTo(category);
@@ -274,7 +274,7 @@ $(document).ready(function() {
   $('.nav-tabs a:first').tab('show');
   
   
-  function set_removals() {
+  function rebind_removals() {
     // Remove Category
     $(".remove-category").click(function() {
       var r = confirm("Are you sure you want to remove this category?");
@@ -293,12 +293,22 @@ $(document).ready(function() {
     $(".remove-option").click(function() {
       $(this).parent().parent().remove();
     });
-    
+  }
+  
+  function rebind_adds() {
+    $(".add-option").unbind();
     $(".add-option").click(function() {
       add_option(this);
     });
+  
+    $(".add-step").unbind();
+    $(".add-step").click(function() {
+      add_step(this);
+    });
   }
-  set_removals();
+  
+  rebind_removals();
+  rebind_adds();
   
   function add_option(frame) {
     // Option Container
@@ -382,7 +392,7 @@ $(document).ready(function() {
       "name": "",
       "class": "form-control option-price",
       "type": "text",
-      "placeholder": "Price (e.g. &quot;10.00&quot;)",
+      "placeholder": 'Price (e.g. "10.00")',
       "value": ""
     }).appendTo(option_price);
     
@@ -396,6 +406,65 @@ $(document).ready(function() {
       html: ""
     }).appendTo(panel_body);
     
-    set_removals();
+    rebind_removals(); // rebinding, shouldn't cause a problem?
+  }
+  
+  function add_step(frame) {
+    // Step Container
+    var step = $("<div/>", {
+      "class": "step"
+    }).insertBefore($(frame));
+    
+    // Remove Step
+    $("<button/>", {
+      "type": "button",
+      "class": "close remove-step",
+      html: "&times;"
+    }).appendTo(step);
+    
+    // Glyph: Dropdown
+    $("<button/>", {
+      "class": "btn btn-sm btn-default pull-left",
+      "type": "button",
+      "data-toggle": "collapse",
+      "data-target": "",
+      html: "Expand"
+    }).appendTo(step);
+    
+    // Step Name : step-[cat]-[step]
+    var step_name = $("<div/>", {
+      "class": "form-group"
+    }).appendTo(step);
+    $("<label/>", {
+      "class": "sr-only",
+      "for": "",
+      html: "Step Name"
+    }).appendTo(step_name);
+    $("<input/>", {
+      "id": "",
+      "name": "",
+      "class": "form-control input-lg step-name",
+      "type": "text",
+      "placeholder": "Step Name",
+      "value": ""
+    }).appendTo(step_name);
+    
+    var step_options = $("<div/>", {
+      "class": "help" //collapse
+    }).appendTo(step);
+    
+    //add_option(step_options);
+    
+    /* ADD AN OPTION */
+    $("<button/>", {
+      "class": "btn btn-default add-option",
+      "type": "button",
+      html: "Add an Option"
+    }).appendTo(step_options);
+    
+    $("<hr>").appendTo(step);
+    
+    rebind_adds();
+    rebind_removals(); // rebinding, shouldn't cause a problem?
   }
 });
