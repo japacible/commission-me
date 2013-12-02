@@ -13,9 +13,8 @@ class CommissionRequestTemplatesController < ApplicationController
     @json = current_user.commission_request_template_json
   end
 
-  #Receives post data
-  #This method is full of debug alerts because it has a strange problem
-  #for some reason commissio nrequest tempalte updates are not being properly updated
+  #Receives post data and attempts to update the user's commission
+  #request tempalate json
   def update
     @user = current_user
     if @user.commission_request_template_json.nil? 
@@ -29,11 +28,10 @@ class CommissionRequestTemplatesController < ApplicationController
     @user.save
     @user.commission_request_template_json = hash
     if @user.save
-      flash[:alert] = "Commission Template Saved!"  #+@user.commission_request_template_json.to_s
+      flash[:notice] = "Commission Template Saved!"  #+@user.commission_request_template_json.to_s
     else
-      flash[:notify] = "Error Saving Template"
-    end
-    #sleep 8
+      flash[:alert] = "Error Saving Template"
+    end 
     redirect_to root_url
   end
 
@@ -66,8 +64,6 @@ class CommissionRequestTemplatesController < ApplicationController
       end
       return steps
     end
-
-    
    
     #Returns a list of maps of option name-value pairs
     #[{opt_key => opt_val, opt_key2 => opt_val2}, {opt_key => opt_val}]
@@ -91,11 +87,13 @@ class CommissionRequestTemplatesController < ApplicationController
     end
 
     #Intended for use with option strings
+    #Returns the step number for a given string
     def step_number(string)
       return string.split('-',5)[2].to_i
     end
 
     #Intended for use with option strings
+    #Returns the option number for a given string
     def option_number(string)
       return string.split('-',5)[3].to_i
     end
@@ -108,9 +106,12 @@ class CommissionRequestTemplatesController < ApplicationController
       hash["categories"].each_with_index do |cat,index|
         if cat["name"] == json["name"]
           hash["categories"][index] = json;
-          found = true
+          found = true 
         end
+        break if found = true
       end
+      #If we finished the loop without finding a same-name category,
+      #append the new category
       if !found
         hash["categories"] << json
       end
