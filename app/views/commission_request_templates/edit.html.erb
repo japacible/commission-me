@@ -13,7 +13,7 @@
     <!-- this div is just a hacky way to pass the json data off to the
           javascript -->
     <div id="json_id" data-url="<%= @json.to_json %>" />
-    <script src="assets/commission-settings.js"></script>  
+    <script text="text/javascript"><%= render 'commission_settings.js'%></script>  
   </head>
   
   <body>

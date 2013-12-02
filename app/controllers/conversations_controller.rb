@@ -1,5 +1,5 @@
 class ConversationsController < ApplicationController
-  before_filter :get_user, :get_mailbox, :get_box
+  before_filter :verify_logged_in, :get_mailbox, :get_box
   before_filter :check_current_subject_in_conversation, 
     :only => [:show, :update, :destroy]
 
@@ -22,15 +22,6 @@ private
     @mailbox = current_user.mailbox
   end
 
-  def get_user
-    if !@user = current_user
-      flash[:alert] = "You must be logged in to view conversations." 
-      redirect_to root_path
-      #Ideally we need to set up a general purpose 'redirect_back_or_to_root'
-      #so that the user doesn't get confused by always getting pushed to root'
-    end
-  end
-
   def get_box
     if params[:box].blank? or !["inbox","sentbox","trash"].include?params[:box]
       params[:box] = 'inbox'
@@ -41,7 +32,7 @@ private
 
   def check_current_subject_in_conversation
     @conversation = Conversation.find_by_id(params[:id])
-    if @conversation.nil? or !@conversation.is_participant?(@user)
+    if @conversation.nil? or !@conversation.is_participant?(current_user)
       redirect_to conversations_path(:box => @box),
         alert:"Cannot access conversation with id: #{params[:id]}"
     return

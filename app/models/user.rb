@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessible :name, :email, :password, :password_confirmation, :remember_token,
-  :commission_request_template_json
+  :commission_request_template_json, :paypal_email
   has_many :arts        
   has_many :received_commissions, :class_name => "Commission", :foreign_key => "artist_id"
   has_many :requested_commissions, :class_name => "Commission", :foreign_key => "commissioner_id"
@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   validates_uniqueness_of :email
   validates_presence_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
-  validates_presence_of :password, :on => :create        
+  validates_presence_of :password, :on => :create
   
   #Used by mailboxer to know that users can message each other
   acts_as_messageable

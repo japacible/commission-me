@@ -11,14 +11,12 @@
       function getAuthToken(){ 
         return "<%=form_authenticity_token%>"
       }
-    </script>
-    <script type="text/javascript">
       function getArtist(){
         return "<%=@artist.id%>"
       }
     </script>
     <div id="json_id" data-url="<%= @json.to_json %>" />
-    <script src="/assets/commission-review.js"></script>  
+    <script text="text/javascript"><%=render 'commission_review.js'%></script>  
   </head>
   <body>
     <div class="container">

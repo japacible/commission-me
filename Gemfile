@@ -50,8 +50,6 @@ gem 'rails_12factor', group: :production
 
 gem 'unicorn'
 
-#gem 'font-awesome-sass'
-
 ruby "1.9.3"
 end
 
@@ -60,3 +58,6 @@ end
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+# Use Font Awesome for UI
+gem "font-awesome-rails"

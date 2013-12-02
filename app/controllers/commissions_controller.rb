@@ -46,7 +46,7 @@ class CommissionsController < ApplicationController
         req.commission_current = json
       end
       if @commission_request.save
-        flash[:alert] = "Commission successfully sent!"
+        flash[:notice] = "Commission successfully sent!"
         redirect_to root_url
       else
         @commission.delete

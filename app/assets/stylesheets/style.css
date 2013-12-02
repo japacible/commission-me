@@ -14,7 +14,7 @@
     background:none;
     padding:0;
     margin-top:20px;
-    margin-bottom:0px;
+    margin-bottom:8px;
 }
 
 .navbar .navbar-left > li {
@@ -50,23 +50,27 @@
 /* Homepage Images */
 .bodyview {
   background-color:rgba(235, 239, 240, 1);
-  margin-left:auto;
-  margin-right:auto;
   padding-top:25px;
-  width:1200px;
-  top:0px;
-  left:0px;
-  bottom:0px;
-  right:0px;
-  min-height:100%;
+  position:absolute; 
+  left:5%; width:90%;
+   min-height:100%;
+}
+
+.container {
+  margin: 0 auto;
 }
 
 .banner {
-    background-color:rgba(80, 91, 107, 1);
-    color:rgba(244, 245, 225, 1);
-    text-align:center;
-    font-size: 18px;
-    margin-top:-25px;
+  background-color:rgba(80, 91, 107, 1);
+  color:rgba(244, 245, 225, 1);
+  text-align:center;
+  font-size: 18px;
+  margin-top:-25px;
+
+}
+
+.featuredimg {
+  width:200px;
 }
 
 /* Sign up/Log in and Settings*/
@@ -127,6 +131,23 @@ hr {
 .thumbnail {
   position:relative;
   overflow:hidden;
+  max-width:20%
+  margin:auto;
+}
+
+.img-item {
+  max-width:100%;
+}
+
+.img-row {
+  display:block; 
+  margin:0; 
+  padding:0;
+  max-width:95%;
+}
+
+.img-container {
+  text-align:center;
 }
 
 .caption {
@@ -219,6 +240,11 @@ button {
   width:1200px;
   margin-left:auto;
   margin-right:auto;
+}
+
+.fa {
+  font-size:15px;
+  padding-left:8px;
 }
 
 /* Alerts */

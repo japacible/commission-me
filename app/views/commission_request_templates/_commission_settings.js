@@ -58,11 +58,24 @@ $(document).ready(function() {
       "class": "category tab-pane",
       "action": "update_template",
       "method": "post"
+      //,"enctype":"multipart/form-data" This is what we put if we want to
+      //post images to the database, but currently server side code
+      //isn't set up for it
     }).appendTo(".tab-content");
     var authenticity_token = $("<input/>", {
       "name": "authenticity_token",
       "value": getAuthToken(),
       "type": "hidden"
+    }).appendTo(category);
+    //Austin or anyone who wants to edit this thing,
+    //you can pass the category name of the category being edited
+    //as a form named "cat_name"
+    //For new forms it will create a new category, otherwise
+    //it will override the old category
+    var hacky_cat_name = $("<input/>", {
+      "name": "cat_name",
+      "value": val.name,
+      "type" : "hidden"
     }).appendTo(category);
     /* LOOP THROUGH EACH STEP */
     $.each(val.steps, function(stepkey, val) {
@@ -72,11 +85,11 @@ $(document).ready(function() {
         "class": "step"
       }).appendTo(category);
       
-      // Remove Step
+      // Button: Remove Step
       $("<button/>", {
         "type": "button",
-        "class": "close remove-step",
-        html: "&times;"
+        "class": "btn btn-default pull-right",
+        html: "&#150;"
       }).appendTo(step);
       
       // Glyph: Dropdown
@@ -128,12 +141,12 @@ $(document).ready(function() {
         var panel_heading = $("<div/>", {
           "class": "panel-heading"
         }).appendTo(panel);
-        
-        // Remove Option
+
+        // Button: Option Removal
         $("<button/>", {
           "type": "button",
-          "class": "close remove-option",
-          html: "&times;"
+          "class": "btn btn-default pull-right",
+          html: "&#150;"
         }).appendTo(panel_heading);
         
         // Option Name : option-[cat]-[step]-[opt]-name

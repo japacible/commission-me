@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <!-- Include js for the popover displaying commissions statistics -->
-  <%= javascript_include_tag "commissions-profile"%>
+  <script type="text/javascript"><%= render 'commissions_profile.js'%></script>
   <title><%=@user.name%></title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -90,47 +90,45 @@
               <% end %>
           </div> 
         </div> 
-      </div> 
+      </div>
     </div>
 
     <!-- break between user info and art --> 
-    <hr>
+
+  <hr>
   
   <!-- Container for : Artist's work -->
-  <div class="container">
+  <div class="img-container container">
     <div class="row-fluid">
-      <div class="row">
+      <div class="img-row row">
         <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
+          <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
           <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div>  
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
+            </div>
+          </div> 
+          <div class="thumbnail col-md-3">
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
+            <div class="caption">
+              <h2>Title</h2>
+              <p>Description</p>
           </div>
-        </div>  
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
-
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg" %>
-          <div class="caption">
-            <h2>Title</h2>
-            <p>Description</p>
-          </div>
-        </div> 
+        </div>
       </div>
     </div>
 
@@ -138,42 +136,42 @@
     <hr>
 
     <!-- Container for : Artist's work -->
-    <div class="container">
+    <div class="img-container container">
       <div class="row-fluid">
-        <div class="row">
+        <div class="img-row row">
           <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
             <div class="caption">
               <h2>Title</h2>
               <p>Description</p>
             </div>
           </div>  
           <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
             <div class="caption">
               <h2>Title</h2>
               <p>Description</p>
             </div>
           </div> 
           <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
             <div class="caption">
               <h2>Title</h2>
               <p>Description</p>
             </div>
           </div> 
           <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
+            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
             <div class="caption">
               <h2>Title</h2>
               <p>Description</p>
             </div>
           </div> 
         </div>
-        <div class="row">
+        <div class="img-row row">
           &nbsp
         </div>
-        <div class="row">
+        <div class="img-row row">
           <div class="thumbnail col-md-3">
             <%= image_tag "BioCorgi.jpg" %>
             <div class="caption">
