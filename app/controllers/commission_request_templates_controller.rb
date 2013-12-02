@@ -22,14 +22,16 @@ class CommissionRequestTemplatesController < ApplicationController
       @user.commission_request_template_json = {"categories" => []}.to_json
     end
     hash = @user.commission_request_template_json 
-    hash["categories"] = [ build_json_from_params ] #Use Currently overrides all categories
+    json = build_json_from_params 
+    #Add new/updated category (json) to hash 
+    add_category hash, json
     @user.commission_request_template_json = nil
     @user.save
     @user.commission_request_template_json = hash
     if @user.save
       flash[:alert] = "Commission Template Saved!"  #+@user.commission_request_template_json.to_s
     else
-      flash[:alert] = "Error Saving Template"
+      flash[:notify] = "Error Saving Template"
     end
     #sleep 8
     redirect_to root_url
@@ -41,7 +43,7 @@ class CommissionRequestTemplatesController < ApplicationController
     #This depends on a specific naming convention
     def build_json_from_params
       blob = {}
-      blob["name"] = "default_category"
+      blob["name"] = params["cat_name"]
       blob["steps"] = []
       get_steps.each do |step|
         blob_step = {}
@@ -98,4 +100,19 @@ class CommissionRequestTemplatesController < ApplicationController
       return string.split('-',5)[3].to_i
     end
 
+    #Adds the specified json category to the given hash(map)
+    #If a category with json["name"] already exists, this will overrwrite it
+    #Otherwise it will append it
+    def add_category(hash, json) 
+      found = false
+      hash["categories"].each_with_index do |cat,index|
+        if cat["name"] == json["name"]
+          hash["categories"][index] = json;
+          found = true
+        end
+      end
+      if !found
+        hash["categories"] << json
+      end
+    end
 end
