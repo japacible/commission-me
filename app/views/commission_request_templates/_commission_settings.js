@@ -88,8 +88,8 @@ $(document).ready(function() {
       // Button: Remove Step
       $("<button/>", {
         "type": "button",
-        "class": "btn btn-default pull-right",
-        html: "&#150;"
+        "class": "close remove-step",
+        html: "&times;"
       }).appendTo(step);
       
       // Glyph: Dropdown
@@ -145,8 +145,8 @@ $(document).ready(function() {
         // Button: Option Removal
         $("<button/>", {
           "type": "button",
-          "class": "btn btn-default pull-right",
-          html: "&#150;"
+          "class": "close remove-option",
+          html: "&times;"
         }).appendTo(panel_heading);
         
         // Option Name : option-[cat]-[step]-[opt]-name
