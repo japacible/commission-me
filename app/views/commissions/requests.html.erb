@@ -20,6 +20,7 @@
         <h1>Commission Requests: <%=@user.name%>!</h1>
       </div>
  
+      <h3> Sent Commission Requests </h3>
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -31,7 +32,36 @@
             </tr>
           </thead>
           <tbody>
-          <!-- For each commission, populate a <tr> -->
+          <!-- For each requested commission, populate a <tr> -->
+            <%@user.requested_commissions.each do |commission| %>         
+              <tr>
+                <!-- Sender name should link to user profile -->
+                
+                <td><%=link_to commission.commission_current["name"],
+                   review_path(:commission_id => commission.id), :class => "link"%></td>
+                <td><%=link_to commission.commissioner.name, 
+                  commission.commissioner %></td>
+              
+                <td><%= commission.state%></td>
+                <td><%=commission.updated_at %></td>
+              </tr>
+            <%end%>  
+          </tbody>
+        </table>
+
+      <h3> Received Commission Requests </h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>From</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!-- For each received commission, populate a <tr> -->
             <%@user.received_commissions.each do |commission| %>         
               <tr>
                 <!-- Sender name should link to user profile -->
