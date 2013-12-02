@@ -20,6 +20,64 @@
         <h1>Commission Requests: <%=@user.name%>!</h1>
       </div>
  
+      <h3> Sent Commission Requests </h3>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Title</th>
+              <th>To</th>
+              <th>Status</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+          <!-- For each requested commission, populate a <tr> -->
+            <%@user.requested_commissions.each do |commission| %>         
+              <tr>
+                <!-- Sender name should link to user profile -->
+                
+                <td><%=link_to commission.commission_current["name"],
+                   review_path(:commission_id => commission.id), :class => "link"%></td>
+                <td><%=link_to commission.artist.name, 
+                  commission.artist %></td>
+              
+                <td>
+                  <%if commission.state == "Accepted"%>
+                    <form action="https://www.paypal.com/cgi-bin/webscr" 
+                    method="post" target="_top">
+                    <input type="hidden" name="cmd" value="_xclick">
+                    <input type="hidden" name="business" value=<%=@user.email%>>
+                    <input type="hidden" name="lc" value="US">
+                    <input type="hidden" name="item_name" 
+                    value=<%=commission.commission_current["name"]%>>
+                    <input type="hidden" name="button_subtype" value="services">
+                    <input type="hidden" name="no_note" value="0">
+                    <input type="hidden" name="amount" 
+                    value=<%=commission.commission_current["price"]%>>
+                    <input type="hidden" name="currency_code" value="USD">
+                    <input type="hidden" name="bn" 
+                    value="PP-BuyNowBF:btn_paynow_SM.gif:NonHostedGuest">
+                    <input type="image" 
+                    src=
+                    "https://www.paypalobjects.com/en_US/i/btn/btn_paynow_SM.gif" 
+                    border="0" name="submit" 
+                    alt="PayPal - The safer, easier way to pay online!">
+                    <img alt="" border="0" 
+                    src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" 
+                    width="1" height="1">
+                    </form>
+                  <%else%>
+                    <%= commission.state%>
+                  <%end%>
+                </td>
+                <td><%=commission.updated_at %></td>
+              </tr>
+            <%end%>  
+          </tbody>
+        </table>
+
+      <h3> Received Commission Requests </h3>
       <div class="table-responsive">
         <table class="table">
           <thead>
@@ -31,7 +89,7 @@
             </tr>
           </thead>
           <tbody>
-          <!-- For each commission, populate a <tr> -->
+          <!-- For each received commission, populate a <tr> -->
             <%@user.received_commissions.each do |commission| %>         
               <tr>
                 <!-- Sender name should link to user profile -->
