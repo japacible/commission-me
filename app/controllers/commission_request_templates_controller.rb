@@ -3,6 +3,7 @@
 class CommissionRequestTemplatesController < ApplicationController
   #Should eventually be removed (all artists start with a 
   #default template)
+  before_filter :verify_logged_in
   def new
     
   end
