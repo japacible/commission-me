@@ -49,7 +49,7 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:commission_id])
     @commission.state = "Accepted"
     @commission.save
-    flash[:alert] = "Commission Accepted!"
+    flash[:notice] = "Commission Accepted!"
     redirect_to root_url
     #TODO: redirect to commissions list instead
   end
@@ -58,13 +58,28 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:commission_id])
     @commission.state = "Declined"
     @commission.save
-    flash[:alert] = "Commission Declined!"
+    flash[:notice] = "Commission Declined!"
     redirect_to root_url
     #TODO: redirect to commissions list instead
   end
 
   def finish
-    @commission.state = "Finished"
+    @commission = Commission.find(params[:commission_id])
+    @commission.state = "Payment Received"
+    if @commission.save
+    else
+      i = 0
+      for message in @commission.errors.full_messages do
+        if i == 0
+          flash[:alert] = message
+          i = 1
+        else
+          flash[:alert] << ", " + message
+        end
+      end
+    end
+    flash[:notice] = "Commission Finalized!"
+    redirect_to commissions_requests_path
   end
 
 private
