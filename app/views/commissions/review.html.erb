@@ -27,8 +27,29 @@
       <% if current_user.id == @artist.id %>
         <form action="" method="post">
           <div id="com-req"></div>
-          <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
-        
+          
+          <div class="panel panel-info">
+            <div class="panel-heading">Specification</div>
+            <div id="specification" class="panel-body"></div>
+          </div>
+          
+          <div class="panel panel-info">
+            <div class="panel-heading">Revised Price</div>
+            <div class="panel-body">
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input id="price" name="price" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-info">
+            <div class="panel-heading">Review</div>
+            <div class="panel-body">
+              <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
+            </div>
+          </div>
+          
           <center>
             <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
             @commission.id), :class => "btn") %>

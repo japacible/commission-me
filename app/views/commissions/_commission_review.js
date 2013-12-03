@@ -1,13 +1,13 @@
 /*
-v1.1
+v1.3
 This JavaScript file parses a commission request JSON object
 into appropriate HTML representation for an artist to review a customer's
-commission request. The artist chooses to accept or decline the
-commission.
+commission request. The artist chooses to accept, decline, or review the
+commission for further specification.
 
 FUTURE MODIFICATIONS
-- Preliminary Price calculation
-- Revision option w/ comments
+- Form Validation
+- Anonymize
 */
 
 $(document).ready(function() {
@@ -52,24 +52,20 @@ $(document).ready(function() {
     }).appendTo(choice_container);
   });
 
-  //Display final step
-  var panel = $("<div/>", {
-    "class": "panel panel-info"
-  }).appendTo("#com-req");
+  // Display Customer Specifications
+  $.each(category.spec, function(key, val) {
+    $("<p/>", {
+      html: key+1 + ")   " + val
+    }).appendTo($("#specification"));
+  });
+  
+  // Artist's Revised Price
+  $("#price").attr("placeholder", "Estimated Value: $" + category.price);
 
-  $("<div/>", {
-    "class": "panel-heading",
-    html: "Specification"
-  }).appendTo(panel);
-
-  $("<div/>", {
-    "class": "panel-body",
-    html: category.final
-  }).appendTo(panel);
 
   var authenticity_token = $("<input/>", {
     "name": "authenticity_token",
     "value": getAuthToken(),
     "type": "hidden"
-  }).appendTo(panel);
+  }).appendTo($("#com-req"));
 });
