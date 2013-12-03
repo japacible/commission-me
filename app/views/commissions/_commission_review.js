@@ -27,6 +27,12 @@ $(document).ready(function() {
     var panel = $("<div/>", {
       "class": "panel panel-info"
     }).appendTo("#com-req");
+
+    var authenticity_token = $("<input/>", {
+      "name": "authenticity_token",
+      "value": getAuthToken(),
+      "type": "hidden"
+    }).appendTo(panel);
     
     // Step Name
     $("<div/>", {

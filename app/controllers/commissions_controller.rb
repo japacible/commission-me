@@ -77,11 +77,24 @@ class CommissionsController < ApplicationController
     if current_user != nil && current_user.id == @commission.artist_id
       @commission.state = "Accepted"
       @commission.save
-      flash[:alert] = "Commission Accepted!"
+      flash[:alert] = ""
+      params.each do |k, v|
+        flash[:alert] << " K= " + k + " : " + v
+      end
+      #flash[:alert] = "Commission Accepted!"
       redirect_to commissions_requests_path
     end
   end
   
+  def catch_post_review
+    switch = params[:post]
+    if switch == "Decline"
+      decline()
+    else
+      redirect_to commissions_requests_path
+    end
+  end
+
   def decline
     @commission = Commission.find(params[:commission_id])
     if current_user != nil && current_user.id == @commission.artist_id

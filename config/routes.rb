@@ -10,6 +10,7 @@ Myapp::Application.routes.draw do
   get "commissions/new" => 'commissions#edit'
   get "commissions/requests/accept" => 'commissions#accept'
   get "commissions/requests/decline" => 'commissions#decline'
+  post "commissions/review/:commission_id" => 'commissions#catch_post_review'
   get "commissions/review/:commission_id" => 'commissions#review', as: :review
   get "commissions/requests" => 'commissions#requests'
   get "commissions/:artist_id" => 'commissions#edit'
