@@ -84,7 +84,7 @@
                 <!-- TODO: Do the same with a messaging link-->
                 <button type="submit" class="messagebtn" onClick="reply()">
     		Message</button>
-	      <% else %>
+	      <% elsif @user.name == current_user.name %>
 		<%=link_to "My Commissions", commissions_requests_path,
 		:class => "commissionlistbtn"%>
               <% end %>
