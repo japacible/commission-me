@@ -66,10 +66,20 @@ class CommissionsController < ApplicationController
   def finish
     @commission = Commission.find(params[:commission_id])
     @commission.state = "Finalized"
-    @commission.save
-    flash[:alert] = "Commission Finalized!"
-    redirect_to root_url
-    #TODO: redirect to commissions list instead
+    if @commission.save
+    else
+      i = 0
+      for message in @commission.errors.full_messages do
+        if i == 0
+          flash[:alert] = message
+          i = 1
+        else
+          flash[:alert] << ", " + message
+        end
+      end
+    end
+    flash[:notice] = "Commission Finalized!"
+    redirect_to commissions_requests_path
   end
 
 private

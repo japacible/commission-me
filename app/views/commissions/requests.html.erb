@@ -38,7 +38,8 @@
                 <!-- Sender name should link to user profile -->
                 
                 <td><%=link_to commission.commission_current["name"],
-                   review_path(:commission_id => commission.id), :class => "link"%></td>
+                   review_path(:commission_id => commission.id),
+                   :class => "link"%></td>
                 <td><%=link_to commission.artist.name, 
                   commission.artist %></td>
               
@@ -47,10 +48,11 @@
                     <form action="https://www.paypal.com/cgi-bin/webscr" 
                     method="post" target="_top">
                     <input type="hidden" name="cmd" value="_xclick">
-                    <input type="hidden" name="business" value=<%=@user.email%>>
+                    <input type="hidden" name="business" 
+                    value=<%=User.find_by_name(commission.artist.name).email%>>
                     <input type="hidden" name="lc" value="US">
                     <input type="hidden" name="item_name" 
-                    value=<%=commission.commission_current["name"]%>>
+                    value="<%=commission.commission_current["name"]%>">
                     <input type="hidden" name="button_subtype" value="services">
                     <input type="hidden" name="no_note" value="0">
                     <input type="hidden" name="amount" 
@@ -95,7 +97,8 @@
                 <!-- Sender name should link to user profile -->
                 
                 <td><%=link_to commission.commission_current["name"],
-                   review_path(:commission_id => commission.id), :class => "link"%></td>
+                   review_path(:commission_id => commission.id),
+                   :class => "link"%></td>
                 <td><%=link_to commission.commissioner.name, 
                   commission.commissioner %></td>
               
