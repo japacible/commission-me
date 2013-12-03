@@ -76,6 +76,7 @@ private
     blob = {}
     i = 0
     category_blob = {}
+    price = 0
     params.each do |k, v|
       if k.starts_with? "option"
         if i == 0
@@ -92,8 +93,10 @@ private
         blob_step["name"] = category_blob["steps"][num]["name"]
         blob_step["choice"] = category_blob["steps"][num]["options"][choice_num]
         blob["steps"] << blob_step
+        price += blob_step["choice"]["price"].to_i
       end
     end
+    blob["price"] = price
     return blob
   end
 
