@@ -24,9 +24,9 @@
         <h1>Commission Review</h1>
       </div>
       
-      <div id="com-req"></div>
       <% if current_user.id == @artist.id %>
         <form action="" method="post">
+          <div id="com-req"></div>
           <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
         
           <center>

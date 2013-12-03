@@ -24,43 +24,46 @@ $(document).ready(function() {
   
   $.each(category.steps, function(stepkey, step) {
     // Step Container
-    var step_container = $("<div/>", {
-      "class": "step"
+    var panel = $("<div/>", {
+      "class": "panel panel-info"
     }).appendTo("#com-req");
     
     // Step Name
-    $("<h2/>", {
+    $("<div/>", {
+      "class": "panel-heading",
       html: step.name
-    }).appendTo(step_container);
+    }).appendTo(panel);
     
     var choice = step.choice;
     
     // Choice Container
     var choice_container = $("<div/>", {
-      "class": "choice"
-    }).appendTo(step_container);
+      "class": "panel-body"
+    }).appendTo(panel);
     
     // Choice Name
-    $("<h3/>", {
-      html: choice.name
+    $("<h4/>", {
+      html: choice.name + " ($" + choice.price + ")"
     }).appendTo(choice_container);
     
     // Choice Description
-    $("<p/>", {
+    $("<em/>", {
       html: choice.description
     }).appendTo(choice_container);
   });
 
   //Display final step
-  var step_container = $("<div/>", {
-    "class": "step"
+  var panel = $("<div/>", {
+    "class": "panel panel-info"
   }).appendTo("#com-req");
 
-  $("<h2/>", {
-    html: "Description: "
-  }).appendTo(step_container);
+  $("<div/>", {
+    "class": "panel-heading",
+    html: "Specification"
+  }).appendTo(panel);
 
-  $("<p/>", {
+  $("<div/>", {
+    "class": "panel-body",
     html: category.final
-  }).appendTo(step_container);
+  }).appendTo(panel);
 });
