@@ -137,10 +137,11 @@ private
         price += blob_step["choice"]["price"].to_i
         blob["steps"] << blob_step      
       elsif k.starts_with? "final"
-        blob["scope"] = [v];
+        blob["spec"] = [v];
       end
     end
     blob["price"] = price
+    blob["review"] = []
     return blob
   end
 
