@@ -31,7 +31,7 @@
         do anything in this view. -->
       <% if @artist.name == current_user.name%>
         <% if @commission.state == "Accepted"%>
-          <%= link_to("Finalize", commissions_requests_finish_path(:commission_id => 
+          <%= link_to("Payment Received", commissions_requests_finish_path(:commission_id => 
               @commission.id), :class => "btn") %>
         <% else %>
           <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>

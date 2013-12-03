@@ -65,7 +65,7 @@ class CommissionsController < ApplicationController
 
   def finish
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Finalized"
+    @commission.state = "Payment Received"
     if @commission.save
     else
       i = 0
