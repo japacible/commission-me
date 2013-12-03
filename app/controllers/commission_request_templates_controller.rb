@@ -33,7 +33,7 @@ class CommissionRequestTemplatesController < ApplicationController
     @user.save
     @user.commission_request_template_json = hash
     if @user.save
-      flash[:notice] = "Commission Template Saved!"  #+@user.commission_request_template_json.to_s
+      flash[:notice] = "Commission Template Saved!"
     else
       flash[:alert] = "Error Saving Template"
     end 
@@ -54,6 +54,7 @@ class CommissionRequestTemplatesController < ApplicationController
         blob_step["options"] = get_options(step)    
         blob["steps"] << blob_step
       end
+      blob["prompt"] = params[:prompt]
       return blob
     end
 
