@@ -18,24 +18,27 @@ FUTURE MODIFICATIONS
 - Add / Rearrange Categories
 - Rearrange Steps
 - Rearrange Options
-- Preview Button Functionality
-- Cancel Button Functionality
 - Prettify New Category Prompt
 */
 
 (function($) { // Anonymous function module
 
+  var data = null;
+
   $(function() { // DOM is loaded and ready
   
     // Grab commission template from server
-    var data = $('#json_id').data('url');
+    data = $('#json_id').data('url');
     
     // Build page from commission settings data
     build_page(data);
     
-    // Bind event handlers
-    rebind_events();
+    // Activate buttons and name fields
+    load_dynamics();
   });
+  
+  var category_num = 0;
+  var step
   
   function build_page(data) {
     /* LOOP THROUGH EACH CATEGORY */
@@ -48,65 +51,71 @@ FUTURE MODIFICATIONS
         "data-toggle": "tab"
       }).appendTo(tabli);
       $("<span/>", {
-        "class": "cat-name",
         html: val.name
       }).appendTo(tablia);
       
-      // Remove Category
+      // Button: Category Removal
       $("<button/>", {
         "type": "button",
         "class": "close remove-category",
         html: "&times;"
       }).appendTo(tablia);
     
-      // Category Container (Form)
-      var category = $("<form/>", {
+      // Category Container
+      var category = $("<div/>", {
         "id": "category-" + catkey,
-        "class": "category tab-pane",
-        "action": "update_template",
-        "method": "post"
-        //,"enctype":"multipart/form-data" This is what we put if we want to
-        //post images to the database, but currently server side code
-        //isn't set up for it
+        "class": "category tab-pane"
       }).appendTo(".tab-content");
+      
+      // Get Auth Token
       var authenticity_token = $("<input/>", {
         "name": "authenticity_token",
         "value": getAuthToken(),
         "type": "hidden"
       }).appendTo(category);
-      //Austin or anyone who wants to edit this thing,
-      //you can pass the category name of the category being edited
-      //as a form named "cat_name"
-      //For new forms it will create a new category, otherwise
-      //it will override the old category
+      
+      // Category Name : category-[cat]
       var hacky_cat_name = $("<input/>", {
-        "name": "cat_name",
+        "name": "category-" + catkey,
         "value": val.name,
         "type" : "hidden"
       }).appendTo(category);
+      
+      // Step Group
+      var step_group = $("<div/>", {
+        "id": "accordion-" + catkey,
+        "class": "step-group"
+      }).appendTo(category);
+      
       /* LOOP THROUGH EACH STEP */
       $.each(val.steps, function(stepkey, val) {
       
         // Step Container
-        var step = $("<div/>", {
-          "class": "step"
-        }).appendTo(category);
+        var step_container = $("<div/>", {
+          "class": "step-container"
+        }).appendTo(step_group);
         
-        // Button: Remove Step
+        // Step Heading
+        var step_heading = $("<div/>", {
+          "class": "step-heading well",
+          "data-toggle": "collapse",
+          "data-parent": "#accordion-" + catkey,
+          "href": "#" + catkey + "-" + stepkey,
+          html: "STEP " + (stepkey+1)
+        }).appendTo(step_container);
+        
+        // Button: Step Removal
         $("<button/>", {
           "type": "button",
           "class": "close remove-step",
           html: "&times;"
-        }).appendTo(step);
+        }).appendTo(step_heading);
         
-        // Glyph: Dropdown
-        $("<button/>", {
-          "class": "btn btn-sm btn-default pull-left",
-          "type": "button",
-          "data-toggle": "collapse",
-          "data-target": "#step-options-" + catkey + "-" + stepkey,
-          html: "Expand"
-        }).appendTo(step);
+        // Step
+        var step = $("<div/>", {
+          "id": catkey + "-" + stepkey,
+          "class": "step collapse"
+        }).appendTo(step_container);
         
         // Step Name : step-[cat]-[step]
         var step_name = $("<div/>", {
@@ -126,10 +135,11 @@ FUTURE MODIFICATIONS
           "value": val.name
         }).appendTo(step_name);
         
-        var step_options = $("<div/>", {
-          "id": "step-options-" + catkey + "-" + stepkey,
-          "class": "collapse"
+        var option_group = $("<div/>", {
+          "id": "option-group-" + catkey + "-" + stepkey
         }).appendTo(step);
+        
+        add_step_utilities(step);
         
         /* LOOP THROUGH EACH OPTION */
         $.each(val.options, function(optkey, val) {
@@ -137,7 +147,7 @@ FUTURE MODIFICATIONS
           // Option Container
           var option = $("<div/>", {
             "class": "option"
-          }).appendTo(step_options);
+          }).appendTo(option_group);
           
           // Option Panel
           var panel = $("<div/>", {
@@ -230,14 +240,14 @@ FUTURE MODIFICATIONS
           }).appendTo(panel_body);
         });
         
-        add_step_utilities(step);
+        
       });
       
-      /* ADD A STEP */
+      // Button: Add Step
       $("<button/>", {
         "class": "btn btn-default add-step",
         "type": "button",
-        html: "Add a Step"
+        html: "Add Step"
       }).appendTo(category);
       
       $("<hr>").appendTo(category);
@@ -250,50 +260,40 @@ FUTURE MODIFICATIONS
         "name": "prompt",
         "class": "form-control",
         "placeholder": "Prompt the customer for commission specification....",
-        "html": val.prompt
+        "html": data.categories.prompt
       }).appendTo(category);
       
-      // Buttons: Preview, Submit, Cancel
+      // Button: Submit
       var submit = $("<div/>", {
         "id": "control-btns"
       }).appendTo(category);
-/*
-      $("<button/>", {
-        "id": "preview",
-        "class": "btn btn-default btn-lg",
-        "type": "button",
-        html: "Preview"
-      }).appendTo(submit);
-*/
       $("<input/>", {
         "id": "submit",
         "class": "btn btn-primary btn-lg",
         "type": "submit",
         html: "Submit"
       }).appendTo(submit);
-/*
-      $("<button/>", {
-        "id": "cancel",
-        "class": "btn btn-default btn-lg pull-right",
-        "type": "button",
-        html: "Cancel"
-      }).appendTo(submit);
-*/
-      });
+
+    }); // category loop
     
-      //// ADD A CATEGORY ////
+    // Button: New Category
     var tabli = $("<li/>").appendTo(".nav-tabs");
     var tablia = $("<a/>").appendTo(tabli);
     $("<span/>", {
       "class": "cat-name add-category",
-      html: "Add a Category"
+      html: "New Category"
     }).appendTo(tablia);
     
     $('.nav-tabs a:first').tab('show');
     
     rebind_events();
     
+  } // build page
+  
+  function load_dynamics() {
+    rebind_events();
     
+    // parse through form
   }
   
   // Unbinds all event handlers and binds each interactive UI
@@ -303,18 +303,18 @@ FUTURE MODIFICATIONS
     // Rebind Add Category
     $(".add-category").unbind();
     $(".add-category").click(function() {
-      add_category();
+      add_category(this);
     });
     // Rebind Add Step
     $(".add-step").unbind();
     $(".add-step").click(function() {
-      add_step(this);
+      add_step($(this).prev());
     });
     
     // Rebind Add Option
     $(".add-option").unbind();
     $(".add-option").click(function() {
-      add_option(this);
+      add_option($(this).prev());
     });
     
     // Rebind Remove Category
@@ -330,7 +330,7 @@ FUTURE MODIFICATIONS
     // Rebind Remove Step
     $(".remove-step").unbind();
     $(".remove-step").click(function() {
-      $(this).parent().remove();
+      $(this).parent().parent().remove();
     });
     
     // Rebind Remove Option
@@ -342,33 +342,116 @@ FUTURE MODIFICATIONS
   
   // Adds a new category, including both navigation tab and
   // form body. Creates one step with one option inside.
-  function add_category() {
-    var cat = prompt("New Category:");
-    alert(cat);
+  function add_category(frame) {
+    var cat_name = prompt("New Category:");
+    if (!cat_name) return;
+    
+    var tabli = $("<li/>").insertBefore($(frame).parent().parent());
+    var tablia = $("<a/>", {
+      "href": "#category-",
+      "data-toggle": "tab"
+    }).appendTo(tabli);
+    $("<span/>", {
+      html: cat_name
+    }).appendTo(tablia);
+    
+    // Button: Category Removal
+    $("<button/>", {
+      "type": "button",
+      "class": "close remove-category",
+      html: "&times;"
+    }).appendTo(tablia);
+  
+    // Category Container
+    var category = $("<div/>", {
+      "id": "category-",
+      "class": "category tab-pane"
+    }).appendTo(".tab-content");
+    
+    // Get Auth Token
+    var authenticity_token = $("<input/>", {
+      "name": "authenticity_token",
+      "value": getAuthToken(),
+      "type": "hidden"
+    }).appendTo(category);
+    
+    // Category Name : category-[cat]
+    var hacky_cat_name = $("<input/>", {
+      "name": "category-",
+      "value": cat_name,
+      "type" : "hidden"
+    }).appendTo(category);
+    
+    // Step Group
+    var step_group = $("<div/>", {
+      "id": "accordion-",
+      "class": "step-group"
+    }).appendTo(category);
+    
+    add_step(step_group);
+    
+    // Button: Add Step
+    $("<button/>", {
+      "class": "btn btn-default add-step",
+      "type": "button",
+      html: "Add Step"
+    }).appendTo(category);
+    
+    rebind_events();
+    
+    $("<hr>").appendTo(category);
+    
+    /* FINAL STEP */
+    $("<h3/>", {
+      html: "Final Step"
+    }).appendTo(category);
+    $("<textarea/>", {
+      "name": "prompt",
+      "class": "form-control",
+      "placeholder": "Prompt the customer for commission specification....",
+      "html": data.categories.prompt
+    }).appendTo(category);
+    
+    // Button: Submit
+    var submit = $("<div/>", {
+      "id": "control-btns"
+    }).appendTo(category);
+    $("<input/>", {
+      "id": "submit",
+      "class": "btn btn-primary btn-lg",
+      "type": "submit",
+      html: "Submit"
+    }).appendTo(submit);
   }
   
-  // Appends a new step in the current category.
+  // Appends a new step to the given frame.
   function add_step(frame) {
     // Step Container
-    var step = $("<div/>", {
-      "class": "step"
-    }).insertBefore($(frame));
+    var step_container = $("<div/>", {
+      "class": "step-container"
+    }).appendTo(frame);
     
-    // Remove Step
+    // Step Heading
+    var step_heading = $("<div/>", {
+      "class": "step-heading well",
+      "data-toggle": "collapse",
+      "data-parent": "#accordion-",
+      "href": "#",
+      html: "STEP "
+    }).appendTo(step_container);
+    
+    // Button: Step Removal
     $("<button/>", {
       "type": "button",
       "class": "close remove-step",
       html: "&times;"
-    }).appendTo(step);
+    }).appendTo(step_heading);
     
-    // Glyph: Dropdown
-    $("<button/>", {
-      "class": "btn btn-sm btn-default pull-left",
-      "type": "button",
-      "data-toggle": "collapse",
-      "data-target": "",
-      html: "Expand"
-    }).appendTo(step);
+    // Step
+    var step = $("<div/>", {
+      "id": "",
+      "class": "step collapse"
+    }).appendTo(step_container);
     
     // Step Name : step-[cat]-[step]
     var step_name = $("<div/>", {
@@ -376,23 +459,23 @@ FUTURE MODIFICATIONS
     }).appendTo(step);
     $("<label/>", {
       "class": "sr-only",
-      "for": "",
+      "for": "step-",
       html: "Step Name"
     }).appendTo(step_name);
     $("<input/>", {
-      "id": "",
-      "name": "",
+      "id": "step-",
+      "name": "step-",
       "class": "form-control input-lg step-name",
       "type": "text",
       "placeholder": "Step Name",
       "value": ""
     }).appendTo(step_name);
     
-    var step_options = $("<div/>", {
-      "class": "step-options" //collapse
+    var option_group = $("<div/>", {
+      "id": "option-group-"
     }).appendTo(step);
     
-    add_option(step_options);
+    add_option(option_group);
     
     add_step_utilities(step);
     
@@ -400,22 +483,20 @@ FUTURE MODIFICATIONS
   }
   
   function add_step_utilities(frame) {
-    //// ADD AN OPTION ////
+    // Button: Add Option
     $("<button/>", {
       "class": "btn btn-default add-option",
       "type": "button",
       html: "Add Option"
     }).appendTo($(frame));
-    
-    $("<hr>").appendTo($(frame));
   }
   
-  // Appends a new option in the current step.
+  // Appends a new option to the given frame.
   function add_option(frame) {
     // Option Container
     var option = $("<div/>", {
       "class": "option"
-    }).insertBefore($(frame));
+    }).appendTo($(frame));
     
     // Option Panel
     var panel = $("<div/>", {
@@ -427,7 +508,7 @@ FUTURE MODIFICATIONS
       "class": "panel-heading"
     }).appendTo(panel);
     
-    // Remove Option
+    // Button: Option Removal
     $("<button/>", {
       "type": "button",
       "class": "close remove-option",
