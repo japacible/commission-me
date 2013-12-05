@@ -25,13 +25,10 @@ class CommissionRequestTemplatesController < ApplicationController
     if @user.commission_request_template_json.nil? 
       @user.commission_request_template_json = {"categories" => []}.to_json
     end
-    hash = @user.commission_request_template_json 
-    json = build_json_from_params 
-    #Add new/updated category (json) to hash 
-    add_category hash, json
+    json = build_json_from_params  
     @user.commission_request_template_json = nil
     @user.save
-    @user.commission_request_template_json = hash
+    @user.commission_request_template_json = json
     if @user.save
       flash[:notice] = "Commission Template Saved!"
     else
@@ -40,32 +37,54 @@ class CommissionRequestTemplatesController < ApplicationController
     redirect_to root_url
   end
 
-
   private
     #Builds a JSON object from the params hash
     #This depends on a specific naming convention
-    def build_json_from_params
-      blob = {}
-      blob["name"] = params["cat_name"]
-      blob["steps"] = []
-      get_steps.each do |step|
-        blob_step = {}
-        blob_step["name"] = step[1]
-        blob_step["options"] = get_options(step)    
-        blob["steps"] << blob_step
+    def build_json_from_params 
+      #Construct array for holding categories
+      arr = [] 
+      get_categories.each do |cat|      #Meow
+        #For each category create a map {}
+        new_cat = {}
+        new_cat["name"] = cat[0]
+        new_cat["steps"] = []
+        get_steps(cat).each do |step|
+          #For each step create a map {}
+          new_cat_step = {}
+          new_cat_step["name"] = step[2]
+          #get options returns a list of maps of options
+          new_cat_step["options"] = get_options(step)    
+          new_cat["steps"] << new_cat_step
+        end 
+        arr << new_cat
       end
-      blob["prompt"] = params[:prompt]
-      return blob
+      json = {"categories" => arr, "prompt" => params[:prompt]}
+      return json
+    end
+    
+    #Returns a list of categories (cat name, cat number) from the params hash
+    def get_categories
+      cats = []
+      params.each do |k,v|
+        if k.starts_with? "category"
+          name = v
+          num = cat_number(k) 
+          cats << [name,num]
+        end
+      end
+      return cats
     end
 
-    #Returns a list of steps (step number, step name) from the params hash
-    def get_steps
+
+    #Returns a list of steps (category number, step number, step name) 
+    #from the params hash for the given (category name, category number) pair
+    def get_steps(category)
       steps = []
       params.each do |k,v|
-        if k.starts_with? "step"
+        if (k.starts_with? "step") && (cat_number(k) == category[1])
           name = v
           num = step_number(k)
-          steps << [num,name]
+          steps << [cat_number(k),num,name]
         end
       end
       return steps
@@ -78,7 +97,7 @@ class CommissionRequestTemplatesController < ApplicationController
       options = []
       params.each do |k,v|
         if k.starts_with? "option"
-          if step_number(k) == step[0]
+          if step_number(k) == step[1] && cat_number(k) == step[0]
             opt_name = k.split('-',5)[4]
             opt_val = v
             opt_option_num = option_number(k)
@@ -90,6 +109,12 @@ class CommissionRequestTemplatesController < ApplicationController
         end
       end
       return options
+    end
+
+    #Intended for use with option strings
+    #Returns the step number for a given string
+    def cat_number(string)
+      return string.split('-',5)[1].to_i
     end
 
     #Intended for use with option strings
