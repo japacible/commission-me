@@ -37,22 +37,21 @@ class CommissionRequestTemplatesController < ApplicationController
     redirect_to root_url
   end
 
-
   private
     #Builds a JSON object from the params hash
     #This depends on a specific naming convention
     def build_json_from_params 
       #Construct array for holding categories
-      arr = []
+      arr = [] 
       get_categories.each do |cat|      #Meow
         #For each category create a map {}
         new_cat = {}
-        new_cat["name"] = cat[1]
+        new_cat["name"] = cat[0]
         new_cat["steps"] = []
         get_steps(cat).each do |step|
           #For each step create a map {}
           new_cat_step = {}
-          new_cat_step["name"] = step[1]
+          new_cat_step["name"] = step[2]
           #get options returns a list of maps of options
           new_cat_step["options"] = get_options(step)    
           new_cat["steps"] << new_cat_step
@@ -69,8 +68,8 @@ class CommissionRequestTemplatesController < ApplicationController
       params.each do |k,v|
         if k.starts_with? "category"
           name = v
-          num = cat_number(k)
-          cats << [num,name]
+          num = cat_number(k) 
+          cats << [name,num]
         end
       end
       return cats
@@ -82,10 +81,10 @@ class CommissionRequestTemplatesController < ApplicationController
     def get_steps(category)
       steps = []
       params.each do |k,v|
-        if k.starts_with? "step" && cat_number(k) == category[0]
+        if (k.starts_with? "step") && (cat_number(k) == category[1])
           name = v
           num = step_number(k)
-          steps << [category[0],num,name]
+          steps << [cat_number(k),num,name]
         end
       end
       return steps
