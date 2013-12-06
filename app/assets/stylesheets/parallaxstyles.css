@@ -20,6 +20,7 @@
   width: 100%;
   max-width: 1920px;
   position: relative;
+  padding-top:100px;
 }
 
 
@@ -33,7 +34,7 @@
 }
 
 #faq {
-	background: rgba(230, 76, 62, 1);
+	background: rgba(55, 78, 102, 1);
 	height: 1000px;
 	margin: 0 auto; 
   width: 100%;

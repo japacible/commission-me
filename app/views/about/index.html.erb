@@ -1,9 +1,13 @@
+<!-- Parallax scroll page modified from Mohiuddin Parekh, Nettuts+ -->
+<!-- Slideshow modified from example at http://tympanus.net/ -->
+
 <% provide(:title, "About CommissionMe") %>
 
 <div class="parallaxcontainer">
 <!-- CSS Code -->
 <link rel="stylesheet" href="assets/parallaxstyles.css">
 <link rel="stylesheet" href="assets/reset.css">
+<link rel="stylesheet" type="text/css" href="/assets/slideshowstyles.css" />
 <!-- JS Code -->
 <script src="assets/jquery-1.7.2.min.js"></script>
 <script src="parallax.js"></script>
@@ -30,6 +34,43 @@
 <!-- For Commissioners -->
 <section id="commissioners" data-speed="4" data-type="background">
   <div class="mPageHeader">For Commissioners</div>
+  
+  <div class="sp-slideshow">
+			
+				<input id="button-1" type="radio" name="radio-set" class="sp-selector-1" checked="checked" />
+				<label for="button-1" class="button-label-1"></label>
+				
+				<input id="button-2" type="radio" name="radio-set" class="sp-selector-2" />
+				<label for="button-2" class="button-label-2"></label>
+				
+				<input id="button-3" type="radio" name="radio-set" class="sp-selector-3" />
+				<label for="button-3" class="button-label-3"></label>
+				
+				<input id="button-4" type="radio" name="radio-set" class="sp-selector-4" />
+				<label for="button-4" class="button-label-4"></label>
+				
+				<input id="button-5" type="radio" name="radio-set" class="sp-selector-5" />
+				<label for="button-5" class="button-label-5"></label>
+				
+				<label for="button-1" class="sp-arrow sp-a1"></label>
+				<label for="button-2" class="sp-arrow sp-a2"></label>
+				<label for="button-3" class="sp-arrow sp-a3"></label>
+				<label for="button-4" class="sp-arrow sp-a4"></label>
+				<label for="button-5" class="sp-arrow sp-a5"></label>
+				
+				<div class="sp-content">
+					<div class="sp-parallax-bg"></div>
+					<ul class="sp-slider clearfix">
+						<li><img src="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/images/image1.png" /> <p> SKDLJFDSLK </p></li>
+						<li><img src="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/images/image2.png" /></li>
+						<li><img src="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/images/image3.png" /></li>
+						<li><img src="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/images/image4.png" /></li>
+						<li><img src="http://tympanus.net/Tutorials/CSS3FluidParallaxSlideshow/images/image5.png" /></li>
+					</ul>
+				</div><!-- sp-content -->
+				
+			</div><!-- sp-slideshow -->
+
 </section>
 
 <!-- For Artists -->
@@ -39,7 +80,7 @@
 
 <!-- FAQ -->
 <section id="faq" data-speed="8" data-type="background">
-  <div class="mPageHeader">For Artists</div>
+  <div class="mPageHeader">FAQ</div>
 </section>
 
 </div>
