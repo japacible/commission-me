@@ -2,8 +2,7 @@ Myapp::Application.routes.draw do
   resources :conversations
 
   resources :messages
-
-  get "about/index"
+  
   get "edit_template" => 'commission_request_templates#edit'
   post "update_template" => 'commission_request_templates#update'
   post "commissions/:artist_id/request_commission" => 'commissions#create'
@@ -27,6 +26,7 @@ Myapp::Application.routes.draw do
   #get "login" => "sessions#new", :as => "login"  # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
+  get "about" => 'about#index'
   get 'authenticate' => 'users#authenticate'
 
   # You can have the root of your site routed with "root"
