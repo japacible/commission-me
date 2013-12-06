@@ -59,6 +59,14 @@
             @commission.id), :class => "btn") %>-->
           </center>
         </form>
+      <% else %>
+        <form>
+          <div id="com-req"></div>
+          <div class="panel panel-info">
+            <div class="panel-heading">Specification</div>
+            <div id="specification" class="panel-body"></div>
+          </div>
+	</form>
       <% end %>
     </div>
   </body>
