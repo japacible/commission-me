@@ -47,6 +47,10 @@
   background:rgba(55, 78, 102, 1);
 }
 
+.titleText {
+  font-weight:bold;
+}
+
 /* Homepage Images */
 .aboutbtn {
   background-color:transparent;
