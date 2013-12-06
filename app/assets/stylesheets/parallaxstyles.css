@@ -1,0 +1,27 @@
+/* "Pages" */
+.parallaxcontainer {
+  margin-top:-25px;
+}
+
+#home {
+	background: rgba(28, 186, 152, 1);
+	height: 1000px;  
+	margin: 0 auto; 
+  width: 100%;
+  max-width: 1920px;
+  position: relative;
+}
+#about { 
+	background: rgba(240, 155, 19, 1);
+	height: 1000px;
+	margin: 0 auto; 
+  width: 100%;
+  max-width: 1920px;
+  position: relative;
+}
+
+/* Header text for "pages" */
+#home article { background: url("../images/intro.png") no-repeat scroll center top transparent; height: 458px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+
+#about article { background: url("../images/parallax.png") no-repeat scroll center top transparent; height: 458px; position: absolute; text-indent: -9999px; top: 291px; width: 100%; }
+
