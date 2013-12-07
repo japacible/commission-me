@@ -17,10 +17,10 @@
       <% if current_user.id == @artist.id %>
         <% @json["steps"].each do |step| %>
           <div class="panel panel-info">
-            <div class="panel-heading"><% step["name"] %></div>
+            <div class="panel-heading"><%= step["name"] %></div>
             <div class="panel-body">
-              <h4><% step["choice"]["name"] + ": " + step["choice"]["price"] %></h4>
-              <em><% step["choice"]["description"] %></em>
+              <h4><%= step["choice"]["name"] + " ($" + step["choice"]["price"] + ")" %></h4>
+              <em><%= step["choice"]["description"] %></em>
             </div>
           </div>
       <% end %>
@@ -48,7 +48,7 @@
           <div class="panel-heading">Revised Price</div>
           <div class="panel-body">
             <!-- INJECT REVISED PRICE -->
-            <% @json["price"] %>
+            <%= "$" + @json["price"] %>
           </div>
         </div>
       <% end %>
