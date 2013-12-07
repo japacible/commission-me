@@ -42,8 +42,8 @@ $(document).ready(function() {
     var category = $("<form/>", {
       "id": "category-" + catkey,
       "class": "category tab-pane",
-"action": "request_commission",
-"method": "post"
+      "action": "request_commission",
+      "method": "post"
     }).appendTo(".tab-content");
     var authenticity_token = $("<input/>", {
       "name": "authenticity_token",
@@ -52,8 +52,8 @@ $(document).ready(function() {
     }).appendTo(category);
     var artist_id = $("<input/>", {
       "name": "artist_id",
-"value": getArtist(),
-"type": "hidden"
+      "value": getArtist(),
+      "type": "hidden"
     }).appendTo(category);
     
     /* LOOP THROUGH EACH STEP */
@@ -63,8 +63,8 @@ $(document).ready(function() {
       var step = $("<div/>", {
         "id": "step-" + catkey + "-" + stepkey,
         "class": "step",
-  "action": "request_commission",
-  "method": "post"
+"action": "request_commission", // I BELIEVE THESE ATTRIBUTES CAN BE DELETED
+"method": "post"
       }).appendTo(category);
       $("<h2/>", {
         "class": "step-name",
@@ -129,7 +129,7 @@ $(document).ready(function() {
     // Final Step
     // Artist Prompt
     $("<p/>", {
-      html: "This is where the artist prompt will go."
+      html: val.prompt
     }).appendTo(category);
     // Customer Specification
     $("<textarea/>", {
@@ -139,7 +139,7 @@ $(document).ready(function() {
       "placeholder": "Describe your request in detail..."
     }).appendTo(category);
     
-    // Buttons: Preview, Submit, Cancel
+    // Buttons: Submit, Cancel
     var submit = $("<div/>", {
       "id": "control-btns"
     }).appendTo(category);
@@ -157,11 +157,10 @@ $(document).ready(function() {
       "type": "button",
       on: {
         click: function() {
-        alert("Cancel! (Not yet functional.)");
-         }
+          alert("Cancel! (Not yet functional.)");
+        }
       },
       html: "Cancel"
       }).appendTo(submit);
-         
   });
 });

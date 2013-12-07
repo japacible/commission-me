@@ -93,7 +93,7 @@ FUTURE MODIFICATIONS
         "name": "prompt",
         "class": "form-control",
         "placeholder": "Prompt the customer for commission specification....",
-        "html": data.categories.prompt
+        "html": val.prompt
       }).appendTo(category);
       
       // Button: Submit
