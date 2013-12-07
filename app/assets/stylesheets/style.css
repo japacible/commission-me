@@ -195,6 +195,13 @@ input[type=radio]:checked + img{
   border:3px solid rgba(28, 186, 152, 1);
 }
 
+/* Commission Settings */
+.cscontainer {
+  margin-left:5%;
+  margin-right:5%;
+  margin-bottom:5%;
+}
+
 /* General body */
 body {
     background-color:rgba(153, 156, 161, 1);

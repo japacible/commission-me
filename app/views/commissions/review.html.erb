@@ -19,7 +19,7 @@
     <script text="text/javascript"><%=render 'commission_review.js'%></script>  
   </head>
   <body>
-    <div class="container">
+    <div class="cscontainer">
       <div class="page-header">
         <h1>Commission Review</h1>
       </div>
@@ -53,8 +53,8 @@
           <center>
             <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
             @commission.id), :class => "btn") %>
-            <input type="submit" name="post" value="Revise">
-            <input type="submit" name="post" value="Decline">
+            <input type="submit" name="post" class="btn" value="Revise">
+            <input type="submit" name="post" class="btn" value="Decline">
             <!--<%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
             @commission.id), :class => "btn") %>-->
           </center>

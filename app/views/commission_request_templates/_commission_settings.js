@@ -78,7 +78,7 @@ FUTURE MODIFICATIONS
       
       // Button: Add Step
       $("<button/>", {
-        "class": "btn btn-default add-step",
+        "class": "btn add-step",
         "type": "button",
         html: "Add Step"
       }).appendTo(category);
@@ -102,7 +102,7 @@ FUTURE MODIFICATIONS
       }).appendTo(category);
       $("<input/>", {
         "id": "submit",
-        "class": "btn btn-primary btn-lg",
+        "class": "btn",
         "type": "submit",
         html: "Submit"
       }).appendTo(submit);
