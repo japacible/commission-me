@@ -58,12 +58,14 @@ class CommissionsController < ApplicationController
     switch = params[:post]
     if switch == "Decline"
       decline()
-    else    
+    else   
       @commission = Commission.find(params[:commission_id])
       @commission.state = "Review"
       @json = @commission.commission_current
       @json["price"] = params[:price]
       @json["review"] = [params[:review]]
+      @commission.commission_current = nil
+      @commission.save
       @commission.commission_current = @json
       @commission.save
       flash[:notice] = "Commission up for revision!"
@@ -75,11 +77,15 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:commission_id])
     if current_user.id == @commission.artist_id
       @commission.state = "Declined"
-      if @commission.commission_current["review"].nil?
-        @commission.commission_current["review"] = [params[:review]]
+      @json = @commission.commission_current
+      if @json.nil?
+        @json["review"] = [params[:post]]
       else
-        @commission.commissions_current["review"] << params[:review]
+        @json["review"] << params[:post]
       end
+      @commission.commission_current = nil
+      @commission.save
+      @commission.commission_current = @json
       @commission.save
       flash[:notice] = "Commission Declined!"
       redirect_to commissions_requests_path
