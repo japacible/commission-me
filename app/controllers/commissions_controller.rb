@@ -137,7 +137,7 @@ class CommissionsController < ApplicationController
       @commission.save
       flash[:notice] = "Commission Completed!"
     end
-    redirect_to commissions_requests_path
+    redirect_to review_path(params[:commission_id])
   end
 
   def finish

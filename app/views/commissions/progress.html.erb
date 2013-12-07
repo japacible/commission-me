@@ -43,7 +43,7 @@
           <div class="panel-heading">Revised Price</div>
           <div class="panel-body">
 	    <% if !@json["price"].nil? %>
-              <%= "$" + @json["price"] %>
+              <%= "$" + @json["price"].to_s %>
 	    <% end %>
           </div>
         </div>
