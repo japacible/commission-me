@@ -1,4 +1,5 @@
 class CommissionsController < ApplicationController
+  before_filter :verify_logged_in
   def show
     @commission = Commission.find(params[:commission_id])
   end
