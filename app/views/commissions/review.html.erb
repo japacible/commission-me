@@ -49,15 +49,14 @@
               <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
             </div>
           </div>
-          
-          <center>
-            <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
-            @commission.id), :class => "btn") %>
-            <input type="submit" name="post" class="btn" value="Revise">
-            <input type="submit" name="post" class="btn" value="Decline">
-            <!--<%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
-            @commission.id), :class => "btn") %>-->
-          </center>
+          <% if commission.state == "NewRequest" || commission.state == "Review" %>
+            <center>
+              <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
+              @commission.id), :class => "btn") %>
+              <input type="submit" name="post" class="btn" value="Revise">
+              <input type="submit" name="post" class="btn" value="Decline">
+            </center>
+	  <% end %>
         </form>
       <% else %>
         <form>
@@ -66,6 +65,17 @@
             <div class="panel-heading">Specification</div>
             <div id="specification" class="panel-body"></div>
           </div>
+	  <!-- Display all the revisions if they exist -->
+	  <% if current_user.id == @commission.commissioner_id %>
+	    <% if commission.state == "Accepted" %>
+	      <!--Payment??-->
+	    <% elsif commission.state == "Review" &&
+	      commission.commission_current["review"].count > 
+	      commssion.commission_current["spec"].count %>
+	      <!-- Display text area for revision entry-->
+	      <input type="submit" name="post" class="btn" value="Submit Revision">
+	    <% end %>	  
+	  <% end %>
 	</form>
       <% end %>
     </div>

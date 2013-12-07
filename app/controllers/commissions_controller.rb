@@ -30,26 +30,9 @@ class CommissionsController < ApplicationController
       t.commission_current = json
     end
     if @commission.save
-      @commission_request = CommissionRequest.new do |req|
-        req.commission_id = @commission.id
-        req.commission_current = json
-      end
-      if @commission_request.save
-        flash[:notice] = "Commission successfully sent!"
-        redirect_to root_url
-      else
-        @commission.delete
-        for message in @commission_request.errors.full_messages do
-          if i == 0
-            flash[:alert] = message
-            i = 1
-          else
-            flash[:alert] << ", " + message
-          end
-        end
-      end
+      flash[:notice] = "Commission successfully sent!"
+      redirect_to root_url
     else
-      i = 0
       for message in @commission.errors.full_messages do
         if i == 0
           flash[:alert] = message
