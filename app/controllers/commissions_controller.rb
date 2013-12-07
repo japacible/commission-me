@@ -8,6 +8,12 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:commission_id])
     @artist = User.find(@commission.artist_id)
     @json = @commission.commission_current
+    if @commission.state == "Complete"
+      @image = Image.find(@commission.commission_current["image"])
+      if @image.nil?
+        flash[:alert] = "Image missing!"
+      end
+    end
   end
 
   def requests
@@ -114,6 +120,26 @@ class CommissionsController < ApplicationController
     @json = @commission.commission_current
   end
 
+  def complete
+    @commission = Commission.find(params[:commission_id])
+    @json = @commission.commission_current
+    @image = Image.new do |t|
+      t.data = params["picture"].read
+      t.filename = params["picture"].original_filename
+      t.file_type = params["picture"].content_type
+    end
+    if @image.save
+      @json["image"] = @image.id
+      @commission.commission_current = nil
+      @commission.save
+      @commission.commission_current = @json
+      @commission.state = "Complete"
+      @commission.save
+      flash[:notice] = "Commission Completed!"
+    end
+    redirect_to commissions_requests_path
+  end
+
   def finish
     @commission = Commission.find(params[:commission_id])
     @commission.state = "In Progress"
@@ -131,10 +157,6 @@ class CommissionsController < ApplicationController
     end
     flash[:notice] = "Commission Finalized!"
     redirect_to commissions_requests_path
-  end
-
-  def complete
-
   end
 
 private
