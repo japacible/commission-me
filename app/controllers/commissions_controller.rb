@@ -127,6 +127,7 @@ class CommissionsController < ApplicationController
       t.data = params["picture"].read
       t.filename = params["picture"].original_filename
       t.file_type = params["picture"].content_type
+      t.artist_id = @commission.artist_id
     end
     if @image.save
       @json["image"] = @image.id
