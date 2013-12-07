@@ -1,5 +1,5 @@
 class CommissionsController < ApplicationController
-  before_filter :verify_logged_in
+  #before_filter :verify_logged_in
   def show
     @commission = Commission.find(params[:commission_id])
   end
@@ -87,7 +87,9 @@ class CommissionsController < ApplicationController
     switch = params[:post]
     if switch == "Decline"
       decline()
-    else
+    else      
+      #@json["price"] = params[:price]
+      #@json["review"] = [params[:review]]
       redirect_to commissions_requests_path
     end
   end
