@@ -1,34 +1,24 @@
 class CommissionsController < ApplicationController
-  #before_filter :verify_logged_in
   def show
     @commission = Commission.find(params[:commission_id])
   end
 
   def review
-    if current_user.nil?
-      redirect_to authenticate_path
-    else
-      @commission = Commission.find(params[:commission_id])
-      @artist = User.find(@commission.artist_id)
-      @json = @commission.commission_current
-    end
+    verify_logged_in
+    @commission = Commission.find(params[:commission_id])
+    @artist = User.find(@commission.artist_id)
+    @json = @commission.commission_current
   end
 
   def requests
-    #TODO: route to login/signup?
+    verify_logged_in
     @user = current_user
-    if @user.nil?
-      redirect_to authenticate_path
-    end
   end
 
   def edit
-    if current_user.nil?
-      redirect_to authenticate_path
-    else
-      @artist = User.find(params[:artist_id])
-      @json = User.find(params[:artist_id]).commission_request_template_json
-    end
+    verify_logged_in
+    @artist = User.find(params[:artist_id])
+    @json = User.find(params[:artist_id]).commission_request_template_json
   end
 
   def create
@@ -74,8 +64,9 @@ class CommissionsController < ApplicationController
   end
 
   def accept
+    verify_logged_in
     @commission = Commission.find(params[:commission_id])
-    if current_user != nil && current_user.id == @commission.artist_id
+    if current_user.id == @commission.artist_id
       @commission.state = "Accepted"
       @commission.save
       flash[:notice] = "Commission Accepted!"
@@ -95,8 +86,9 @@ class CommissionsController < ApplicationController
   end
 
   def decline
+    verify_logged_in
     @commission = Commission.find(params[:commission_id])
-    if current_user != nil && current_user.id == @commission.artist_id
+    if current_user.id == @commission.artist_id
       @commission.state = "Declined"
       @commission.save
       flash[:notice] = "Commission Declined!"
