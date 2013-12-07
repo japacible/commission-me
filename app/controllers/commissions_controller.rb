@@ -78,11 +78,7 @@ class CommissionsController < ApplicationController
     if current_user.id == @commission.artist_id
       @commission.state = "Declined"
       @json = @commission.commission_current
-      if @json.nil?
-        @json["review"] = [params[:post]]
-      else
-        @json["review"] << params[:post]
-      end
+      @json["decline"] = params[:post]
       @commission.commission_current = nil
       @commission.save
       @commission.commission_current = @json
