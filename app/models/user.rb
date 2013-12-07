@@ -12,7 +12,8 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
   validates_presence_of :password, :on => :create
-  
+  validates :password, length: { minimum: 6 }
+
   #Used by mailboxer to know that users can message each other
   acts_as_messageable
   def get_featured_art
