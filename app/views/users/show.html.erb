@@ -48,12 +48,8 @@
             <p><span class="btn" data-toggle="popover" 
               data-content="<table>
               <tr>
-                <td>New Requests</td>
-                <td align=right width=30%><%=@numNewR%></td>
-              </tr>
-              <tr>
                 <td>Pending</td>
-                <td align=right><%=@numPending%></td>
+                <td align=right><%=@numPending + @numNewR%></td>
               </tr>
               <tr>
                 <td>Accepted</td>
@@ -66,11 +62,6 @@
               <tr>
                 <td>Finished</td>
                 <td align=right><%=@numFinished.to_s%></td>
-              </tr>
-              <tr>
-                <td><b>Total</b></td>
-                <td align=right><b>
-                  <%=@user.received_commissions.count.to_s%></b></td>
               </tr>
             </table>">
               View Commission Stats </span></p>
