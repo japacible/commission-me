@@ -29,7 +29,7 @@
           <div class="panel-heading">Specification</div>
           <div id="specification" class="panel-body">
             <!-- LOOP THROUGH SPECIFICATIONS AND REVIEWS -->
-            <% @json["spec"].zip("review").each do |spec, review| %>
+	    <% (@json["spec"].zip(@json["review"])).each do |spec, review| %>
               <!-- Add spec -->
               
               <p><strong><%= spec %></strong></p>
