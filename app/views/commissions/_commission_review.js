@@ -1,13 +1,13 @@
 /*
-v1.1
+v1.3
 This JavaScript file parses a commission request JSON object
 into appropriate HTML representation for an artist to review a customer's
-commission request. The artist chooses to accept or decline the
-commission.
+commission request. The artist chooses to accept, decline, or review the
+commission for further specification.
 
 FUTURE MODIFICATIONS
-- Preliminary Price calculation
-- Revision option w/ comments
+- Form Validation
+- Anonymize
 */
 
 $(document).ready(function() {
@@ -24,30 +24,48 @@ $(document).ready(function() {
   
   $.each(category.steps, function(stepkey, step) {
     // Step Container
-    var step_container = $("<div/>", {
-      "class": "step"
+    var panel = $("<div/>", {
+      "class": "panel panel-info"
     }).appendTo("#com-req");
     
     // Step Name
-    $("<h2/>", {
+    $("<div/>", {
+      "class": "panel-heading",
       html: step.name
-    }).appendTo(step_container);
+    }).appendTo(panel);
     
     var choice = step.choice;
     
     // Choice Container
     var choice_container = $("<div/>", {
-      "class": "choice"
-    }).appendTo(step_container);
+      "class": "panel-body"
+    }).appendTo(panel);
     
     // Choice Name
-    $("<h3/>", {
-      html: choice.name
+    $("<h4/>", {
+      html: choice.name + " ($" + choice.price + ")"
     }).appendTo(choice_container);
     
     // Choice Description
-    $("<p/>", {
+    $("<em/>", {
       html: choice.description
     }).appendTo(choice_container);
   });
+
+  // Display Customer Specifications
+  $.each(category.spec, function(key, val) {
+    $("<p/>", {
+      html: key+1 + ")   " + val
+    }).appendTo($("#specification"));
+  });
+  
+  // Artist's Revised Price
+  $("#price").attr("placeholder", "Estimated Value: $" + category.price);
+
+
+  var authenticity_token = $("<input/>", {
+    "name": "authenticity_token",
+    "value": getAuthToken(),
+    "type": "hidden"
+  }).appendTo($("#com-req"));
 });

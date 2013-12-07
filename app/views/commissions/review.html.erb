@@ -5,7 +5,7 @@
       CommissionMe
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/assets/comreq.css">
+    <link rel="stylesheet" href="/assets/commission-request.css">
    
     <script type="text/javascript">
       function getAuthToken(){ 
@@ -20,8 +20,46 @@
   </head>
   <body>
     <div class="container">
+      <div class="page-header">
+        <h1>Commission Review</h1>
+      </div>
       
-      <div id="com-req"></div>
+      <% if current_user.id == @artist.id %>
+        <form action="" method="post">
+          <div id="com-req"></div>
+          
+          <div class="panel panel-info">
+            <div class="panel-heading">Specification</div>
+            <div id="specification" class="panel-body"></div>
+          </div>
+          
+          <div class="panel panel-info">
+            <div class="panel-heading">Revised Price</div>
+            <div class="panel-body">
+              <div class="input-group">
+                <span class="input-group-addon">$</span>
+                <input id="price" name="price" class="form-control" type="text">
+              </div>
+            </div>
+          </div>
+          
+          <div class="panel panel-info">
+            <div class="panel-heading">Review</div>
+            <div class="panel-body">
+              <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
+            </div>
+          </div>
+          
+          <center>
+            <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
+            @commission.id), :class => "btn") %>
+            <input type="submit" name="post" value="Revise">
+            <input type="submit" name="post" value="Decline">
+            <!--<%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
+            @commission.id), :class => "btn") %>-->
+          </center>
+        </form>
+      <% end %>
     </div>
     <center>
       <!-- If the current user is the artist, then s/he should be able to 

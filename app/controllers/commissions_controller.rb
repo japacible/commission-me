@@ -4,34 +4,61 @@ class CommissionsController < ApplicationController
   end
 
   def review
-    @commission = Commission.find(params[:commission_id])
-    @artist = User.find(@commission.artist_id)
-    @json = @commission.commission_current
+    if current_user.nil?
+      redirect_to authenticate_path
+    else
+      @commission = Commission.find(params[:commission_id])
+      @artist = User.find(@commission.artist_id)
+      @json = @commission.commission_current
+    end
   end
-  
+
   def requests
-    #TODO: check for current_user == nil, route to login/signup?
+    #TODO: route to login/signup?
     @user = current_user
+    if @user.nil?
+      redirect_to authenticate_path
+    end
   end
 
   def edit
-    @artist = User.find(params[:artist_id])
-    @json = User.find(params[:artist_id]).commission_request_template_json
+    if current_user.nil?
+      redirect_to authenticate_path
+    else
+      @artist = User.find(params[:artist_id])
+      @json = User.find(params[:artist_id]).commission_request_template_json
+    end
   end
 
   def create
-    #TODO: create new commission request
     @template = User.find(params[:artist_id]).commission_request_template_json
     @user = current_user
+    json = build_json_from_params
     @commission = Commission.new do |t|
       t.state = "NewRequest"
       t.artist_id = params[:artist_id]
       t.commissioner_id = @user.id
-      t.commission_current = build_json_from_params
+      t.commission_current = json
     end
     if @commission.save
-      flash[:notice] = "Commission successfully sent!"
-      redirect_to root_url
+      @commission_request = CommissionRequest.new do |req|
+        req.commission_id = @commission.id
+        req.commission_current = json
+      end
+      if @commission_request.save
+        flash[:notice] = "Commission successfully sent!"
+        redirect_to root_url
+      else
+        @commission.delete
+        for message in @commission_request.errors.full_messages do
+          if i == 0
+            flash[:alert] = message
+            i = 1
+          else
+            flash[:alert] << ", " + message
+          end
+        end
+      end
     else
       i = 0
       for message in @commission.errors.full_messages do
@@ -47,20 +74,31 @@ class CommissionsController < ApplicationController
 
   def accept
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Accepted"
-    @commission.save
-    flash[:notice] = "Commission Accepted!"
-    redirect_to root_url
-    #TODO: redirect to commissions list instead
+    if current_user != nil && current_user.id == @commission.artist_id
+      @commission.state = "Accepted"
+      @commission.save
+      flash[:notice] = "Commission Accepted!"
+      redirect_to commissions_requests_path
+    end
   end
   
+  def catch_post_review
+    switch = params[:post]
+    if switch == "Decline"
+      decline()
+    else
+      redirect_to commissions_requests_path
+    end
+  end
+
   def decline
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Declined"
-    @commission.save
-    flash[:notice] = "Commission Declined!"
-    redirect_to root_url
-    #TODO: redirect to commissions list instead
+    if current_user != nil && current_user.id == @commission.artist_id
+      @commission.state = "Declined"
+      @commission.save
+      flash[:notice] = "Commission Declined!"
+      redirect_to commissions_requests_path
+    end
   end
 
   def finish
@@ -107,11 +145,14 @@ private
         choice_num = v.to_i
         blob_step["name"] = category_blob["steps"][num]["name"]
         blob_step["choice"] = category_blob["steps"][num]["options"][choice_num]
-        blob["steps"] << blob_step
         price += blob_step["choice"]["price"].to_i
+        blob["steps"] << blob_step      
+      elsif k.starts_with? "final"
+        blob["spec"] = [v];
       end
     end
     blob["price"] = price
+    blob["review"] = []
     return blob
   end
 

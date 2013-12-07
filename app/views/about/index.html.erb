@@ -1,2 +1,133 @@
-<h1>About#index</h1>
-<p>Find me in app/views/about/index.html.erb</p>
+<!-- Parallax scroll page modified from Mohiuddin Parekh, Nettuts+ -->
+<!-- Slideshow modified from https://github.com/wandoledzep/bxslider-4 -->
+
+<% provide(:title, "About CommissionMe") %>
+
+<div class="parallaxcontainer">
+<!-- CSS Code -->
+<link rel="stylesheet" href="assets/parallaxstyles.css">
+<link rel="stylesheet" href="assets/reset.css">
+<link rel="stylesheet" type="text/css" href="/assets/slideshowstyles.css" />
+<!-- JS Code -->
+<script src="assets/jquery-1.7.2.min.js"></script>
+<script src="parallax.js"></script>
+
+<!-- Slideshow Code -->
+<link rel="stylesheet" href="assets/slideshow.css" type="text/css" />
+<script src="assets/jquery-1.7.2.min.js"></script>
+<script src="assets/jquery.bxslider.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){
+    
+  $('.bxslider').bxSlider({
+    mode: 'horizontal',
+    startSlide: 0,
+    captions: true
+  });
+});
+</script>
+
+<!-- About CommissionMe -->
+<section id="generalAbout" data-speed="10" data-type="background">
+  <div class="mPageHeader">What is CommissionMe?</div>
+    <div class="mPageBody">
+      <p>
+        <span>
+          CommissionMe is a tool to help commissioners and digital artists easily work out commission agreements.
+        </span>
+      </p>
+    </div>
+    <div class="scrollText">
+      <p>
+        <span>
+          <i class="fa fa-arrow-circle-down fa-lg"></i> Scroll
+        </span>
+      </p>
+    </div>
+</section>
+
+<!-- For Commissioners -->
+<section id="commissioners" data-speed="4" data-type="background">
+  <div class="mPageHeader">For Commissioners</div>
+  
+  <div class="mPageBody">
+    <div class="slider">
+      <ul class="bxslider">
+        <li><img src="/images/signuploginhp.png" title="New to CommissionMe? Click sign up/log in." /></li>
+        <li><img src="/images/signuploginpage.png" title="Log in or Sign up with a username, email, and password." /></li>
+        <li><img src="/images/loggedinhp.png" title="Once you're logged in, click featured images to find artists to commission." /></li>
+        <li><img src="/images/commissionother.png" title="Fill out the artist's form to start a new commission request." /></li>
+        <li><img src="/images/profile.png" title="Visit your profile by clicking your username in the navbar." /></li>
+        <li><img src="/images/mycommissionscomm.png" title="Keep track of your sent commissions by clicking My Commissions on your profile." /></li>
+      </ul>
+    </div>
+  </div>
+
+
+</section>
+
+<!-- For Artists -->
+<section id="artists" data-speed="8" data-type="background">
+  <div class="mPageHeader">For Artists</div>
+
+   <div class="mPageBody">
+    <div class="slider">
+      <ul class="bxslider">
+        <li><img src="/images/signuploginhp.png" title="New to CommissionMe? Click sign up/log in." /></li>
+        <li><img src="/images/signuploginpage.png" title="Log in or Sign up with a username, email, and password." /></li>
+        <li><img src="/images/loggedinhp.png" title="Once you're logged in, click your username in the navbar to visit your profile" /></li>
+        <li><img src="/images/artistprofile.png" title="Keep track of your sent and received commissions by clicking My Commissions on your profile." /></li>
+        <li><img src="/images/artistmycommissions.png" title="In this example, the user got a new commission. Click the title to review or revise it." /></li>
+        <li><img src="/images/commissionreview.png" title="Update the commission request on the review page." /></li>
+      </ul>
+    </div>
+  </div>
+
+</section>
+
+<!-- FAQ -->
+<section id="faq" data-speed="8" data-type="background">
+  <div class="mPageHeader">FAQ</div>
+    <p>
+      <span>
+        <div class="mPageQuestionText">
+          How are the artists and customers protected?
+        </div>
+      </span>
+      <span>
+        <div class="mPageAnswerText">
+          <li>ANSWER HERE</li>
+        </div>
+      </span>
+    </p>
+    
+    <p>
+      <span>
+        <div class="mPageQuestionText">
+          How do you prevent fraud?
+        </div>
+      </span>
+      <span>
+        <div class="mPageAnswerText">
+          <li>ANSWER HERE</li>
+        </div>
+      </span>
+    </p>
+    
+    <p>
+      <span>
+        <div class="mPageQuestionText">
+          How is the artwork delivered to the customer?
+        </div>
+      </span>
+      <span>
+        <div class="mPageAnswerText">
+          <li>ANSWER HERE</li>
+        </div>
+      </span>
+    </p>
+
+</section>
+
+</div>

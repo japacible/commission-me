@@ -4,7 +4,7 @@
     <title>Commission Settings</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
-      /* The following function is used by comset.js to retreive the
+      /* The following function is used by commission-settings.js to retreive the
          authenticity token for a generated form */
       function getAuthToken(){ 
         return "<%=form_authenticity_token%>"
@@ -17,20 +17,15 @@
   </head>
   
   <body>
-    <nav class="navbar navbar-default navbar-fixed-top" role="navigation"></nav>
-    
-    <div class="container">
-      <div class="page-header">
-        <h1>Commission Settings</h1>
-      </div>
-    
-      <!-- Nav tabs -->
-      <ul class="nav nav-tabs"></ul>
-      
-       <form> <!-- name="comform" role="form" -->
-        <!-- Tab panes -->
-        <div class="tab-content"></div>
-      </form>
+    <div class="page-header">
+      <h1>Commission Settings</h1>
     </div>
+  
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs"></ul>
+    
+    <!-- Tab panes -->
+    <!-- enctype="multipart/form-data" if/when we set up to post images -->
+    <form class="tab-content" action="update_template" method="post"></form>
   </body>
 </html>

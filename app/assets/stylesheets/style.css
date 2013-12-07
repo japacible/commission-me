@@ -47,7 +47,22 @@
   background:rgba(55, 78, 102, 1);
 }
 
+.titleText {
+  font-weight:bold;
+}
+
 /* Homepage Images */
+.aboutbtn {
+  background-color:transparent;
+  color:rgba(28, 186, 152, 1);
+  border:0;
+}
+
+.aboutbtn:hover {
+  color:rgba(153, 156, 161, 1);
+  border:0;
+}
+
 .bodyview {
   background-color:rgba(235, 239, 240, 1);
   padding-top:25px;
