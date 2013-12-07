@@ -83,6 +83,8 @@
 	  <% elsif @commission.state == "Accepted" %>
 	    <%= link_to("Payment Received", commissions_requests_finish_path(:commission_id => 
               @commission.id), :class => "btn") %>
+	  <% elsif @commission.state == "Accepted" %>
+	    
           <% end %>
         </form>
       <% else %>
@@ -96,9 +98,30 @@
           <!-- Display all the revisions if they exist -->
           <% if current_user.id == @commission.commissioner_id %>
             <% if @commission.state == "Accepted" %>
-            
-            <!--Payment??-->
-            
+              <form action="https://www.paypal.com/cgi-bin/webscr" 
+                method="post2" target="_top">
+                <input type="hidden" name="cmd" value="_xclick">
+                <input type="hidden" name="business" 
+                  value=<%=User.find_by_name(@commission.artist.name).email%>>
+                <input type="hidden" name="lc" value="US">
+                <input type="hidden" name="item_name" 
+                  value="<%=@commission.commission_current["name"]%>">
+                <input type="hidden" name="button_subtype" value="services">
+                <input type="hidden" name="no_note" value="0">
+                <input type="hidden" name="amount" 
+                value=<%=@commission.commission_current["price"]%>>
+                <input type="hidden" name="currency_code" value="USD">
+                <input type="hidden" name="bn" 
+                  value="PP-BuyNowBF:btn_paynow_SM.gif:NonHostedGuest">
+                <input type="image" 
+                  src=
+                  "https://www.paypalobjects.com/en_US/i/btn/btn_paynow_SM.gif" 
+                  border="0" name="submit" 
+                  alt="PayPal - The safer, easier way to pay online!">
+                <img alt="" border="0" 
+                  src="https://www.paypalobjects.com/en_US/i/scr/pixel.gif" 
+                  width="1" height="1">
+              </form>         
             <% elsif @commission.state == "Review" &&
                 @commission.commission_current["review"].count == 
                 @commission.commission_current["spec"].count %>

@@ -70,8 +70,10 @@ class CommissionsController < ApplicationController
       @commission.save
       flash[:notice] = "Commission up for revision!"
       redirect_to commissions_requests_path
-    else
+    elsif switch == "New Revision"
       revision
+    else
+      
     end
   end
 
