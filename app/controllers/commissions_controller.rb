@@ -57,8 +57,8 @@ class CommissionsController < ApplicationController
   def catch_post_review
     switch = params[:post]
     if switch == "Decline"
-      decline()
-    else   
+      decline
+    elsif switch == "Revise"
       @commission = Commission.find(params[:commission_id])
       @commission.state = "Review"
       @json = @commission.commission_current
@@ -70,7 +70,24 @@ class CommissionsController < ApplicationController
       @commission.save
       flash[:notice] = "Commission up for revision!"
       redirect_to commissions_requests_path
+    else
+      revision
     end
+  end
+
+  def revision
+    @commission = Commission.find(params[:commission_id])
+    @json = @commission.commission_current
+    if current_user.id == @commission.commissioner_id
+      @json["spec"] << params[:revision]
+    else
+      @json["review"] << params[:revision]
+    end
+    @commission.commission_current = nil
+    @commission.save
+    @commisison.commission_current = @json
+    @commission.save
+    flash[:notice] = "Commission revision updated!"
   end
 
   def decline
