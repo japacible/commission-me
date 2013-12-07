@@ -73,10 +73,15 @@
             
             <!--Payment??-->
             
-            <% elsif commission.state == "Review" &&
-                commission.commission_current["review"].count > 
-                commssion.commission_current["spec"].count %>
+            <% elsif commission.state == "Review" && commission.commission_current["review"].count > commssion.commission_current["spec"].count %>
               <!-- Display text area for revision entry-->
+              <div class="panel panel-info">
+                <div class="panel-heading">Revision</div>
+                <div class="panel-body">
+                  <textarea class="form-control" name="revision" placeholder="Please revise your request to meet the artist's specification."></textarea>
+                </div>
+              </div>
+              
               <input type="submit" name="post" class="btn" value="Submit Revision">
             <% end %>	  
           <% end %>
