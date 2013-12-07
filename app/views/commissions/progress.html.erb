@@ -1,43 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <% @title = "Current Progress" %>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Bootstrap CSS and JS are linked in views/layouts/application.html.erb -->
+    <title>
+      CommissionMe
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/assets/commission-request.css">
+    <div id="json_id" data-url="<%= @json.to_json %>" />
   </head>
   <body>
-    <div class="container">
-      <div style="text-align:center;">
-        <img style="height:250px;" src="http://ponymindbleach.com/images/cotton_candy_tail_by_dreatos-d3kcyt0.png" alt="" class="">
+    <div class="cscontainer">
+      <div class="page-header">
+        <h1>Commission Progress</h1>
       </div>
-      <div class="progress" style="width:50%;margin:auto;">
-        <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="71" aria-valuemin="0" aria-valuemax="100" style="width: 71%">
-          <span class="sr-only">71% Complete</span>
+      
+<!--      <% if current_user.id == @artist.id %> -->
+        <!-- LOOP THROUGH CATEGORY STEPS -->
+          <div class="panel panel-info">
+            <div class="panel-heading"><!-- INJECT STEP NAME --></div>
+            <div class="panel-body">
+              <h4><!-- INJECT OPTION NAME (AND PRICE?) --></h4>
+              <em><!-- INJECT OPTION DESCRIPTION --></em>
+            </div>
+          </div>
+        <!-- END LOOP -->
+        
+        <div class="panel panel-info">
+          <div class="panel-heading">Specification</div>
+          <div id="specification" class="panel-body">
+            <!-- LOOP THROUGH SPECIFICATIONS AND REVIEWS -->
+          </div>
         </div>
-      </div>
-      <h2>Pinkie Tail [WIP] <small>by <a href="#">CoolPonyBro</a></small></h2>
-      <div style="width:90%;margin:auto;">
-        <p>This is a description yo. Artists should write up something sweet about where the commission is at this point. Anything from projected work schedules, current plants for the next phase, echoing the more detailed portions of the project.... anything really!</p>
-        <p>This page will only be viewable by the commissioner who ordered the commission, and must be logged in.</p>
-      </div>
-	  <h3><a href="#"><em>Send a message to CoolPonyBro</em></a></h3>
-	  <hr>
-      <h3>Files</h3>
-      <ul style="list-style-type:none">
-        <li><a href="#">pinkietail_sketch.png</a> <em>11/2/13 - 23:07</em></li>
-        <li><a href="#">pinkietail_lines.png</a> <em>11/7/13 - 09:39</em></li>
-        <li><a href="#">pinkietail_simplecolor.png</a> <em>11/14/13 - 12:44</em></li>
-      </ul>
-      <h3>To-Do</h3>
-      <ul style="list-style-type:none;">
-        <li><input type="checkbox" disabled checked> sketch character pose and general layout</li>
-        <li><input type="checkbox" disabled checked> clean up lines and ink</li>
-        <li><input type="checkbox" disabled checked> flat colors</li>
-        <li><input type="checkbox" disabled checked> basic shading and highlights</li>
-        <li><input type="checkbox" disabled> sketch basic background layout</li>
-        <li><input type="checkbox" disabled> finish simple background</li>
-        <li><input type="checkbox" disabled> render and polish</li>
-      </ul>
+        
+        <div class="panel panel-info">
+          <div class="panel-heading">Revised Price</div>
+          <div class="panel-body">
+            <!-- INJECT REVISED PRICE -->
+          </div>
+        </div>
+      <% end %>
     </div>
   </body>
 </html>
+
