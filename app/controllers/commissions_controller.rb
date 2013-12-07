@@ -85,9 +85,10 @@ class CommissionsController < ApplicationController
     end
     @commission.commission_current = nil
     @commission.save
-    @commisison.commission_current = @json
+    @commission.commission_current = @json
     @commission.save
     flash[:notice] = "Commission revision updated!"
+    redirect_to commissions_requests_path
   end
 
   def decline
