@@ -1,22 +1,20 @@
 class CommissionsController < ApplicationController
+  before_filter :verify_logged_in
   def show
     @commission = Commission.find(params[:commission_id])
   end
 
   def review
-    verify_logged_in
     @commission = Commission.find(params[:commission_id])
     @artist = User.find(@commission.artist_id)
     @json = @commission.commission_current
   end
 
   def requests
-    verify_logged_in
     @user = current_user
   end
 
   def edit
-    verify_logged_in
     @artist = User.find(params[:artist_id])
     @json = User.find(params[:artist_id]).commission_request_template_json
   end
@@ -64,7 +62,6 @@ class CommissionsController < ApplicationController
   end
 
   def accept
-    verify_logged_in
     @commission = Commission.find(params[:commission_id])
     if current_user.id == @commission.artist_id
       @commission.state = "Accepted"
@@ -86,7 +83,6 @@ class CommissionsController < ApplicationController
   end
 
   def decline
-    verify_logged_in
     @commission = Commission.find(params[:commission_id])
     if current_user.id == @commission.artist_id
       @commission.state = "Declined"
