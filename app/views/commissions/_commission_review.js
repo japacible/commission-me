@@ -51,14 +51,14 @@ $(document).ready(function() {
       html: choice.description
     }).appendTo(choice_container);
   });
-
+/*
   // Display Customer Specifications
   $.each(category.spec, function(key, val) {
     $("<p/>", {
       html: key+1 + ")   " + val
     }).appendTo($("#specification"));
   });
-  
+*/
   // Artist's Revised Price
   $("#price").attr("placeholder", "Estimated Value: $" + category.price);
 

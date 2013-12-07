@@ -29,9 +29,19 @@
           <div id="com-req"></div>
           
           <div class="panel panel-info">
-            <div class="panel-heading">Specification</div>
-            <div id="specification" class="panel-body"></div>
+          <div class="panel-heading">Specification</div>
+          <div class="panel-body">
+            <!-- LOOP THROUGH SPECIFICATIONS AND REVIEWS -->
+            <% (@json["spec"].zip(@json["review"])).each do |spec, review| %>
+              <!-- Add spec -->
+              <p><strong><%= spec %></strong></p>
+              <% if !review.nil? %>
+                <!-- Add review -->
+                <p><em><%= review %></em></p>
+              <% end %>
+            <% end %>
           </div>
+        </div>
           
           <% if @commission.state == "NewRequest" || (@commission.state == "Review" && 
 	     @json["spec"].count > @json["review"].count ) %>
