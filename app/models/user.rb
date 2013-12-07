@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   validates_presence_of :email
   validates_format_of :email, :with => /.+@.+\..+/i
   validates_presence_of :password, :on => :create
-  validates :password, length: { minimum: 6 }, :on => :create, :on => :edit
+  validates :password, length: { minimum: 6 }, :on => :create, :on => :update
 
   #Used by mailboxer to know that users can message each other
   acts_as_messageable
@@ -27,7 +27,8 @@ class User < ActiveRecord::Base
     return email
   end        
         
-  #Returns the URL of the highest rated featured image or a default image if no art by this user exists
+  #Returns the URL of the highest rated featured image or a default 
+  #image if no art by this user exists
   #Currently just returns the first art        
   def masterpiece
     if arts.empty?
