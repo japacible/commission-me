@@ -33,32 +33,38 @@
             <div id="specification" class="panel-body"></div>
           </div>
           
-          <div class="panel panel-info">
-            <div class="panel-heading">Revised Price</div>
-            <div class="panel-body">
-              <div class="input-group">
-                <span class="input-group-addon">$</span>
-                <input id="price" name="price" class="form-control" type="text">
+          <% if @commission.state == "NewRequest" || (@commission.state == "Review" && 
+	     @json["spec"].count > @json["review"].count ) %>
+	            
+            <div class="panel panel-info">
+              <div class="panel-heading">Revised Price</div>
+              <div class="panel-body">
+                <div class="input-group">
+                  <span class="input-group-addon">$</span>
+                  <input id="price" name="price" class="form-control" type="text">
+                </div>
               </div>
             </div>
-          </div>
           
-          <div class="panel panel-info">
-            <div class="panel-heading">Review</div>
-            <div class="panel-body">
-              <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
+            <div class="panel panel-info">
+              <div class="panel-heading">Review</div>
+              <div class="panel-body">
+                <textarea class="form-control" name="review" placeholder="Specify revisions needed, or reasons why declined."></textarea>
+              </div>
             </div>
-          </div>
-          
-          <% if commission.state == "NewRequest" || (commission.state == "Review" && 
-	     @json["spec"].count > @json["review"] ) %>
             <center>
               <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
               @commission.id), :class => "btn") %>
               <input type="submit" name="post" class="btn" value="Revise">
               <input type="submit" name="post" class="btn" value="Decline">
             </center>
-	  <% elsif commission.state == "Review" %>
+	  <% elsif @commission.state == "Review" %>
+	    <div class="panel panel-info">
+            <div class="panel-heading">Review</div>
+            <div class="panel-body">
+              <textarea class="form-control" name="review" placeholder="Specify reason for declining or wait for the commissioner to respond."></textarea>
+            </div>
+          </div>
 	    <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
             @commission.id), :class => "btn") %>
 	    <input type="submit" name="post" class="btn" value="Decline">
@@ -74,13 +80,13 @@
           
           <!-- Display all the revisions if they exist -->
           <% if current_user.id == @commission.commissioner_id %>
-            <% if commission.state == "Accepted" %>
+            <% if @commission.state == "Accepted" %>
             
             <!--Payment??-->
             
-            <% elsif commission.state == "Review" &&
-                commission.commission_current["review"].count == 
-                commssion.commission_current["spec"].count %>
+            <% elsif @commission.state == "Review" &&
+                @commission.commission_current["review"].count == 
+                @commssion.commission_current["spec"].count %>
               <!-- Display text area for revision entry-->
               <div class="panel panel-info">
                 <div class="panel-heading">Revision</div>
@@ -95,14 +101,14 @@
         </form>
       <% end %>
     </div>
-<<<<<<< HEAD
-=======
+    <!--
     <center>
       <!-- If the current user is the artist, then s/he should be able to 
         finalize a commission request that they received.  Otherwise, the action
         required is to either mark the request as Accepted or Declined.
         If the current user is not the artist, they should not be able to
         do anything in this view. -->
+      <!--
       <% if @artist.name == current_user.name%>
         <% if @commission.state == "Accepted"%>
           <%= link_to("Payment Received", commissions_requests_finish_path(:commission_id => 
@@ -115,7 +121,7 @@
         <% end %>
       <% end %>
     </center>
->>>>>>> 4c8188e99fc7bf6b88d64fe7cc71c240cad091dc
+    -->
   </body>
 </html>
 
