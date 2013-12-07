@@ -82,6 +82,12 @@ class CommissionsController < ApplicationController
     end
   end
 
+  def progress
+    @commission = Commission.find(params[:commission_id])
+    @artist = User.find(@commission.artist_id)
+    @json = @commission.commission_current
+  end
+
   def finish
     @commission.state = "Finished"
   end

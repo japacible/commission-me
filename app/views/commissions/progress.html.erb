@@ -14,21 +14,27 @@
         <h1>Commission Progress</h1>
       </div>
       
-<!--      <% if current_user.id == @artist.id %> -->
-        <!-- LOOP THROUGH CATEGORY STEPS -->
+      <% if current_user.id == @artist.id %>
+        <% @json["steps"].each do |step| %>
           <div class="panel panel-info">
-            <div class="panel-heading"><!-- INJECT STEP NAME --></div>
+            <div class="panel-heading"><% step["name"] %></div>
             <div class="panel-body">
-              <h4><!-- INJECT OPTION NAME (AND PRICE?) --></h4>
-              <em><!-- INJECT OPTION DESCRIPTION --></em>
+              <h4><% step["choice"]["name"] + ": " + step["choice"]["price"] %></h4>
+              <em><% step["choice"]["description"] %></em>
             </div>
           </div>
-        <!-- END LOOP -->
+	<% end %>
         
         <div class="panel panel-info">
           <div class="panel-heading">Specification</div>
           <div id="specification" class="panel-body">
             <!-- LOOP THROUGH SPECIFICATIONS AND REVIEWS -->
+	    <% @json["spec"].zip("review").each do |spec, review|
+	       <!-- Add spec -->
+	       <% if !review.nil? %>
+	         <!-- Add review -->
+	       <% end %>
+	    <% end %>
           </div>
         </div>
         
@@ -36,6 +42,7 @@
           <div class="panel-heading">Revised Price</div>
           <div class="panel-body">
             <!-- INJECT REVISED PRICE -->
+	    <% @json["price"] %>
           </div>
         </div>
       <% end %>

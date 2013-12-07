@@ -36,9 +36,13 @@
             <%@user.requested_commissions.each do |commission| %>         
               <tr>
                 <!-- Sender name should link to user profile -->
-                
-                <td><%=link_to commission.commission_current["name"],
+                <% if commission.state == "In Progress" %>
+                  <td><%=link_to commission.commission_current["name"],
                    review_path(:commission_id => commission.id), :class => "link"%></td>
+		<% else %>
+		  <td><%=link_to commission.commission_current["name"],
+                   progress_path(:commission_id => commission.id), :class => "link"%></td>
+		<% end %>
                 <td><%=link_to commission.commissioner.name, 
                   commission.commissioner %></td>
               
