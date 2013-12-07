@@ -13,7 +13,7 @@
             class: "form_signin col-md-3") do %>
           <h2 class="form-signin-heading">Sign Up</h2>
           <input type="text" name="name" class="input-block-level" placeholder="Name">
-          <input type="text" name="email" class="input-block-level" placeholder="Email">
+          <input type="text" name="email" class="input-block-level" placeholder="PayPal Email">
           <input type="password" name="password" class="input-block-level"
             placeholder="Password">
           <input type="password" name="password_confirmation" class="input-block-level"
@@ -24,7 +24,7 @@
       
         <%=form_tag(users_login_path, method: "post", id:"log_in", class: "form_signin col-md-3") do %>
           <h2 class="form-signin-heading">Log In</h2>
-          <input type="text" name="email" class="input-block-level" placeholder="Email">
+          <input type="text" name="email" class="input-block-level" placeholder="PayPal Email">
           <input type="password" name="password" class="input-block-level" placeholder="Password">
           <label class="checkbox">
             <input type="checkbox" name="remember_me" value="true"> Remember Me</input>
