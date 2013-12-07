@@ -75,7 +75,11 @@ class CommissionsController < ApplicationController
     @commission = Commission.find(params[:commission_id])
     if current_user.id == @commission.artist_id
       @commission.state = "Declined"
-      @commission.commission_current["review"] = [params[:review]]
+      if @commission.commission_current["review"].nil?
+        @commission.commission_current["review"] = [params[:review]]
+      else
+        @commission.commissions_current["review"] << params[:review]
+      end
       @commission.save
       flash[:notice] = "Commission Declined!"
       redirect_to commissions_requests_path
@@ -90,7 +94,7 @@ class CommissionsController < ApplicationController
 
   def finish
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Payment Received"
+    @commission.state = "In Progress"
     if @commission.save
     else
       i = 0
@@ -105,6 +109,10 @@ class CommissionsController < ApplicationController
     end
     flash[:notice] = "Commission Finalized!"
     redirect_to commissions_requests_path
+  end
+
+  def complete
+
   end
 
 private
