@@ -11,6 +11,12 @@
 	display: block;
 }
 
+.slider {
+  margin-top:40px;
+  margin-left:5%;
+  margin-right:5%;
+}
+
 /* Theme */
 .bx-wrapper .bx-viewport {
 	-moz-box-shadow: 0 0 5px #ccc;
