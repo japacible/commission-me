@@ -23,18 +23,24 @@
               <em><% step["choice"]["description"] %></em>
             </div>
           </div>
-	<% end %>
+      <% end %>
         
         <div class="panel panel-info">
           <div class="panel-heading">Specification</div>
           <div id="specification" class="panel-body">
             <!-- LOOP THROUGH SPECIFICATIONS AND REVIEWS -->
-	    <% @json["spec"].zip("review").each do |spec, review|
-	       <!-- Add spec -->
-	       <% if !review.nil? %>
-	         <!-- Add review -->
-	       <% end %>
-	    <% end %>
+            <% @json["spec"].zip("review").each do |spec, review| %>
+              <!-- Add spec -->
+              
+              <p><strong><%= spec %></strong></p>
+              
+              <% if !review.nil? %>
+                <!-- Add review -->
+                
+                <p><em><%= review %></em></p>
+                
+              <% end %>
+            <% end %>
           </div>
         </div>
         
@@ -42,11 +48,10 @@
           <div class="panel-heading">Revised Price</div>
           <div class="panel-body">
             <!-- INJECT REVISED PRICE -->
-	    <% @json["price"] %>
+            <% @json["price"] %>
           </div>
         </div>
       <% end %>
     </div>
   </body>
 </html>
-
