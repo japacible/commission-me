@@ -1,7 +1,7 @@
 /* Reset and Layout */
 .bx-wrapper {
 	position: relative;
-	margin: 0 auto 60px;
+  margin:0;
 	padding: 0;
 	*zoom: 1;
 }
@@ -13,18 +13,14 @@
 
 .slider {
   margin-top:40px;
-  margin-left:5%;
-  margin-right:5%;
+  max-width:800px;
+  max-height:455px;
 }
 
 /* Theme */
 .bx-wrapper .bx-viewport {
-	-moz-box-shadow: 0 0 5px #ccc;
-	-webkit-box-shadow: 0 0 5px #ccc;
-	box-shadow: 0 0 5px #ccc;
-	border: solid #fff 5px;
-	left: -5px;
-	background: #fff;
+	border: 0px;
+  align:center;
 }
 
 .bx-wrapper .bx-pager,
@@ -133,7 +129,7 @@
 
 .bx-wrapper .bx-caption {
 	position: absolute;
-	bottom: 0;
+	bottom: 15px;
 	left: 0;
 	background: #666\9;
 	background: rgba(80, 80, 80, 0.75);

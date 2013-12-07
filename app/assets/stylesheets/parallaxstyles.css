@@ -66,6 +66,14 @@ p span
   margin-right:20%;
 }
 
+.mPageSlideshow {
+  color:rgba(235, 239, 240, 1);
+  padding-top:40px;
+  text-align:center;
+  font-size:20px;
+  font-style:italic;
+}
+
 .mPageQuestionText {
   color:rgba(235, 239, 240, 1);
   padding-top:30px;
