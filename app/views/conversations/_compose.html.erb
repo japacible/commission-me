@@ -41,10 +41,30 @@
         <div class="modal-footer">
 	  <button type="button" class="btn" data-dismiss="modal">
             Close</button>
-	  <button type="submit" class="btn">
+	  <button type="submit" class="btn" id="msg_submit">
             Send</button>
         </div>
       <%end%>
     </div>
   </div>
 </div>
+
+<script type="text/javascript">
+  window.onload=function(){
+    $("#msg_submit").attr("disabled", "disabled");
+    $("#msg_recipient").keyup(function() {checkForm();});
+    $("#msg_subject").keyup(function() {checkForm();});
+    $("#msg_body").keyup(function() {checkForm();});
+  }
+
+  function checkForm() {
+    if ($("#msg_recipient").val().length != '' &&
+        $("#msg_subject").val().length != '' &&
+        $("#msg_body").val().length != ''
+    ) {
+      $("#msg_submit").removeAttr("disabled");
+    } else {
+      $("#msg_submit").attr("disabled", "disabled");
+    }
+  }
+</script>

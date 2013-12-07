@@ -11,6 +11,7 @@ Myapp::Application.routes.draw do
   get "commissions/requests/accept" => 'commissions#accept'
   get "commissions/requests/decline" => 'commissions#decline'
   post "commissions/review/:commission_id" => 'commissions#catch_post_review'
+  get "commissions/requests/finish" => 'commissions#finish'
   get "commissions/review/:commission_id" => 'commissions#review', as: :review
   get "commissions/progress/:commission_id" => 'commissions#progress', as: :progress
   get "commissions/requests" => 'commissions#requests'
