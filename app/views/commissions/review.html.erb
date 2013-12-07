@@ -50,13 +50,18 @@
             </div>
           </div>
           
-          <% if commission.state == "NewRequest" || commission.state == "Review" %>
+          <% if commission.state == "NewRequest" || (commission.state == "Review" && 
+	     @json["spec"].count > @json["review"] ) %>
             <center>
               <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
               @commission.id), :class => "btn") %>
               <input type="submit" name="post" class="btn" value="Revise">
               <input type="submit" name="post" class="btn" value="Decline">
             </center>
+	  <% elsif commission.state == "Review" %>
+	    <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
+            @commission.id), :class => "btn") %>
+	    <input type="submit" name="post" class="btn" value="Decline">
           <% end %>
         </form>
       <% else %>
@@ -74,7 +79,7 @@
             <!--Payment??-->
             
             <% elsif commission.state == "Review" &&
-                commission.commission_current["review"].count > 
+                commission.commission_current["review"].count == 
                 commssion.commission_current["spec"].count %>
               <!-- Display text area for revision entry-->
               <input type="submit" name="post" class="btn" value="Submit Revision">
