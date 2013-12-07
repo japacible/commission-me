@@ -1,5 +1,5 @@
 <!-- Parallax scroll page modified from Mohiuddin Parekh, Nettuts+ -->
-<!-- Slideshow modified from example at http://tympanus.net/ -->
+<!-- Slideshow modified from https://github.com/wandoledzep/bxslider-4 -->
 
 <% provide(:title, "About CommissionMe") %>
 
@@ -11,6 +11,23 @@
 <!-- JS Code -->
 <script src="assets/jquery-1.7.2.min.js"></script>
 <script src="parallax.js"></script>
+
+  <link rel="stylesheet" href="http://bxslider.com/lib/jquery.bxslider.css" type="text/css" />
+  <script src="http://bxslider.com/js/jquery.min.js"></script>
+	<script src="http://bxslider.com/lib/jquery.bxslider.js"></script>
+	<script src="http://bxslider.com/js/rainbow.min.js"></script>
+	<script src="http://bxslider.com/js/scripts.js"></script>
+
+<script type="text/javascript">
+  $(document).ready(function(){
+    
+$('.bxslider').bxSlider({
+  mode: 'horizontal',
+  controls: true,
+  captions: true
+});
+  });
+</script>
 
 <!-- About CommissionMe -->
 <section id="generalAbout" data-speed="10" data-type="background">
@@ -34,6 +51,14 @@
 <!-- For Commissioners -->
 <section id="commissioners" data-speed="4" data-type="background">
   <div class="mPageHeader">For Commissioners</div>
+  
+  <div class="slider">
+<ul class="bxslider">
+  <li><img src="http://bxslider.com/images/730_200/tree_root.jpg" title="Funky roots" /></li>
+  <li><img src="http://bxslider.com/images/730_200/hill_road.jpg" title="The long and winding road" /></li>
+  <li><img src="http://bxslider.com/images/730_200/trees.jpg" title="Happy trees" /></li>
+</ul></div>
+
 
 </section>
 
