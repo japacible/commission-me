@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
-  attr_accessible :name, :email, :password, :password_confirmation, :remember_token,
-  :commission_request_template_json, :paypal_email
+  attr_accessible :name, :email, :password, :password_confirmation, 
+    :remember_token, :commission_request_template_json, :paypal_email
   has_many :arts        
-  has_many :received_commissions, :class_name => "Commission", :foreign_key => "artist_id"
-  has_many :requested_commissions, :class_name => "Commission", :foreign_key => "commissioner_id"
+  has_many :received_commissions, :class_name => "Commission", 
+    :foreign_key => "artist_id"
+  has_many :requested_commissions, :class_name => "Commission", 
+    :foreign_key => "commissioner_id"
   has_secure_password
   before_create :create_remember_token
   validates_format_of :name, :with => /\A[\w \-\xC0-\xFF]+\z/ 
