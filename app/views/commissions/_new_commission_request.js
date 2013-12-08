@@ -127,10 +127,6 @@ $(document).ready(function() {
     $("<hr/>").appendTo(category);
     
     // Final Step
-    // Artist Prompt
-    $("<p/>", {
-      html: "This is where the artist prompt will go."
-    }).appendTo(category);
     // Customer Specification
     $("<textarea/>", {
       "id": "final",
