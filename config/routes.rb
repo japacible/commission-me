@@ -10,7 +10,10 @@ Myapp::Application.routes.draw do
   get "commissions/requests/accept" => 'commissions#accept'
   get "commissions/requests/decline" => 'commissions#decline'
   post "commissions/review/:commission_id" => 'commissions#catch_post_review'
+  get "commissions/requests/finish" => 'commissions#finish'
   get "commissions/review/:commission_id" => 'commissions#review', as: :review
+  get "commissions/progress/:commission_id" => 'commissions#progress', as: :progress
+  post "commissions/progress/:commission_id" => 'commissions#complete'
   get "commissions/requests" => 'commissions#requests'
   get "commissions/:artist_id" => 'commissions#edit'
   resources :commissions
@@ -21,6 +24,9 @@ Myapp::Application.routes.draw do
   #get "users/create"
   resources :users
   resources :arts 
+  resources :images do
+    get "serve", :on => :member
+  end
   #get "new/create"
   #resources :fake_users
   #get "login" => "sessions#new", :as => "login"  # The priority is based upon order of creation: first created -> highest priority.

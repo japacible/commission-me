@@ -1,33 +1,28 @@
 class CommissionsController < ApplicationController
+  before_filter :verify_logged_in
   def show
     @commission = Commission.find(params[:commission_id])
   end
 
   def review
-    if current_user.nil?
-      redirect_to authenticate_path
-    else
-      @commission = Commission.find(params[:commission_id])
-      @artist = User.find(@commission.artist_id)
-      @json = @commission.commission_current
+    @commission = Commission.find(params[:commission_id])
+    @artist = User.find(@commission.artist_id)
+    @json = @commission.commission_current
+    if @commission.state == "Complete"
+      @image = Image.find(@commission.commission_current["image"])
+      if @image.nil?
+        flash[:alert] = "Image missing!"
+      end
     end
   end
 
   def requests
-    #TODO: route to login/signup?
     @user = current_user
-    if @user.nil?
-      redirect_to authenticate_path
-    end
   end
 
   def edit
-    if current_user.nil?
-      redirect_to authenticate_path
-    else
-      @artist = User.find(params[:artist_id])
-      @json = User.find(params[:artist_id]).commission_request_template_json
-    end
+    @artist = User.find(params[:artist_id])
+    @json = User.find(params[:artist_id]).commission_request_template_json
   end
 
   def create
@@ -41,26 +36,9 @@ class CommissionsController < ApplicationController
       t.commission_current = json
     end
     if @commission.save
-      @commission_request = CommissionRequest.new do |req|
-        req.commission_id = @commission.id
-        req.commission_current = json
-      end
-      if @commission_request.save
-        flash[:notice] = "Commission successfully sent!"
-        redirect_to root_url
-      else
-        @commission.delete
-        for message in @commission_request.errors.full_messages do
-          if i == 0
-            flash[:alert] = message
-            i = 1
-          else
-            flash[:alert] << ", " + message
-          end
-        end
-      end
+      flash[:notice] = "Commission successfully sent!"
+      redirect_to root_url
     else
-      i = 0
       for message in @commission.errors.full_messages do
         if i == 0
           flash[:alert] = message
@@ -74,6 +52,7 @@ class CommissionsController < ApplicationController
 
   def accept
     @commission = Commission.find(params[:commission_id])
+
     if current_user != nil && current_user.id == @commission.artist_id
       @commission.state = "Accepted"
       @commission.save
@@ -85,25 +64,87 @@ class CommissionsController < ApplicationController
   def catch_post_review
     switch = params[:post]
     if switch == "Decline"
-      decline()
-    else
+      decline
+    elsif switch == "Revise"
+      @commission = Commission.find(params[:commission_id])
+      @commission.state = "Review"
+      @json = @commission.commission_current
+      @json["price"] = params[:price]
+      @json["review"] = [params[:review]]
+      @commission.commission_current = nil
+      @commission.save
+      @commission.commission_current = @json
+      @commission.save
+      flash[:notice] = "Commission up for revision!"
       redirect_to commissions_requests_path
+    elsif switch == "New Revision"
+      revision
+    else
+      
     end
+  end
+
+  def revision
+    @commission = Commission.find(params[:commission_id])
+    @json = @commission.commission_current
+    if current_user.id == @commission.commissioner_id
+      @json["spec"] << params[:revision]
+    else
+      @json["review"] << params[:revision]
+    end
+    @commission.commission_current = nil
+    @commission.save
+    @commission.commission_current = @json
+    @commission.save
+    flash[:notice] = "Commission revision updated!"
+    redirect_to commissions_requests_path
   end
 
   def decline
     @commission = Commission.find(params[:commission_id])
     if current_user != nil && current_user.id == @commission.artist_id
       @commission.state = "Declined"
+      @json = @commission.commission_current
+      @json["decline"] = params[:post]
+      @commission.commission_current = nil
+      @commission.save
+      @commission.commission_current = @json
       @commission.save
       flash[:notice] = "Commission Declined!"
       redirect_to commissions_requests_path
     end
   end
 
+  def progress
+    @commission = Commission.find(params[:commission_id])
+    @artist = User.find(@commission.artist_id)
+    @json = @commission.commission_current
+  end
+
+  def complete
+    @commission = Commission.find(params[:commission_id])
+    @json = @commission.commission_current
+    @image = Image.new do |t|
+      t.data = params["picture"].read
+      t.filename = params["picture"].original_filename
+      t.file_type = params["picture"].content_type
+      t.artist_id = @commission.artist_id
+    end
+    if @image.save
+      @json["image"] = @image.id
+      @commission.commission_current = nil
+      @commission.save
+      @commission.commission_current = @json
+      @commission.state = "Complete"
+      @commission.save
+      flash[:notice] = "Commission Completed!"
+    end
+    redirect_to review_path(params[:commission_id])
+  end
+
   def finish
     @commission = Commission.find(params[:commission_id])
-    @commission.state = "Payment Received"
+    @commission.state = "In Progress"
     if @commission.save
     else
       i = 0
