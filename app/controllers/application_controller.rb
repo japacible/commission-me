@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
     # message: the alert message to be displayed upon redirect
     # default: the destination to send the user if HTTP_REFERER is not set
     def redirect_back(message = nil, default = root_url)
-      if !request.env["HTTP_REFERER"].blank? and request.env["HTTP_REFERER"] != request.env["REQUEST_URI"]
+      if !request.env["HTTP_REFERER"].blank?
         redirect_to :back, alert:message
       else
         redirect_to default, alert:message

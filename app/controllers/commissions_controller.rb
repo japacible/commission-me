@@ -124,6 +124,11 @@ class CommissionsController < ApplicationController
   def complete
     @commission = Commission.find(params[:commission_id])
     @json = @commission.commission_current
+    #Check to make sure artist uploaded a picture, if not send them back
+    if !params.has_key? "picture"
+      redirect_back "You must upload a picture to complete this commission."
+      return
+    end
     @image = Image.new do |t|
       t.data = params["picture"].read
       t.filename = params["picture"].original_filename
@@ -138,6 +143,8 @@ class CommissionsController < ApplicationController
       @commission.state = "Complete"
       @commission.save
       flash[:notice] = "Commission Completed!"
+    else
+      flash[:alert] = "Error completing commission. Image could not be saved."
     end
     redirect_to review_path(params[:commission_id])
   end
