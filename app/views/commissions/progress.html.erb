@@ -50,8 +50,8 @@
     </div>
     <% if current_user.id == @artist.id %>
       <form onsubmit="return confirm('Are you sure you want to submit?')" 
-	    enctype="multipart/form-data" method="post">
-	<input name="authenticity_token" type="hidden" value=<%=form_authenticity_token%> >
+	      enctype="multipart/form-data" method="post">
+	      <input name="authenticity_token" type="hidden" value=<%=form_authenticity_token%> >
         <%= file_field_tag 'picture' %>	
         <input type="submit" name="post" class="btn" value="Complete">
       </form>
