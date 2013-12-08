@@ -15,9 +15,9 @@
     <script type="text/javascript"><%= render 'request_list.js' %></script>  
   </head>
   <body>
-    <div class="container">
+    <div class="cscontainer">
       <div class="page-header">
-        <h1>Commission Requests: <%=@user.name%>!</h1>
+        <h1><%=@user.name%>'s Commission Requests</h1>
       </div>
  
       <h3> Sent Commission Requests </h3>
@@ -36,12 +36,15 @@
             <%@user.requested_commissions.each do |commission| %>         
               <tr>
                 <!-- Sender name should link to user profile -->
-                
-                <td><%=link_to commission.commission_current["name"],
-                   review_path(:commission_id => commission.id),
-                   :class => "link"%></td>
-                <td><%=link_to commission.artist.name, 
-                  commission.artist %></td>
+                <% if commission.state == "In Progress" %>
+                  <td><%=link_to commission.commission_current["name"],
+                   progress_path(:commission_id => commission.id), :class => "link"%></td>
+		<% else %>
+		  <td><%=link_to commission.commission_current["name"],
+                   review_path(:commission_id => commission.id), :class => "link"%></td>
+		<% end %>
+                <td><%=link_to commission.commissioner.name, 
+                  commission.commissioner %></td>
               
                 <td>
                   <%if commission.state == "Accepted"%>
@@ -95,9 +98,13 @@
             <%@user.received_commissions.each do |commission| %>         
               <tr>
                 <!-- Sender name should link to user profile -->
-                
-                <td><%=link_to commission.commission_current["name"],
-                   review_path(:commission_id => commission.id), :class => "link"%></td>
+                <% if commission.state == "In Progress" %>
+                  <td><%=link_to commission.commission_current["name"],
+                   progress_path(:commission_id => commission.id), :class => "link"%></td>
+		<% else %>
+                  <td><%=link_to commission.commission_current["name"],
+                    review_path(:commission_id => commission.id), :class => "link"%></td>
+		<% end %>
                 <td><%=link_to commission.commissioner.name, 
                   commission.commissioner %></td>
               

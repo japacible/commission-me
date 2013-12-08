@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
       if current_user.nil?
         #THis will store get parameters but not post parameters
         session[:destination_page] = request.env['ORIGINAL_FULLPATH']
-        redirect_to authenticate_path, alert:"You must be log in before you can continue."
+        redirect_to authenticate_path, alert:"You must be logged in before you can continue."
         #redirect_back "You must be logged in to do that."
       end
     end
