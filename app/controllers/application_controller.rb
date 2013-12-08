@@ -3,8 +3,21 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   include SessionsHelper
+  before_filter :input_filter
   private
-    
+    def input_filter
+       params.each do |key,value|
+     # if it’s a hash, we need to check each value inside it…
+        if value.is_a?(Hash)
+          value.each do |hash_key,hash_value|
+            params[key][hash_key] = Sanitize.clean(hash_value)
+          end
+          params[key].symbolize_keys!
+        elsif value.is_a?(String) || value.is_a?(Integer)
+          params[key] = Sanitize.clean(value)
+      end
+     end
+    end
     #Checks to see if current_user is defined
     #If not, redirects the user to the previous page
     #This will also store the session[:destination_page] value to the page
