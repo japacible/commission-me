@@ -213,12 +213,19 @@ FUTURE MODIFICATIONS
           }).appendTo(option_thumb);
           $("<input/>", {
             "class": "option-thumb",
-            "type": "file"
+            "type": "file",
+            "value" : val.thumb
           }).appendTo(option_thumb_label);
           $("<img/>", {
             "class": "img-thumbnail pull-left",
-            "src": val.thumb
+            "src": "/images/"+val.thumb+"/serve"
           }).appendTo(option_thumb_label);
+          //Post old image id if it exists
+          $("<input/>", {
+            "class": "option-thumb-key",
+            "type": "hidden",
+            "value": val.thumb
+          }).appendTo(option_thumb);
           
           // Option Price : option-[cat]-[step]-[opt]-price
           var option_price = $("<div/>", {
@@ -325,6 +332,9 @@ FUTURE MODIFICATIONS
           
           // INPUT: option thumbnail
           $(option).find($(".option-thumb")).attr("name", "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb");
+          
+          //Option hidden thumbnail id
+          $(option).find($(".option-thumb-key")).attr("name", "option-" + catkey + "-" + stepkey + "-" + optkey + "-thumb-id");
           
           // option price label
           $(option).find($(".option-price-label")).attr("for", "option-" + catkey + "-" + stepkey + "-" + optkey + "-price");

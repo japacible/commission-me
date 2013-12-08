@@ -97,9 +97,20 @@ class CommissionRequestTemplatesController < ApplicationController
       options = []
       params.each do |k,v|
         if k.starts_with? "option"
-          if step_number(k) == step[1] && cat_number(k) == step[0]
-            opt_name = k.split('-',5)[4]
-            opt_val = v
+          if (step_number(k) == step[1]) && (cat_number(k) == step[0])
+            opt_name = k.split('-',5)[4] 
+            if opt_name == "thumb" 
+              opt_val = build_image k,v  
+            elsif opt_name == "thumb-id"
+              #In case we (A) Do have an image and (B) Do not have an updated
+              #one to use, the id will still be posted so we need to make sure
+              #we add it to the new JSON
+              opt_name = "thumb"
+              opt_val = v
+              next if(v.nil? || v.empty?) 
+            else
+              opt_val = v
+            end
             opt_option_num = option_number(k)
             if options[opt_option_num].nil? 
               options[opt_option_num] = {}
@@ -107,6 +118,7 @@ class CommissionRequestTemplatesController < ApplicationController
             options[opt_option_num][opt_name] = opt_val
           end
         end
+ 
       end
       return options
     end
@@ -128,23 +140,41 @@ class CommissionRequestTemplatesController < ApplicationController
     def option_number(string)
       return string.split('-',5)[3].to_i
     end
+    
+    #Constructs an image with the given data
+    #param key: the parameter key. The way the form is set up, an additional
+    #           parameter will be passed if the image already existed, allowing
+    #           us to update it instead of rewrite
+    #param data: the data to construct the image from
+    #returns: an ID for finding the image
+    def build_image(key,data) 
+      #TODO check for existing image ID and just update it if it exists
+      exst_id = get_image_id(key)
+      if (exst_id != nil) && (exst_id != "")
+        image = Image.find(exst_id)  
+      else 
+        image = Image.new
+      end
+      if data.nil? 
+        return exst_id
+      end
+      image.data = data.read
+      image.filename = data.original_filename
+      image.file_type = data.content_type
+      image.artist_id = current_user.id 
+      if image.save 
+        return image.id
+      else
+        return exst_id
+      end
+    end
 
-    #Adds the specified json category to the given hash(map)
-    #If a category with json["name"] already exists, this will overrwrite it
-    #Otherwise it will append it
-    def add_category(hash, json) 
-      found = false
-      hash["categories"].each_with_index do |cat,index|
-        if cat["name"] == json["name"]
-          hash["categories"][index] = json;
-          found = true 
-        end
-        break if found = true
-      end
-      #If we finished the loop without finding a same-name category,
-      #append the new category
-      if !found
-        hash["categories"] << json
-      end
+    #Attempts to retreive the associated image id with the given image key
+    #image key is an option, ie "option-x-x-x-thumb"
+    #if an associated key is found, it will be returned
+    #otherwise returns nil
+    def get_image_id(key)
+      id_key = "#{key}-id"
+      return params[id_key]
     end
 end
