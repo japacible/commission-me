@@ -143,24 +143,6 @@
 	<% end %>
       <% end %>
     </div>
-    <center>
-      <!-- If the current user is the artist, then s/he should be able to 
-        finalize a commission request that they received.  Otherwise, the action
-        required is to either mark the request as Accepted or Declined.
-        If the current user is not the artist, they should not be able to
-        do anything in this view. -->
-      <% if @artist.name == current_user.name%>
-        <% if @commission.state == "Accepted"%>
-          <%= link_to("Payment Received", commissions_requests_finish_path(:commission_id => 
-              @commission.id), :class => "btn") %>
-        <% else %>
-          <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
-            @commission.id), :class => "btn") %>
-          <%= link_to("Decline", commissions_requests_decline_path(:commission_id => 
-            @commission.id), :class => "btn") %>
-        <% end %>
-      <% end %>
-    </center>
   </body>
 </html>
 
