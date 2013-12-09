@@ -92,11 +92,11 @@
 
     <!-- break between user info and art --> 
  <hr>
-	  <% if @current_user != nil && @user.name == current_user.name %>
-		  <%=link_to "Edit Your Featured Art", arts_path%>
-    <% end %>
- 
     <div class="container">
+	  <% if @current_user != nil && @user.name == current_user.name %>
+		  <%=link_to "Edit Your Featured Art", arts_path, :class => "btn"%>
+    <% end %>
+
         <ul id="tiles">
           <% @user.arts.each do |art| %>  
             <!-- Skip profile picture -->
