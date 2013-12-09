@@ -78,6 +78,7 @@ class CommissionsController < ApplicationController
     else
       if @json["review"].nil?
         @json["review"] = [params[:review]]
+        @commission.state = "Review"
       else
         @json["review"] << params[:review]
       end 
