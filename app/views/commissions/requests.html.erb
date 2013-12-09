@@ -43,8 +43,8 @@
 		  <td><%=link_to commission.commission_current["name"],
                    review_path(:commission_id => commission.id), :class => "link"%></td>
 		<% end %>
-                <td><%=link_to commission.commissioner.name, 
-                  commission.commissioner %></td>
+                <td><%=link_to commission.artist.name,
+                  commission.artist %></td>
               
                 <td>
                   <%if commission.state == "Accepted"%>
