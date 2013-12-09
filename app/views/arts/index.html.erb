@@ -1,16 +1,40 @@
+<!-- CSS Reset -->
+<link rel="stylesheet" href="/assets/reset.css">
+  
+<!-- Styling for grid blocks -->
+<link rel="stylesheet" href="/assets/homepageimages.css">
 
-<h2><%= link_to "Add Art", new_art_path%><br></h2>
-<%if current_user.arts.empty? %>
-  <h3>You have no art. Click the Add Art button to add some. </h3>
-<%end%>
-<% current_user.arts.each do |art| %>
-  <div> 
-    <li><%=link_to(art, :class => "item") do%>
-      <%= image_tag art.location, :class => "featuredimg"  %><br/>
-      <%= label_tag :descript, art.title %>  
-      <%= link_to "Delete", art_path(art.id), method: :delete, 
-        confirm: 'Are you certain you want to delete this?' %>
+<div class="container">
+
+  <h2><%= link_to "Add Art", new_art_path, :class => "btn"%><br></h2>
+  <%if current_user.arts.empty? %>
+    <h3>You have no art. Click the Add Art button to add some. </h3>
+  <%end%>
+
+  <ul id="tiles">
+    <% current_user.arts.each do |art| %>
+      <li>
+        <%=link_to(art, :class => "item") do%>
+        <%= image_tag art.location, :class => "featuredimg"  %><br/>
+        <%= label_tag :descript, art.title %>
+        <%= link_to "Delete", art_path(art.id), method: :delete,
+          confirm: 'Are you certain you want to delete this?' %>
       
-    <%end%>
-  </div>
-<% end%>
+        <%end%>
+      </li>
+  <% end%>
+  </ul>
+  
+  <!-- include jQuery -->
+  <script src="/assets/jquery-1.7.1.min.js"></script>
+  
+  <!-- Include the imagesLoaded plug-in -->
+  <script src="/assets/jquery.imagesloaded.js"></script>
+
+  <!-- Include the plug-in -->
+  <script src="/assets/jquery.wookmark.js"></script>
+  
+  <!-- Once the images are loaded, initalize the plug-in. -->
+  <script src="/assets/homepageimages.js"></script>
+
+</div>
