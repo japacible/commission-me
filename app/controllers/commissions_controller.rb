@@ -65,22 +65,8 @@ class CommissionsController < ApplicationController
     switch = params[:post]
     if switch == "Decline"
       decline
-    elsif switch == "Revise"
-      @commission = Commission.find(params[:commission_id])
-      @commission.state = "Review"
-      @json = @commission.commission_current
-      @json["price"] = params[:price]
-      @json["review"] = [params[:review]]
-      @commission.commission_current = nil
-      @commission.save
-      @commission.commission_current = @json
-      @commission.save
-      flash[:notice] = "Commission up for revision!"
-      redirect_to commissions_requests_path
-    elsif switch == "New Revision"
+    elsif switch == "Submit Revision"
       revision
-    else
-      
     end
   end
 
@@ -90,7 +76,14 @@ class CommissionsController < ApplicationController
     if current_user.id == @commission.commissioner_id
       @json["spec"] << params[:revision]
     else
-      @json["review"] << params[:revision]
+      if @json["review"].nil?
+        @json["review"] = [params[:review]]
+      else
+        @json["review"] << params[:review]
+      end 
+      if params["price"] != ""
+        @json["price"] = params[:price]
+      end
     end
     @commission.commission_current = nil
     @commission.save
