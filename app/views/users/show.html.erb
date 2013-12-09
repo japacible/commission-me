@@ -85,114 +85,33 @@
     </div>
 
     <!-- break between user info and art --> 
-
-  <hr>
-  
-  <!-- Container for : Artist's work -->
-  <div class="img-container container">
-    <div class="row-fluid">
-      <div class="img-row row">
-        <div class="thumbnail col-md-3">
-          <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-          <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div>  
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- break between user info and art --> 
-    <hr>
-
-    <!-- Container for : Artist's work -->
+ <hr>
+	  <% if @current_user != nil && @user.name == current_user.name %>
+		  <%=link_to "Edit Your Featured Art", arts_path%>
+    <% end %>
+ 
     <div class="img-container container">
       <div class="row-fluid">
         <div class="img-row row">
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
+          <% @user.arts.each do |art| %>  
+            <!-- Skip profile picture -->
+            <% next if (art.location == @user.masterpiece) %>
+            <div class="thumbnail col-md-3">
+            <%= image_tag art.location, :class => 'img-item' %>
             <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
+              <h2><%=art.title%></h2>
+              <p><%=art.description%></p>
             </div>
           </div>  
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg", :class => 'img-item' %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
+          <% end %> 
         </div>
-        <div class="img-row row">
-          &nbsp
-        </div>
-        <div class="img-row row">
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div>  
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-          <div class="thumbnail col-md-3">
-            <%= image_tag "BioCorgi.jpg" %>
-            <div class="caption">
-              <h2>Title</h2>
-              <p>Description</p>
-            </div>
-          </div> 
-        </div> 
       </div>
+    </div>
+  
+   
+
+      
+     
     </div>
   </body>
 </html>
