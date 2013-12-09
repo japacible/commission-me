@@ -72,13 +72,13 @@ class CommissionsController < ApplicationController
 
   def revision
     @commission = Commission.find(params[:commission_id])
+    @commission.state = "Review"
     @json = @commission.commission_current
     if current_user.id == @commission.commissioner_id
       @json["spec"] << params[:revision]
     else
       if @json["review"].nil?
         @json["review"] = [params[:review]]
-        @commission.state = "Review"
       else
         @json["review"] << params[:review]
       end 
