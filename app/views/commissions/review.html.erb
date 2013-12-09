@@ -49,6 +49,9 @@
             <div class="panel panel-info">
               <div class="panel-heading">Revised Price</div>
               <div class="panel-body">
+		<% if !@json["price"].nil? %>
+		  <h4><%= "$" + @json["price"].to_s %></h4>
+		<% end %>
                 <div class="input-group">
                   <span class="input-group-addon">$</span>
                   <input id="price" name="price" class="form-control" type="text">
@@ -65,11 +68,19 @@
             <center>
               <%= link_to("Accept", commissions_requests_accept_path(:commission_id =>
               @commission.id), :class => "btn") %>
-              <input type="submit" name="post" class="btn" value="Revise">
+              <input type="submit" name="post" class="btn" value="Submit Revision">
               <input type="submit" name="post" class="btn" value="Decline">
             </center>
 
 	  <% elsif @commission.state == "Review" %>
+	    <div class="panel panel-info">
+              <div class="panel-heading">Revised Price</div>
+              <div class="panel-body">
+	        <% if !@json["price"].nil? %>
+	          <h4><%= "$" + @json["price"].to_s %></h4>
+	        <% end %>
+	      </div>
+            </div>
 	    <div class="panel panel-info">
             <div class="panel-heading">Review</div>
             <div class="panel-body">
@@ -103,6 +114,15 @@
                 <% end %>
 	      <% end %>
             </div>
+          </div>
+
+	  <div class="panel panel-info">
+            <div class="panel-heading">Revised Price</div>
+            <div class="panel-body">
+	      <% if !@json["price"].nil? %>
+	        <h4><%= "$" + @json["price"].to_s %></h4>
+	      <% end %>
+	    </div>
           </div>
           
           <!-- Display all the revisions if they exist -->
