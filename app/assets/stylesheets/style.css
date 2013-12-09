@@ -256,6 +256,11 @@ html {
   border:0;
 }
 
+.btn:visited { 
+  color: #FFFFFF;
+  border:0;
+}
+
 button {
   border : 0px;
   -moz-border-radius:0px;
