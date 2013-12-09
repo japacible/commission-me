@@ -1,0 +1,17 @@
+  <div>
+    <form enctype="multipart/form-data" method="post" action="<%=arts_path%>">
+        <input name="authenticity_token" type="hidden" value=<%=form_authenticity_token%> >
+        <%= file_field_tag 'picture' %>	
+        <%= label_tag(:title_tag, "Title")%><br/>
+        <%= text_field_tag :title %><br/>
+        <%= label_tag(:description_tag, "Image description")%><br/>
+        <%= text_field_tag :description %><br/> 
+        <%= label_tag(:specify_loc, "Optional: Specify external image location") %><br/>
+        <%= text_field_tag :location %><br/>
+        <%= radio_button_tag(:upload_image, "1") %>
+        <%= label_tag(:upload_image_yes, "Upload image") %><br/>
+        <%= radio_button_tag(:upload_image, "0") %>
+        <%= label_tag(:upload_image_no, "Specify image path") %><br/>
+      <input type="submit" name="post" class="btn" value="Submit">
+    </form>
+  </div>
